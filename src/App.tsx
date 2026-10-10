@@ -134,6 +134,13 @@ function App() {
   };
 
   const revealAndGo = (id: string) => openRoom(id);
+  const bookingMailto = `mailto:auralcraftverse@gmail.com?subject=${encodeURIComponent(`Production booking request: ${projectName}`)}&body=${encodeURIComponent([
+    `Name: ${clientName}`,
+    `Project / record: ${projectName}`,
+    `Package: ${selectedPackage}`,
+    `Session type: ${sessionType}`,
+    `Availability: ${availability}`,
+  ].join('\\n'))}`;
 
   return (
     <main className="verse">
@@ -401,7 +408,7 @@ function App() {
             {bookingStage === 'select' && <div className="booking-stage"><p className="kicker">START HERE</p><h3>Choose a production path.</h3><p>Return to the packages above and select the engagement that matches the work.</p><button className="booking-primary" onClick={() => revealAndGo('packages')}>VIEW PRODUCTION PACKAGES <ArrowUpRight size={15} /></button></div>}
             {bookingStage === 'request' && <div className="booking-stage"><div className="booking-selected"><span>SELECTED PACKAGE</span><strong>{selectedPackage || 'CHOOSE A PACKAGE'}</strong></div><div className="field-grid"><label>CLIENT NAME<input value={clientName} onChange={e => setClientName(e.target.value)} placeholder="Your name" /></label><label>PROJECT / RECORD<input value={projectName} onChange={e => setProjectName(e.target.value)} placeholder="Project title" /></label></div><label className="field-full">SESSION TYPE<select value={sessionType} onChange={e => setSessionType(e.target.value)}><option value="">Select session type</option>{sessionTypes.map(type => <option key={type}>{type}</option>)}</select></label><button className="booking-primary" disabled={!selectedPackage || !clientName || !projectName || !sessionType} onClick={() => setBookingStage('availability')}>CONTINUE TO AVAILABILITY <ArrowUpRight size={15} /></button></div>}
             {bookingStage === 'availability' && <div className="booking-stage"><div className="booking-selected"><span>REQUEST</span><strong>{selectedPackage}</strong></div><p className="booking-prompt">What session window works for you?</p><div className="availability-grid">{availabilityWindows.map(window => <button key={window} className={availability === window ? 'availability-option active' : 'availability-option'} onClick={() => setAvailability(window)}>{window}</button>)}</div><button className="booking-primary" disabled={!availability} onClick={() => setBookingStage('confirmation')}>REVIEW REQUEST <ArrowUpRight size={15} /></button></div>}
-            {bookingStage === 'confirmation' && <div className="booking-stage confirmation-stage"><span className="confirmation-mark">✓</span><p className="kicker">REQUEST PREPARED</p><h3>{projectName}</h3><p>{selectedPackage} · {sessionType} · {availability}</p><p className="booking-note">Your request is prepared for the production desk. The final client connection will be attached when the production-system backend is activated.</p><button className="booking-primary" onClick={() => revealAndGo('production')}>RETURN TO PRODUCTION SUITE <ArrowUpRight size={15} /></button></div>}
+            {bookingStage === 'confirmation' && <div className="booking-stage confirmation-stage"><span className="confirmation-mark">✓</span><p className="kicker">REQUEST READY TO SEND</p><h3>{projectName}</h3><p>{selectedPackage} · {sessionType} · {availability}</p><p className="booking-note">Your email app will open with the booking details addressed to auralcraftverse@gmail.com. Review the message and press Send to submit your request.</p><a className="booking-primary" href={bookingMailto}>OPEN EMAIL TO SEND REQUEST <ArrowUpRight size={15} /></a><button className="secondary-button" onClick={() => revealAndGo('production')}>RETURN TO PRODUCTION SUITE <ArrowUpRight size={15} /></button></div>}
           </div>
         </div>
       </section>}
