@@ -140,7 +140,7 @@ function App() {
     `Package: ${selectedPackage}`,
     `Session type: ${sessionType}`,
     `Availability: ${availability}`,
-  ].join('\\n'))}`;
+  ].join('\n'))}`;
 
   return (
     <main className="verse">
