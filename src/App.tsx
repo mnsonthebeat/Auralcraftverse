@@ -7,7 +7,7 @@ const archiveRecords = [
   { year: '2026', category: 'RELEASES', title: 'MID-LIFE / CURATED EXPERIENCE', description: 'A recorded body of work documenting a period of adult rebuilding, reflection and forward motion.', marker: 'RELEASE / 01', status: 'RECENT' },
   { year: '2026', category: 'CURATION', title: 'RECALIBRATED', description: 'A human-led curatorial layer for discovering and contextualising music beyond the noise.', marker: 'CULTURE / 01', status: 'ACTIVE' },
   { year: '2026', category: 'TOOLS', title: 'MIXMIND', description: 'Producer Intelligence built to translate musical and sonic evidence into production decisions.', marker: 'TOOL / 01', status: 'ACTIVE' },
-  { year: '2026', category: 'TOOLS', title: 'HUSH DENOISE', description: 'Professional audio restoration and noise reduction built for practical recovery of recorded sound.', marker: 'TOOL / 02', status: 'BUILDING' },
+  { year: '2026', category: 'TOOLS', title: 'HUSH DENOISE', description: 'Professional audio restoration and noise reduction built for practical recovery of recorded sound.', marker: 'TOOL / 02', status: 'ACTIVE' },
   { year: '2011', category: 'ORIGIN', title: 'THE ROOTS', description: 'The beginning of the creative practice from which the present architecture grew.', marker: 'ORIGIN / 01', status: 'FOUNDATION' },
   { year: '∞', category: 'FUTURE', title: 'THE NEXT RECORD', description: 'Unfinished by design. New works, tools, experiments and cultural records will enter here.', marker: 'FUTURE / ∞', status: 'OPEN' },
 ];
@@ -106,7 +106,7 @@ const tools = [
     copy: 'Noise reduction, restoration and repair for vocals, speech, interviews, field recordings and more.',
     icon: Sparkles,
     tone: 'quiet',
-    action: 'ENTER HUSH',
+    action: 'OPEN HUSH DENOISE',
   },
 ];
 
@@ -168,7 +168,7 @@ function App() {
             {navOpen === 'tools' && <div className="nav-dropdown tools-dropdown">
               <button onClick={() => openRoom('production')}><span>PRODUCTION SUITE</span><small>HUMAN CRAFT</small></button>
               <button onClick={() => openRoom('mixmind')}><span>MIXMIND</span><small>PRODUCER INTELLIGENCE</small></button>
-              <button onClick={() => openRoom('hush')}><span>HUSH DENOISE</span><small>AUDIO RESTORATION / IN DEVELOPMENT</small></button>
+              <button onClick={() => openRoom('hush')}><span>HUSH DENOISE</span><small>LOCAL AUDIO RESTORATION</small></button>
             </div>}
           </div>
           <button className="nav-tab" onClick={() => go('origin')}>ORIGIN</button>
@@ -337,13 +337,13 @@ function App() {
                 </div>
                 <button
                   className="tool-action"
-                  disabled={index === 2}
                   onClick={() => {
                     if (index === 0) openRoom('production');
                     if (index === 1) openRoom('mixmind');
+                    if (index === 2) openRoom('hush');
                   }}
                 >
-                  {index === 2 ? 'HUSH / IN DEVELOPMENT' : tool.action}
+                  {tool.action}
                   <ArrowUpRight size={15} />
                 </button>
               </article>
@@ -622,8 +622,8 @@ function App() {
 
       {activeRoom === 'hush' && <section className="tool-room chamber hush-room">
         <div className="section-meta"><span>TOOL / 02</span><span>HUSH DENOISE / AURALCRAFTVERSE</span></div>
-        <div className="tool-room-head"><div><p className="kicker">PROFESSIONAL AUDIO RESTORATION</p><h2>Make the noise<br /><em>disappear.</em></h2><p>Hush Denoise will occupy its own working environment inside the verse. Its restoration UX can remain distinct while the Auralcraftverse architecture, atmosphere and navigation remain continuous.</p></div><button className="text-link" onClick={() => go('top')}>RETURN TO THE VERSE <ArrowUpRight size={15} /></button></div>
-        <div className="hush-state"><Sparkles size={28} strokeWidth={1} /><span>HUSH / IN DEVELOPMENT</span><p>The chamber is established. The processing engine will enter when the restoration workflow is ready.</p></div>
+        <div className="tool-room-head"><div><p className="kicker">PROFESSIONAL AUDIO RESTORATION</p><h2>Make the noise<br /><em>disappear.</em></h2><p>Restore and clean audio in Hush Denoise. Processing runs locally on your device, while the Auralcraftverse environment stays around the tool.</p></div><button className="text-link" onClick={() => go('top')}>RETURN TO THE VERSE <ArrowUpRight size={15} /></button></div>
+        <div className="tool-frame"><iframe title="Hush Denoise by Auralcraftverse" src="https://hush-denoise-by-auralcraftverse-wc3fxc.v2.appdeploy.ai/" loading="lazy" /></div>
         <div className="tool-room-foot"><span>ACV / TOOL CHAMBER / HUSH</span><span>THE UX WILL BE DISTINCT. THE UNIVERSE WILL BE SHARED.</span></div>
       </section>}
 
