@@ -25,7 +25,7 @@
       "Tools dropdown",
       "Production Suite room",
       "MixMind in-verse chamber",
-      "Hush Denoise in-development chamber"
+      "Hush Denoise embedded restoration workspace"
     ],
     "description": "Verifies Tools expands from the top rail and each tool has a meaningful in-verse destination.",
     "steps": [
@@ -38,7 +38,7 @@
       "Open TOOLS again",
       "Select HUSH DENOISE"
     ],
-    "expected": "Production Suite opens inside Auralcraftverse, MixMind opens inside an Auralcraftverse tool chamber with its distinct UX, and Hush opens its in-development chamber without leaving the verse."
+    "expected": "Production Suite opens inside Auralcraftverse, MixMind opens inside an Auralcraftverse tool chamber with its distinct UX, and Hush opens the embedded local restoration workspace within Auralcraftverse."
   },
   {
     "name": "Discover deeper rooms through MORE",
