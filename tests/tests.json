@@ -1,0 +1,107 @@
+[
+  {
+    "name": "Navigate the architectural rail without a sidebar",
+    "sanity": true,
+    "viewport": "desktop",
+    "covers": [
+      "architectural top navigation",
+      "Works destination",
+      "Origin landing destination",
+      "no sidebar navigation"
+    ],
+    "description": "Verifies the primary navigation is a visible architectural rail and opens destinations instead of scrolling back through the landing journey.",
+    "steps": [
+      "Open the homepage",
+      "Select WORKS from the top rail",
+      "Return to VERSE",
+      "Select ORIGIN from the top rail"
+    ],
+    "expected": "WORKS opens as a separate in-verse room, VERSE returns to the landing journey, and ORIGIN remains a landing destination without a sidebar menu."
+  },
+  {
+    "name": "Open the Tools architecture and enter each tool chamber",
+    "viewport": "desktop",
+    "covers": [
+      "Tools dropdown",
+      "Production Suite room",
+      "MixMind in-verse chamber",
+      "Hush Denoise in-development chamber"
+    ],
+    "description": "Verifies Tools expands from the top rail and each tool has a meaningful in-verse destination.",
+    "steps": [
+      "Open TOOLS from the top rail",
+      "Select PRODUCTION SUITE",
+      "Return to VERSE",
+      "Open TOOLS again",
+      "Select MIXMIND",
+      "Return to VERSE",
+      "Open TOOLS again",
+      "Select HUSH DENOISE"
+    ],
+    "expected": "Production Suite opens inside Auralcraftverse, MixMind opens inside an Auralcraftverse tool chamber with its distinct UX, and Hush opens its in-development chamber without leaving the verse."
+  },
+  {
+    "name": "Discover deeper rooms through MORE",
+    "viewport": "desktop",
+    "covers": [
+      "More dropdown",
+      "Human Craft",
+      "Archive",
+      "Cultural Research",
+      "Assembly",
+      "Mind",
+      "Booking"
+    ],
+    "description": "Verifies deeper architecture is discoverable from the same top navigation without duplicating it in the landing flow.",
+    "steps": [
+      "Open MORE",
+      "Enter THE ARCHIVE",
+      "Return to VERSE",
+      "Open MORE",
+      "Enter CULTURAL RESEARCH",
+      "Return to VERSE",
+      "Open MORE",
+      "Enter THE MIND"
+    ],
+    "expected": "The deeper rooms open as individual in-verse destinations and are not inserted into the initial landing scroll."
+  },
+  {
+    "name": "Use mobile architectural navigation",
+    "viewport": "mobile",
+    "covers": [
+      "mobile top rail",
+      "mobile dropdown interaction",
+      "mobile room return"
+    ],
+    "description": "Verifies the navigation remains a horizontal architectural rail on mobile and dropdowns remain usable without a sidebar.",
+    "steps": [
+      "Open the homepage on mobile",
+      "Tap TOOLS",
+      "Tap MIXMIND",
+      "Use RETURN TO THE VERSE",
+      "Tap MORE",
+      "Tap THE ARCHIVE"
+    ],
+    "expected": "The mobile rail remains visible, dropdowns open from their tabs, MixMind returns to the landing journey, and Archive opens as an in-verse room."
+  },
+  {
+    "name": "Keep shared environmental architecture while tool UX remains distinct",
+    "viewport": "desktop",
+    "covers": [
+      "shared global environment",
+      "MixMind iframe chamber",
+      "Hush visual distinction",
+      "room-level return"
+    ],
+    "description": "Verifies tool rooms retain the Auralcraftverse environmental shell while allowing each tool to keep a distinct interface language.",
+    "steps": [
+      "Open TOOLS",
+      "Select MIXMIND",
+      "Inspect the surrounding Auralcraftverse chamber",
+      "Return to VERSE",
+      "Open TOOLS",
+      "Select HUSH DENOISE"
+    ],
+    "expected": "Both tool destinations retain the shared Auralcraftverse environmental architecture and navigation, while MixMind and Hush use distinct tool-specific visual treatments."
+  }
+]
