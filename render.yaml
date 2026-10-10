@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: auralcraftverse
+    runtime: static
+    buildCommand: npm install && npm run build
+    staticPublishPath: ./dist
+    autoDeployTrigger: commit
+    previews:
+      generation: automatic
