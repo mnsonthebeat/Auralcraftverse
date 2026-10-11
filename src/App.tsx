@@ -142,6 +142,10 @@ function App() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const openSplitIt = () => {
+    window.location.assign('https://split-it-by-auralcraftverse-isolated-port-yvds53.v2.appdeploy.ai/');
+  };
+
   const revealAndGo = (id: string) => openRoom(id);
   const bookingMailto = `mailto:auralcraftverse@gmail.com?subject=${encodeURIComponent(`Production booking request: ${projectName}`)}&body=${encodeURIComponent([
     `Name: ${clientName}`,
@@ -185,7 +189,7 @@ function App() {
               <button onClick={() => openRoom('production')}><span>PRODUCTION SUITE</span><small>HUMAN CRAFT</small></button>
               <button onClick={() => openRoom('mixmind')}><span>MIXMIND</span><small>PRODUCER INTELLIGENCE</small></button>
               <button onClick={() => openRoom('hush')}><span>HUSH DENOISE</span><small>LOCAL AUDIO RESTORATION</small></button>
-              <button onClick={() => openRoom('splitit')}><span>SPLIT IT!</span><small>MUSIC OWNERSHIP DOCUMENTATION</small></button>
+              <button onClick={openSplitIt}><span>SPLIT IT!</span><small>MUSIC OWNERSHIP DOCUMENTATION</small></button>
             </div>}
           </div>
           <button className="nav-tab" onClick={() => go('origin')}>ORIGIN</button>
@@ -358,7 +362,7 @@ function App() {
                     if (index === 0) openRoom('production');
                     if (index === 1) openRoom('mixmind');
                     if (index === 2) openRoom('hush');
-                    if (index === 3) openRoom('splitit');
+                    if (index === 3) openSplitIt();
                   }}
                 >
                   {tool.action}
@@ -645,35 +649,7 @@ function App() {
         <div className="tool-room-foot"><span>ACV / TOOL CHAMBER / HUSH</span><span>THE UX WILL BE DISTINCT. THE UNIVERSE WILL BE SHARED.</span></div>
       </section>}
 
-      {activeRoom === 'splitit' && <section className="tool-room chamber splitit-room">
-        <div className="section-meta"><span>TOOL / 03</span><span>SPLIT IT! / AURALCRAFTVERSE</span></div>
-        <div className="tool-room-head">
-          <div>
-            <p className="kicker">MUSIC OWNERSHIP DOCUMENTATION</p>
-            <h2>Make the split.<br /><em>Keep the record.</em></h2>
-            <p>Document contributors, ownership and publishing details in Split It! Save and reopen your projects, then export a professional PDF split sheet or structured CSV. The tool remains independently maintained within the Auralcraftverse ecosystem.</p>
-          </div>
-          <div className="splitit-launch-actions">
-            <a className="text-link splitit-open-link" href="https://split-it-by-auralcraftverse-isolated-port-yvds53.v2.appdeploy.ai/" target="_blank" rel="noopener noreferrer">OPEN IN NEW TAB <ArrowUpRight size={15} /></a>
-            <button className="text-link" onClick={() => go('top')}>RETURN TO THE VERSE <ArrowUpRight size={15} /></button>
-          </div>
-        </div>
-        <div className="splitit-embed-note">
-          <span className="splitit-live-indicator" aria-hidden="true" />
-          <span>ISOLATED APP / EMBEDDED VALIDATION</span>
-          <span>IF SIGN-IN OR SAVING IS BLOCKED, USE OPEN IN NEW TAB</span>
-        </div>
-        <div className="tool-frame splitit-tool-frame">
-          <iframe
-            title="Split It! by Auralcraftverse — music ownership documentation"
-            src="https://split-it-by-auralcraftverse-isolated-port-yvds53.v2.appdeploy.ai/"
-            loading="lazy"
-            referrerPolicy="strict-origin-when-cross-origin"
-            allow="clipboard-read; clipboard-write"
-          />
-        </div>
-        <div className="tool-room-foot"><span>ACV / TOOL CHAMBER / SPLIT IT!</span><span>DOCUMENT / CONFIRM / EXPORT</span></div>
-      </section>}
+      
 
       </div>}
 
