@@ -107,7 +107,7 @@ const tools = [
   {
     name: 'PRODUCTION SUITE',
     subtitle: 'Human production.',
-    copy: 'Recording, beatmaking, mixing, mastering and artist development shaped around each project. One human-led route from first idea to finished record, with clear packages and booking access.'
+    copy: 'Recording, beatmaking, mixing, mastering and artist development shaped around each project. One human-led route from first idea to finished record, with clear packages and booking access.',
     icon: AudioLines,
     tone: 'warm',
     action: 'EXPLORE PRODUCTION',
@@ -115,7 +115,7 @@ const tools = [
   {
     name: 'MIXMIND',
     subtitle: 'Producer Intelligence.',
-    copy: 'Turn listening into structured production decisions across harmony, arrangement, EQ, dynamics, space and effects. MixMind helps producers decide what to try next and connects analysis to Auralcraftverse production practice.'
+    copy: 'Turn listening into structured production decisions across harmony, arrangement, EQ, dynamics, space and effects. MixMind helps producers decide what to try next and connects analysis to Auralcraftverse production practice.',
     icon: Orbit,
     tone: 'cool',
     action: 'ENTER MIXMIND',
@@ -123,7 +123,7 @@ const tools = [
   {
     name: 'HUSH DENOISE',
     subtitle: 'Professional audio restoration.',
-    copy: 'Restore noisy recordings and clean speech or vocals with processing designed to run on your device. Hush helps recover usable audio while keeping the working file local, as part of the Auralcraftverse production toolkit.'
+    copy: 'Restore noisy recordings and clean speech or vocals with processing designed to run on your device. Hush helps recover usable audio while keeping the working file local, as part of the Auralcraftverse production toolkit.',
     icon: Sparkles,
     tone: 'quiet',
     action: 'OPEN HUSH DENOISE',
@@ -131,7 +131,7 @@ const tools = [
   {
     name: 'SPLIT IT!',
     subtitle: 'Music ownership documentation.',
-    copy: 'Create and reopen split sheets, document contributor ownership, and export PDF or CSV records. Split It! replaces scattered credit notes with a clear release-prep document that connects to the Auralcraftverse music archive.'
+    copy: 'Create and reopen split sheets, document contributor ownership, and export PDF or CSV records. Split It! replaces scattered credit notes with a clear release-prep document that connects to the Auralcraftverse music archive.',
     icon: FileSpreadsheet,
     tone: 'warm',
     action: 'OPEN SPLIT IT!',
