@@ -7,7 +7,7 @@ const archiveRecords = [
   { year: '2026', category: 'RELEASES', title: 'MID-LIFE / CURATED EXPERIENCE', description: 'A recorded body of work documenting a period of adult rebuilding, reflection and forward motion.', marker: 'RELEASE / 01', status: 'RECENT' },
   { year: '2026', category: 'CURATION', title: 'RECALIBRATED', description: 'A human-led curatorial layer for discovering and contextualising music beyond the noise.', marker: 'CULTURE / 01', status: 'ACTIVE' },
   { year: '2026', category: 'TOOLS', title: 'MIXMIND', description: 'Producer Intelligence built to translate musical and sonic evidence into production decisions.', marker: 'TOOL / 01', status: 'ACTIVE' },
-  { year: '2026', category: 'TOOLS', title: 'HUSH DENOISE', description: 'Professional audio restoration and noise reduction built for practical recovery of recorded sound.', marker: 'TOOL / 02', status: 'BUILDING' },
+  { year: '2026', category: 'TOOLS', title: 'HUSH DENOISE', description: 'Professional audio restoration and noise reduction built for practical recovery of recorded sound.', marker: 'TOOL / 02', status: 'ACTIVE' },
   { year: '2011', category: 'ORIGIN', title: 'THE ROOTS', description: 'The beginning of the creative practice from which the present architecture grew.', marker: 'ORIGIN / 01', status: 'FOUNDATION' },
   { year: '∞', category: 'FUTURE', title: 'THE NEXT RECORD', description: 'Unfinished by design. New works, tools, experiments and cultural records will enter here.', marker: 'FUTURE / ∞', status: 'OPEN' },
 ];
@@ -106,7 +106,7 @@ const tools = [
     copy: 'Noise reduction, restoration and repair for vocals, speech, interviews, field recordings and more.',
     icon: Sparkles,
     tone: 'quiet',
-    action: 'ENTER HUSH',
+    action: 'OPEN HUSH DENOISE',
   },
 ];
 
@@ -134,6 +134,13 @@ function App() {
   };
 
   const revealAndGo = (id: string) => openRoom(id);
+  const bookingMailto = `mailto:auralcraftverse@gmail.com?subject=${encodeURIComponent(`Production booking request: ${projectName}`)}&body=${encodeURIComponent([
+    `Name: ${clientName}`,
+    `Project / record: ${projectName}`,
+    `Package: ${selectedPackage}`,
+    `Session type: ${sessionType}`,
+    `Availability: ${availability}`,
+  ].join('\n'))}`;
 
   return (
     <main className="verse">
@@ -168,7 +175,7 @@ function App() {
             {navOpen === 'tools' && <div className="nav-dropdown tools-dropdown">
               <button onClick={() => openRoom('production')}><span>PRODUCTION SUITE</span><small>HUMAN CRAFT</small></button>
               <button onClick={() => openRoom('mixmind')}><span>MIXMIND</span><small>PRODUCER INTELLIGENCE</small></button>
-              <button onClick={() => openRoom('hush')}><span>HUSH DENOISE</span><small>AUDIO RESTORATION / IN DEVELOPMENT</small></button>
+              <button onClick={() => openRoom('hush')}><span>HUSH DENOISE</span><small>LOCAL AUDIO RESTORATION</small></button>
             </div>}
           </div>
           <button className="nav-tab" onClick={() => go('origin')}>ORIGIN</button>
@@ -337,13 +344,13 @@ function App() {
                 </div>
                 <button
                   className="tool-action"
-                  disabled={index === 2}
                   onClick={() => {
                     if (index === 0) openRoom('production');
                     if (index === 1) openRoom('mixmind');
+                    if (index === 2) openRoom('hush');
                   }}
                 >
-                  {index === 2 ? 'HUSH / IN DEVELOPMENT' : tool.action}
+                  {tool.action}
                   <ArrowUpRight size={15} />
                 </button>
               </article>
@@ -401,7 +408,7 @@ function App() {
             {bookingStage === 'select' && <div className="booking-stage"><p className="kicker">START HERE</p><h3>Choose a production path.</h3><p>Return to the packages above and select the engagement that matches the work.</p><button className="booking-primary" onClick={() => revealAndGo('packages')}>VIEW PRODUCTION PACKAGES <ArrowUpRight size={15} /></button></div>}
             {bookingStage === 'request' && <div className="booking-stage"><div className="booking-selected"><span>SELECTED PACKAGE</span><strong>{selectedPackage || 'CHOOSE A PACKAGE'}</strong></div><div className="field-grid"><label>CLIENT NAME<input value={clientName} onChange={e => setClientName(e.target.value)} placeholder="Your name" /></label><label>PROJECT / RECORD<input value={projectName} onChange={e => setProjectName(e.target.value)} placeholder="Project title" /></label></div><label className="field-full">SESSION TYPE<select value={sessionType} onChange={e => setSessionType(e.target.value)}><option value="">Select session type</option>{sessionTypes.map(type => <option key={type}>{type}</option>)}</select></label><button className="booking-primary" disabled={!selectedPackage || !clientName || !projectName || !sessionType} onClick={() => setBookingStage('availability')}>CONTINUE TO AVAILABILITY <ArrowUpRight size={15} /></button></div>}
             {bookingStage === 'availability' && <div className="booking-stage"><div className="booking-selected"><span>REQUEST</span><strong>{selectedPackage}</strong></div><p className="booking-prompt">What session window works for you?</p><div className="availability-grid">{availabilityWindows.map(window => <button key={window} className={availability === window ? 'availability-option active' : 'availability-option'} onClick={() => setAvailability(window)}>{window}</button>)}</div><button className="booking-primary" disabled={!availability} onClick={() => setBookingStage('confirmation')}>REVIEW REQUEST <ArrowUpRight size={15} /></button></div>}
-            {bookingStage === 'confirmation' && <div className="booking-stage confirmation-stage"><span className="confirmation-mark">✓</span><p className="kicker">REQUEST PREPARED</p><h3>{projectName}</h3><p>{selectedPackage} · {sessionType} · {availability}</p><p className="booking-note">Your request is prepared for the production desk. The final client connection will be attached when the production-system backend is activated.</p><button className="booking-primary" onClick={() => revealAndGo('production')}>RETURN TO PRODUCTION SUITE <ArrowUpRight size={15} /></button></div>}
+            {bookingStage === 'confirmation' && <div className="booking-stage confirmation-stage"><span className="confirmation-mark">✓</span><p className="kicker">REQUEST READY TO SEND</p><h3>{projectName}</h3><p>{selectedPackage} · {sessionType} · {availability}</p><p className="booking-note">Your email app will open with the booking details addressed to auralcraftverse@gmail.com. Review the message and press Send to submit your request.</p><a className="booking-primary" href={bookingMailto}>OPEN EMAIL TO SEND REQUEST <ArrowUpRight size={15} /></a><button className="secondary-button" onClick={() => revealAndGo('production')}>RETURN TO PRODUCTION SUITE <ArrowUpRight size={15} /></button></div>}
           </div>
         </div>
       </section>}
@@ -622,8 +629,8 @@ function App() {
 
       {activeRoom === 'hush' && <section className="tool-room chamber hush-room">
         <div className="section-meta"><span>TOOL / 02</span><span>HUSH DENOISE / AURALCRAFTVERSE</span></div>
-        <div className="tool-room-head"><div><p className="kicker">PROFESSIONAL AUDIO RESTORATION</p><h2>Make the noise<br /><em>disappear.</em></h2><p>Hush Denoise will occupy its own working environment inside the verse. Its restoration UX can remain distinct while the Auralcraftverse architecture, atmosphere and navigation remain continuous.</p></div><button className="text-link" onClick={() => go('top')}>RETURN TO THE VERSE <ArrowUpRight size={15} /></button></div>
-        <div className="hush-state"><Sparkles size={28} strokeWidth={1} /><span>HUSH / IN DEVELOPMENT</span><p>The chamber is established. The processing engine will enter when the restoration workflow is ready.</p></div>
+        <div className="tool-room-head"><div><p className="kicker">PROFESSIONAL AUDIO RESTORATION</p><h2>Make the noise<br /><em>disappear.</em></h2><p>Restore and clean audio in Hush Denoise. Processing runs locally on your device, while the Auralcraftverse environment stays around the tool.</p></div><button className="text-link" onClick={() => go('top')}>RETURN TO THE VERSE <ArrowUpRight size={15} /></button></div>
+        <div className="tool-frame"><iframe title="Hush Denoise by Auralcraftverse" src="https://hush-denoise-by-auralcraftverse-wc3fxc.v2.appdeploy.ai/" loading="lazy" /></div>
         <div className="tool-room-foot"><span>ACV / TOOL CHAMBER / HUSH</span><span>THE UX WILL BE DISTINCT. THE UNIVERSE WILL BE SHARED.</span></div>
       </section>}
 

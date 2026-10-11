@@ -25,7 +25,7 @@
       "Tools dropdown",
       "Production Suite room",
       "MixMind in-verse chamber",
-      "Hush Denoise in-development chamber"
+      "Hush Denoise embedded restoration workspace"
     ],
     "description": "Verifies Tools expands from the top rail and each tool has a meaningful in-verse destination.",
     "steps": [
@@ -38,7 +38,7 @@
       "Open TOOLS again",
       "Select HUSH DENOISE"
     ],
-    "expected": "Production Suite opens inside Auralcraftverse, MixMind opens inside an Auralcraftverse tool chamber with its distinct UX, and Hush opens its in-development chamber without leaving the verse."
+    "expected": "Production Suite opens inside Auralcraftverse, MixMind opens inside an Auralcraftverse tool chamber with its distinct UX, and Hush opens the embedded local restoration workspace within Auralcraftverse."
   },
   {
     "name": "Discover deeper rooms through MORE",
@@ -103,5 +103,26 @@
       "Select HUSH DENOISE"
     ],
     "expected": "Both tool destinations retain the shared Auralcraftverse environmental architecture and navigation, while MixMind and Hush use distinct tool-specific visual treatments."
+  },
+  {
+    "name": "Prepare a booking request in the visitor's email app",
+    "viewport": "desktop",
+    "covers": [
+      "selected production package",
+      "client intake",
+      "availability selection",
+      "prefilled booking email"
+    ],
+    "description": "Verifies a complete booking request opens the visitor's email app with the production desk address and request details prefilled.",
+    "steps": [
+      "Open production packages",
+      "Select a package",
+      "Enter client name, project title and session type",
+      "Continue to availability",
+      "Select a session window",
+      "Review request",
+      "Choose OPEN EMAIL TO SEND REQUEST"
+    ],
+    "expected": "The email app opens addressed to auralcraftverse@gmail.com with the client name, project, selected package, session type and availability prefilled. The visitor can review and send the request."
   }
 ]
