@@ -2260,3 +2260,50 @@ em {
     animation: none !important;
   }
 }
+
+
+/* Split It! integration chamber — branch-only validation styling. */
+.splitit-launch-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 18px;
+}
+.splitit-open-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--gold);
+  text-decoration: none;
+}
+.splitit-open-link:hover { color: var(--white); }
+.splitit-embed-note {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 18px;
+  margin-top: 28px;
+  padding: 12px 14px;
+  border: 1px solid rgba(201,168,106,.15);
+  background: rgba(4,7,9,.56);
+  color: #6e7475;
+  font-size: 7px;
+  letter-spacing: .15em;
+}
+.splitit-live-indicator {
+  width: 6px;
+  height: 6px;
+  flex: 0 0 6px;
+  border-radius: 50%;
+  background: #c9a86a;
+  box-shadow: 0 0 10px rgba(201,168,106,.35);
+}
+.splitit-tool-frame { margin-top: 0; }
+@media (max-width: 700px) {
+  .splitit-launch-actions { justify-content: flex-start; }
+  .splitit-embed-note { align-items: flex-start; }
+  .splitit-tool-frame { height: 72svh; min-height: 480px; }
+}
