@@ -9,6 +9,15 @@ services:
       generation: automatic
     routes:
       - type: rewrite
+        source: /mixmind
+        destination: /index.html
+      - type: rewrite
+        source: /hush-denoise
+        destination: /index.html
+      - type: rewrite
+        source: /split-it
+        destination: /index.html
+      - type: rewrite
         source: /tools/*
         destination: /index.html
       - type: rewrite
