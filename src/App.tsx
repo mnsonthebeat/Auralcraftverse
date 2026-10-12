@@ -130,12 +130,7 @@ const AuralcraftMark = () => (
   </svg>
 );
 
-const revealDomains = [
-  { code: '01', title: 'USE A TOOL', copy: 'Purpose-built systems for production, restoration and music ownership records.', action: 'tools' },
-  { code: '02', title: 'LEARN THE CRAFT', copy: 'Searchable explanations and practical production workflows for every level.', action: 'research' },
-  { code: '03', title: 'HEAR THE MUSIC', copy: 'Listen to releases connected to the Auralcraftverse ecosystem.', action: 'mind' },
-  { code: '04', title: 'JOIN THE WORK', copy: 'Find opportunities and ways to contribute as the ecosystem grows.', action: 'assembly' },
-];
+
 
 const works = [
   ['Lil Eazi', 'Locked In Kpa', '2zqdV4BiJS1qC9YZheU5UO'],
