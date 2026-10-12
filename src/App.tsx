@@ -217,8 +217,9 @@ function App() {
     '/tools/hush-denoise': { name: 'HUSH DENOISE', url: 'https://hush-denoise-by-auralcraftverse-wc3fxc.v2.appdeploy.ai/' },
     '/tools/split-it': { name: 'SPLIT IT!', url: 'https://split-it-by-auralcraftverse-isolated-port-yvds53.v2.appdeploy.ai/' },
   };
-  const toolRoute = toolRoutes[window.location.pathname];
-  const guideSlug = window.location.pathname.startsWith('/guides/') ? window.location.pathname.slice('/guides/'.length) : '';
+  const routePath = window.location.pathname.replace(/\/+$/, '') || '/';
+  const toolRoute = toolRoutes[routePath];
+  const guideSlug = routePath.startsWith('/guides/') ? routePath.slice('/guides/'.length) : '';
   const guideEntry = knowledgeLibrary.find(entry => entry.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') === guideSlug);
   const go = (id: string) => {
     setActiveRoom('');
