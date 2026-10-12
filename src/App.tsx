@@ -1,7 +1,5 @@
 import { useEffect, useState } from 'react';
-import type { Session } from '@supabase/supabase-js';
 import EntryExperience, { type EntryStage } from './EntryExperience';
-import { supabase } from './lib/supabase';
 
 const sessionTypes = ['FULL PRODUCTION SESSION', 'RECORDING SESSION', 'MIX / MASTER SESSION', 'BEATMAKING SESSION', 'ARTIST DEVELOPMENT SESSION'];
 const availabilityWindows = ['MORNING', 'AFTERNOON', 'EVENING', 'FLEXIBLE'];
@@ -593,79 +591,22 @@ function EcosystemApp() {
 }
 
 
-function safeReturnPath(value: string | null, fallback: string): string {
-  if (!value || !value.startsWith('/') || value.startsWith('//') || value.includes('\\')) return fallback;
-  try {
-    const parsed = new URL(value, window.location.origin);
-    if (parsed.origin !== window.location.origin) return fallback;
-    return parsed.pathname + parsed.search + parsed.hash;
-  } catch {
-    return fallback;
-  }
-}
-
 function App() {
-  const [session, setSession] = useState<Session | null>(null);
-  const [authReady, setAuthReady] = useState(!supabase);
   const [entered, setEntered] = useState(false);
-  const query = new URLSearchParams(window.location.search);
   const pathname = window.location.pathname || '/';
-  const isDirectRoute = pathname !== '/';
-  const fallbackReturn = isDirectRoute
-    ? pathname + window.location.search + window.location.hash
-    : '/';
-  const returnTo = safeReturnPath(query.get('returnTo'), fallbackReturn);
-  const entryFromOAuth = query.get('entry') === 'auth';
-  const initialStage: EntryStage = entryFromOAuth ? 'authentication' : 'arrival';
 
-  useEffect(() => {
-    if (!supabase) {
-      setAuthReady(true);
-      return;
-    }
-    let active = true;
-    void supabase.auth.getSession().then(({ data }) => {
-      if (!active) return;
-      setSession(data.session);
-      setAuthReady(true);
-    }).catch(() => {
-      if (active) setAuthReady(true);
-    });
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, nextSession) => {
-      setSession(nextSession);
-      setAuthReady(true);
-    });
-    return () => {
-      active = false;
-      subscription.unsubscribe();
-    };
-  }, []);
-
-  useEffect(() => {
-    if (!authReady || !session) return;
-    if (isDirectRoute) {
-      if (query.has('returnTo') && returnTo !== fallbackReturn && returnTo !== '/') {
-        window.location.replace(returnTo);
-      } else {
-        setEntered(true);
-      }
-      return;
-    }
-    if (entryFromOAuth && returnTo !== '/') {
-      window.location.replace(returnTo);
-    }
-  }, [authReady, session, isDirectRoute, entryFromOAuth, returnTo, fallbackReturn]);
-
-  if (entered || (isDirectRoute && authReady && session)) {
+  // Authentication is intentionally paused. Keep direct tool and guide routes
+  // accessible while preserving the cinematic entry sequence on the home page.
+  if (pathname !== '/' || entered) {
     return <EcosystemApp />;
   }
 
   return (
     <EntryExperience
-      authReady={authReady}
-      hasSession={Boolean(session)}
-      initialStage={initialStage}
-      returnTo={returnTo}
+      authReady={true}
+      hasSession={false}
+      initialStage="arrival"
+      returnTo="/"
       onEnter={() => setEntered(true)}
     />
   );
