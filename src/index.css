@@ -2432,3 +2432,9 @@ body { letter-spacing:0; }
  .tool-route-header > span { display:none; }
  .tool-standalone { margin-left:auto; }
 }
+
+
+/* People archive portraits supplied by Auralcraftverse */
+.person-card { grid-template-columns:150px minmax(150px,.5fr) minmax(0,1.4fr) auto; }
+.person-portrait { grid-column:1; grid-row:2/5; display:block; width:150px; height:180px; object-fit:cover; object-position:center 35%; border:1px solid rgba(201,168,106,.28); background:#111; }
+@media (max-width:700px) { .person-card { grid-template-columns:96px minmax(0,1fr); } .person-portrait { grid-column:1; grid-row:2/5; width:96px; height:128px; } }
