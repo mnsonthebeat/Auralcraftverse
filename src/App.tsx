@@ -221,11 +221,11 @@ function EcosystemApp() {
   const toolRoutes: Record<string, { name: string; url: string }> = {
     '/mixmind': { name: 'MIXMIND', url: 'https://mixmind-ai-uj4ort.v2.appdeploy.ai/' },
     '/hush-denoise': { name: 'HUSH DENOISE', url: 'https://hush-denoise-by-auralcraftverse-wc3fxc.v2.appdeploy.ai/' },
-    '/split-it': { name: 'SPLIT IT!', url: 'https://split-it-by-auralcraftverse-isolated-port-yvds53.v2.appdeploy.ai/' },
+    '/split-it': { name: 'SPLIT IT!', url: 'https://split-it-by-auralcraftverse-r19rbm.v2.appdeploy.ai/' },
     // Preserve existing URLs so older bookmarks and links keep working.
     '/tools/mixmind': { name: 'MIXMIND', url: 'https://mixmind-ai-uj4ort.v2.appdeploy.ai/' },
     '/tools/hush-denoise': { name: 'HUSH DENOISE', url: 'https://hush-denoise-by-auralcraftverse-wc3fxc.v2.appdeploy.ai/' },
-    '/tools/split-it': { name: 'SPLIT IT!', url: 'https://split-it-by-auralcraftverse-isolated-port-yvds53.v2.appdeploy.ai/' },
+    '/tools/split-it': { name: 'SPLIT IT!', url: 'https://split-it-by-auralcraftverse-r19rbm.v2.appdeploy.ai/' },
   };
   const routePath = window.location.pathname.replace(/\/+$/, '') || '/';
   const toolRoute = toolRoutes[routePath];
