@@ -1,6 +1,6 @@
 # Auralcraftverse Wormhole + Authentication Implementation Plan
 
-Status: planning and integration assessment only. No production files changed.
+Status: implemented on the isolated preview branch; awaiting live preview and OAuth verification. No production files changed.
 
 ## Confirmed product decisions
 - Typography: Space Grotesk (display), Manrope (body/interface), Michroma (short technical labels).
@@ -62,6 +62,6 @@ The user chose to protect the ecosystem and preserve intended destinations. That
 ## Current execution status
 A dedicated branch and draft PR have been created from `main`: `codex/auralcraftverse-wormhole-auth-preview` / https://github.com/mnsonthebeat/Auralcraftverse/pull/6.
 
-The branch now contains the initial entry experience, display/body/technical font setup, environment-based Supabase client, OAuth buttons for Google and Apple, same-origin return-path validation, and a gate around the existing ecosystem. GitHub Actions build passed on the current branch head.
+The branch now contains the initial entry experience, display/body/technical font setup, environment-based Supabase client, OAuth buttons for Google and Apple, same-origin return-path validation, and a gate around the existing ecosystem. GitHub Actions build passed on the current branch head (commit `a42014b77d6c8caf253a247aa3364537d4139fee`, run 23). The repository's Render configuration enables automatic PR previews, but a working preview URL has not yet been independently verified.
 
 No Supabase project or OAuth provider has been configured, no credentials have been added, and no production deployment or merge has occurred. The sign-in flow is therefore not end-to-end validated yet. The next gate is to configure isolated preview environment variables and provider callbacks, obtain/verify the Render preview URL, test the visual flow, and resolve the documented cross-origin tool-access decision before production approval.
