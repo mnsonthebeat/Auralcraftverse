@@ -2366,3 +2366,75 @@ body { letter-spacing:0; }
   .gateway-card > p:not(.kicker) { min-height:0; }
 }
 
+
+
+/* Auralcraftverse route, guide and tool visuals */
+.ecosystem-intro .ecosystem-heading { grid-column:2/-1; width:100%; }
+.ecosystem-intro .ecosystem-heading > p { max-width:none; width:100%; margin:0; color:#b0b5b5; font-size:clamp(16px,1.65vw,21px); line-height:1.8; }
+.recognition-heading { display:block; }
+.recognition-heading > p { max-width:none; margin:0 0 30px; color:#b0b5b5; font-size:clamp(16px,1.5vw,20px); line-height:1.8; }
+.people-grid { grid-template-columns:1fr; }
+.person-card { display:grid; grid-template-columns:70px minmax(150px,.5fr) minmax(0,1.4fr) auto; gap:8px 22px; align-items:center; }
+.person-card-top { grid-column:1/-1; }
+.person-monogram { grid-column:1; grid-row:2/5; }
+.person-card .kicker,.person-card h3,.person-role,.person-card > p:not(.kicker),.person-card a { grid-column:2/5; margin:0; }
+.person-card > p:not(.kicker) { align-self:start; }
+.tool-card { grid-template-columns:150px 36px 42px minmax(0,1fr) auto; align-items:center; }
+.tool-visual { grid-column:1; grid-row:1/4; width:140px; height:100px; overflow:hidden; position:relative; border:1px solid rgba(201,168,106,.24); background:linear-gradient(145deg,rgba(201,168,106,.09),rgba(9,14,16,.9)); }
+.tool-visual span { display:block; position:absolute; }
+.visual-wave span { left:8%; right:8%; top:48%; height:2px; background:linear-gradient(90deg,transparent,#c9a86a 10%,#ead7aa 50%,#c9a86a 90%,transparent); box-shadow:0 0 10px rgba(201,168,106,.4); }
+.visual-wave span:nth-child(2) { transform:translateY(-12px) scaleY(.5); opacity:.6; }
+.visual-wave span:nth-child(3) { transform:translateY(12px) scaleY(.5); opacity:.45; }
+.visual-mixmind { background:radial-gradient(circle at 52% 48%,rgba(119,190,196,.22),transparent 38%),linear-gradient(145deg,#102024,#080d10); }
+.visual-mixmind span { width:44px; height:44px; left:48px; top:27px; border:1px solid #93c8d0; border-radius:50%; box-shadow:0 0 0 8px rgba(147,200,208,.08),0 0 0 18px rgba(147,200,208,.04); }
+.visual-mixmind span:nth-child(2) { width:5px;height:5px;left:37px;top:25px;background:#c9a86a;border:0;box-shadow:38px 37px #c9a86a,-16px 41px #93c8d0; }
+.visual-mixmind span:nth-child(3) { width:76px;height:1px;left:31px;top:49px;background:rgba(147,200,208,.4);transform:rotate(-24deg); }
+.visual-hush { background:linear-gradient(90deg,rgba(201,168,106,.12) 0 48%,rgba(147,200,208,.08) 48% 100%),#080d10; }
+.visual-hush span { left:10px;right:10px;top:50%;height:1px;background:rgba(147,200,208,.32); }
+.visual-hush span:nth-child(2) { left:13px;right:53%;height:34px;top:34px;background:repeating-linear-gradient(90deg,transparent 0 5px,#c9a86a 5px 7px,transparent 7px 11px);opacity:.85; }
+.visual-hush span:nth-child(3) { left:53%;right:12px;height:18px;top:42px;background:repeating-linear-gradient(90deg,transparent 0 7px,#93c8d0 7px 9px,transparent 9px 13px);opacity:.7; }
+.visual-split { padding:12px; background:linear-gradient(145deg,#17140e,#090c0d); }
+.visual-split span { position:relative; height:8px; margin:2px 0; border-bottom:1px solid rgba(201,168,106,.35); }
+.visual-split span::after { content:''; position:absolute; left:50%;top:0;width:22%;height:4px;background:rgba(201,168,106,.65); }
+.tool-card .tool-number { grid-column:2; grid-row:1; }
+.tool-card .tool-icon { grid-column:3; grid-row:1; }
+.tool-card .tool-content { grid-column:4; grid-row:1/4; }
+.tool-card .tool-action { grid-column:5; grid-row:1/4; }
+.gateway-card .tool-visual { width:100%; height:110px; margin:16px 0 4px; }
+.guide-link { display:inline-flex; align-items:center; gap:8px; margin-top:16px; color:var(--gold); font-size:8px; letter-spacing:.15em; text-decoration:none; }
+.tool-route-page,.guide-route-page { min-height:100vh; padding:0; }
+.tool-route-header { min-height:68px; display:flex; align-items:center; justify-content:space-between; gap:20px; padding:10px 28px; border-bottom:1px solid var(--acv-line); background:rgba(5,8,10,.96); color:var(--gold); font-size:8px; letter-spacing:.14em; }
+.tool-route-header .wordmark { display:flex; align-items:center; gap:10px; color:#eeeae2; text-decoration:none; font-size:10px; letter-spacing:.16em; }
+.tool-route-header .auralcraft-mark { width:32px;height:32px; }
+.tool-standalone,.guide-back { display:inline-flex; align-items:center; gap:8px; color:var(--gold); text-decoration:none; }
+.tool-route-frame { display:block; width:100%; height:calc(100vh - 69px); border:0; background:#080b0d; }
+.guide-page { max-width:980px; margin:0 auto; padding:clamp(28px,7vw,90px) 28px; }
+.guide-page h1 { max-width:850px; margin:18px 0; color:#f0eee7; font-size:clamp(42px,7vw,82px); line-height:.98; letter-spacing:-.06em; font-weight:350; }
+.guide-intro { max-width:800px; color:#e5d2a1; font-size:clamp(18px,2vw,24px); line-height:1.6; }
+.guide-detail,.guide-sections p { max-width:780px; color:#b0b7b6; font-size:15px; line-height:1.85; }
+.guide-sections { display:grid; gap:30px; margin:48px 0; }
+.guide-sections section { padding-top:22px; border-top:1px solid var(--acv-line); }
+.guide-sections span { color:var(--gold); font-size:8px; letter-spacing:.16em; }
+.guide-sections h2 { color:#eeeae2; font-size:clamp(22px,3vw,32px); font-weight:400; }
+@media (max-width:1000px) { .people-grid { grid-template-columns:1fr; } }
+@media (max-width:700px) {
+ .ecosystem-intro .ecosystem-heading { grid-column:1/-1; }
+ .tool-card { grid-template-columns:34px 38px minmax(0,1fr); }
+ .tool-card .tool-visual { grid-column:1/-1; grid-row:auto; width:100%; height:88px; }
+ .tool-card .tool-number { grid-column:1; grid-row:auto; }
+ .tool-card .tool-icon { grid-column:2; grid-row:auto; }
+ .tool-card .tool-content { grid-column:1/-1; grid-row:auto; }
+ .tool-card .tool-action { grid-column:1/-1; grid-row:auto; }
+ .person-card { grid-template-columns:60px minmax(0,1fr); }
+ .person-monogram { grid-column:1; grid-row:2/5; }
+ .person-card .kicker,.person-card h3,.person-role,.person-card > p:not(.kicker),.person-card a { grid-column:2; }
+ .tool-route-header { padding:10px 14px; flex-wrap:wrap; }
+ .tool-route-header > span { display:none; }
+ .tool-standalone { margin-left:auto; }
+}
+
+
+/* People archive portraits supplied by Auralcraftverse */
+.person-card { grid-template-columns:150px minmax(150px,.5fr) minmax(0,1.4fr) auto; }
+.person-portrait { grid-column:1; grid-row:2/5; display:block; width:150px; height:180px; object-fit:cover; object-position:center 35%; border:1px solid rgba(201,168,106,.28); background:#111; }
+@media (max-width:700px) { .person-card { grid-template-columns:96px minmax(0,1fr); } .person-portrait { grid-column:1; grid-row:2/5; width:96px; height:128px; } }
