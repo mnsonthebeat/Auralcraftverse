@@ -31,7 +31,7 @@ export default function EntryExperience({
   useEffect(() => {
     if (stage !== 'jumping') return;
     const timer = window.setTimeout(() => {
-      setStage(hasSession ? 'entered' : 'authentication');
+      setStage('entered');
     }, 2800);
     return () => window.clearTimeout(timer);
   }, [stage, hasSession]);
