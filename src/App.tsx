@@ -27,6 +27,59 @@ const knowledgeLibrary = [
   { category: 'RIGHTS & BUSINESS', title: 'Split sheets and contributor credits', level: 'RELEASE PREP', summary: 'Record agreed ownership shares and contributor information while everyone is available to confirm them.', detail: 'List every contributor and their role, agree the relevant composition shares, verify names and contact details, and have contributors review the record. A split sheet documents the agreement; it does not replace legal advice or a signed publishing agreement.' },
 ];
 
+const guideSections: Record<string, { heading: string; body: string }[]> = {
+  'gain-staging': [
+    { heading: 'Build a healthy signal path', body: 'Set the source level first, then check every insert, bus and output in sequence. Use the meters provided by your DAW; there is no need to make every track peak at the same number. Aim for clean input with enough margin for musical peaks.' },
+    { heading: 'Make level decisions deliberately', body: 'If a plugin distorts unexpectedly, lower its input and compensate after processing. When balancing tracks, use faders and clip gain before adding processors just to reduce level. Keep a note of any intentional saturation so it remains a creative choice.' },
+    { heading: 'Check at the output', body: 'Watch the master bus while the loudest section plays, and leave room for later processing. Compare changes at matched loudness: bypass the processor and adjust output gain so the untreated and treated versions play at similar levels.' },
+  ],
+  'headroom': [
+    { heading: 'Leave margin while you work', body: 'Headroom is the distance between your current peak and the system limit. Record at a clean level and let tracks add together naturally. A quieter clean recording is easier to raise later than a clipped take is to repair.' },
+    { heading: 'Find the source of a peak', body: 'If the mix bus approaches full scale, inspect the loudest tracks and buses first. Reduce clip gain or fader levels before the master output. Lowering only the final master fader can hide an overloaded plugin earlier in the chain.' },
+    { heading: 'Prepare the final export', body: 'Choose final loudness and peak limits for the release destination during mastering. Export a clean, unclipped file at the requested format, then reopen it and listen through the beginning, transitions and ending.' },
+  ],
+  'phase-and-polarity': [
+    { heading: 'Listen to combined sources', body: 'When microphones or layered takes are combined, timing differences can reinforce some frequencies and cancel others. Listen to the sources together, then in mono, and compare the low end, body and transient clarity.' },
+    { heading: 'Separate polarity from timing', body: 'A polarity switch inverts the waveform. Phase relationships vary with frequency and time, so a polarity button cannot fix every timing problem. Try the switch as a diagnostic, then return to placement or editing if the blend still sounds weak.' },
+    { heading: 'Use the smallest correction', body: 'Move a microphone or adjust a region only when listening confirms an improvement. Check the full arrangement as well as solo playback: a change that sounds bigger alone can make the combined performance less natural.' },
+  ],
+  'fl-studio-patterns-and-playlist': [
+    { heading: 'Build a pattern', body: 'Create a pattern for a musical idea and add channels for instruments or drums. Name patterns by their role, such as verse drums or bass variation, so the Playlist remains readable as the session grows.' },
+    { heading: 'Arrange the song', body: 'Place pattern clips and audio clips along the Playlist timeline. Use repeated sections to establish the form, then introduce variations, fills and transitions where the music needs movement.' },
+    { heading: 'Keep edits reversible', body: 'Use automation clips for changes that evolve over time. Save a version before a major arrangement change, and audition the whole song after moving clips to catch overlaps, gaps and misplaced transitions.' },
+  ],
+  'ableton-live-session-and-arrangement': [
+    { heading: 'Explore in Session View', body: 'Place clips in scenes and launch combinations to test ideas without committing to a linear timeline. Keep scene names and clip labels descriptive, and check that follow actions or launch settings are not changing playback unexpectedly.' },
+    { heading: 'Capture a song form', body: 'Record a performance into Arrangement View or use Capture MIDI for a recent idea. Build an arrangement from the sections that work, keeping the source clips available for later changes.' },
+    { heading: 'Review transitions', body: 'Listen from before each section change through the first bars after it. Check automation, clip boundaries and tails, then save a new set version before consolidating or deleting material.' },
+  ],
+  'logic-pro-flex-time-basics': [
+    { heading: 'Choose an appropriate Flex mode', body: 'Select a mode that suits the source material and how much timing correction is needed. Percussive parts and sustained instruments respond differently, so start with the least destructive choice that can address the issue.' },
+    { heading: 'Edit the musical phrase', body: 'Enable Flex, identify a clear transient or phrase boundary and move the smallest useful point. Avoid placing many markers close together; dense edits can create unnatural timing and audible artifacts.' },
+    { heading: 'Audit the result', body: 'Compare the edit with the original and listen for clicks, warbling or shortened tails. Check neighboring tracks and the full arrangement so the corrected part still feels connected to the performance.' },
+  ],
+  'pro-tools-buses-and-routing': [
+    { heading: 'Create a clear signal path', body: 'Add an auxiliary input, assign an available bus as its input and route the related tracks to that bus. Give the bus a descriptive name that explains its role, such as Drum Bus or Vocal Effects.' },
+    { heading: 'Choose where processing happens', body: 'Place shared processing on the auxiliary when it should affect the group together. Keep individual track processing on the source tracks when each sound needs separate control.' },
+    { heading: 'Trace and test the route', body: 'Confirm the auxiliary output reaches the intended mix bus and that the source tracks are no longer also feeding an unintended path. Check for silence, doubling or feedback before continuing the mix.' },
+  ],
+  'a-clean-vocal-recording-checklist': [
+    { heading: 'Prepare the room and microphone', body: 'Reduce avoidable room noise, place the microphone consistently and use a pop filter where appropriate. Check headphone bleed, cable movement and nearby fans before recording the full take.' },
+    { heading: 'Set and test the input', body: 'Ask for the loudest expected performance during a short test. Set a clean recording level with margin, listen for clipping and confirm the artist can hear a comfortable cue mix.' },
+    { heading: 'Keep a recovery reference', body: 'Record a short room tone after the take and listen between phrases for noise or interruptions. Save an untouched original before editing, denoising or tuning so you can revisit the source.' },
+  ],
+  'compression-what-to-listen-for': [
+    { heading: 'Define the job', body: 'Decide whether the compressor should control peaks, smooth a performance or shape an envelope. Choose a section that contains the problem and adjust the threshold until the intended phrases trigger gain reduction.' },
+    { heading: 'Shape the movement', body: 'Use attack and release to suit the source and groove. A slower attack can preserve a transient; a faster one can restrain it. Release that is too short may distort, while release that is too long can suppress the next phrase.' },
+    { heading: 'Compare at matched loudness', body: 'Match the processed and bypassed levels before deciding. Listen for pumping, dullness and lost movement as well as peak control. If the compressor makes the track less clear, reduce the amount or revisit the timing.' },
+  ],
+  'split-sheets-and-contributor-credits': [
+    { heading: 'Record contributors together', body: 'List each contributor, their role and the work they contributed to while everyone is available to confirm spelling and contact details. Distinguish composition contributions from recording, production and performance credits.' },
+    { heading: 'Confirm the agreed shares', body: 'Write down the agreed ownership shares and make sure the total and allocation are understood by everyone involved. Ask each contributor to review the document and resolve disagreements before release preparation moves forward.' },
+    { heading: 'Store a reliable record', body: 'Keep a dated copy with the project and export a version contributors can review. A split sheet records an agreement; it does not replace a signed publishing or other legal agreement where one is needed.' },
+  ],
+};
+
 const peopleProfiles = [
   { name: 'Don Jazzy', role: 'Producer · Founder and CEO, Mavin Records', tier: 'ESTABLISHED', area: 'Nigeria · Executive leadership / production', contribution: 'Founded Mavin Records in 2012 after building a career as a producer. Mavin’s official profile documents his work as a producer, songwriter and entrepreneur and the label’s artist development history.', source: 'Mavin Records profile', href: 'https://www.mavinrecords.com/don-jazzy-profile/' },
   { name: 'Tega Oghenejobo', role: 'President and Chief Operating Officer, Mavin Global', tier: 'ESTABLISHED', area: 'Nigeria · Label operations / talent development', contribution: 'A founding member of Mavin Records in 2012, later appointed President and COO. The label credits his leadership with its growth and strategic direction.', source: 'Mavin Records announcement', href: 'https://www.mavinrecords.com/2024/10/29/tega-oghenejobo-appointed-president-chief-operating-officer-of-mavin-global-in-expanded-role/' },
@@ -109,6 +162,7 @@ const tools = [
     subtitle: 'Human production.',
     copy: 'Recording, beatmaking, mixing, mastering and artist development shaped around each project. One human-led route from first idea to finished record, with clear packages and booking access.',
     icon: AudioLines,
+    visual: 'wave',
     tone: 'warm',
     action: 'EXPLORE PRODUCTION',
   },
@@ -117,6 +171,7 @@ const tools = [
     subtitle: 'Producer Intelligence.',
     copy: 'Turn listening into structured production decisions across harmony, arrangement, EQ, dynamics, space and effects. MixMind helps producers decide what to try next and connects analysis to Auralcraftverse production practice.',
     icon: Orbit,
+    visual: 'mixmind',
     tone: 'cool',
     action: 'ENTER MIXMIND',
   },
@@ -125,6 +180,7 @@ const tools = [
     subtitle: 'Professional audio restoration.',
     copy: 'Restore noisy recordings and clean speech or vocals with processing designed to run on your device. Hush helps recover usable audio while keeping the working file local, as part of the Auralcraftverse production toolkit.',
     icon: Sparkles,
+    visual: 'hush',
     tone: 'quiet',
     action: 'OPEN HUSH DENOISE',
   },
@@ -133,10 +189,15 @@ const tools = [
     subtitle: 'Music ownership documentation.',
     copy: 'Create and reopen split sheets, document contributor ownership, and export PDF or CSV records. Split It! replaces scattered credit notes with a clear release-prep document that connects to the Auralcraftverse music archive.',
     icon: FileSpreadsheet,
+    visual: 'split',
     tone: 'warm',
     action: 'OPEN SPLIT IT!',
   },
 ];
+
+function ToolVisual({ kind }: { kind: string }) {
+  return <div className={'tool-visual visual-' + kind} aria-hidden="true"><span /><span /><span /></div>;
+}
 
 function App() {
   const [navOpen, setNavOpen] = useState('');
@@ -151,6 +212,14 @@ function App() {
   const [openArchiveRecord, setOpenArchiveRecord] = useState('');
   const [libraryQuery, setLibraryQuery] = useState('');
   const [libraryCategory, setLibraryCategory] = useState('ALL');
+  const toolRoutes: Record<string, { name: string; url: string }> = {
+    '/tools/mixmind': { name: 'MIXMIND', url: 'https://mixmind-ai-uj4ort.v2.appdeploy.ai/' },
+    '/tools/hush-denoise': { name: 'HUSH DENOISE', url: 'https://hush-denoise-by-auralcraftverse-wc3fxc.v2.appdeploy.ai/' },
+    '/tools/split-it': { name: 'SPLIT IT!', url: 'https://split-it-by-auralcraftverse-isolated-port-yvds53.v2.appdeploy.ai/' },
+  };
+  const toolRoute = toolRoutes[window.location.pathname];
+  const guideSlug = window.location.pathname.startsWith('/guides/') ? window.location.pathname.slice('/guides/'.length) : '';
+  const guideEntry = knowledgeLibrary.find(entry => entry.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') === guideSlug);
   const go = (id: string) => {
     setActiveRoom('');
     setNavOpen('');
@@ -164,7 +233,7 @@ function App() {
   };
 
   const openSplitIt = () => {
-    window.location.assign('https://split-it-by-auralcraftverse-isolated-port-yvds53.v2.appdeploy.ai/');
+    window.location.assign('/tools/split-it');
   };
 
   const revealAndGo = (id: string) => openRoom(id);
@@ -175,6 +244,20 @@ function App() {
     `Session type: ${sessionType}`,
     `Availability: ${availability}`,
   ].join('\n'))}`;
+
+  if (toolRoute) return (
+    <main className="verse tool-route-page">
+      <header className="tool-route-header"><a href="/" className="wordmark"><AuralcraftMark /> AURALCRAFTVERSE</a><span>TOOLS / {toolRoute.name}</span><a className="tool-standalone" href={toolRoute.url} target="_blank" rel="noopener noreferrer">OPEN STANDALONE <ArrowUpRight size={14} /></a></header>
+      <iframe className="tool-route-frame" title={toolRoute.name + ' by Auralcraftverse'} src={toolRoute.url} allow="clipboard-read; clipboard-write; microphone; camera" />
+    </main>
+  );
+
+  if (guideSlug) return (
+    <main className="verse guide-route-page">
+      <header className="tool-route-header"><a href="/" className="wordmark"><AuralcraftMark /> AURALCRAFTVERSE</a><span>KNOWLEDGE LIBRARY / GUIDE</span><a className="tool-standalone" href="/">RETURN TO ECOSYSTEM <ArrowUpRight size={14} /></a></header>
+      {guideEntry ? <article className="guide-page chamber"><p className="kicker">{guideEntry.category} / {guideEntry.level}</p><h1>{guideEntry.title}</h1><p className="guide-intro">{guideEntry.summary}</p><p className="guide-detail">{guideEntry.detail}</p><div className="guide-sections">{(guideSections[guideSlug] || []).map((section,index) => <section key={section.heading}><span>0{index+1} / {guideEntry.category}</span><h2>{section.heading}</h2><p>{section.body}</p></section>)}</div><a className="guide-back" href="/">BACK TO AURALCRAFTVERSE <ArrowUpRight size={14} /></a></article> : <section className="guide-page chamber"><p className="kicker">KNOWLEDGE LIBRARY</p><h1>Guide not found</h1><p className="guide-intro">This topic may have moved. Return to the ecosystem and choose a guide from the library.</p><a className="guide-back" href="/">RETURN TO AURALCRAFTVERSE <ArrowUpRight size={14} /></a></section>}
+    </main>
+  );
 
   return (
     <main className="verse">
@@ -208,8 +291,8 @@ function App() {
             <button className={'nav-tab ' + (navOpen === 'tools' ? 'active' : '')} onClick={() => setNavOpen(navOpen === 'tools' ? '' : 'tools')} aria-expanded={navOpen === 'tools'}>TOOLS</button>
             {navOpen === 'tools' && <div className="nav-dropdown tools-dropdown">
               <button onClick={() => openRoom('production')}><span>PRODUCTION SUITE</span><small>PACKAGES / BOOKING</small></button>
-              <button onClick={() => window.location.assign('https://mixmind-ai-uj4ort.v2.appdeploy.ai/')}><span>MIXMIND</span><small>PRODUCER INTELLIGENCE</small></button>
-              <button onClick={() => window.location.assign('https://hush-denoise-by-auralcraftverse-wc3fxc.v2.appdeploy.ai/')}><span>HUSH DENOISE</span><small>AUDIO RESTORATION</small></button>
+              <button onClick={() => window.location.assign('/tools/mixmind')}><span>MIXMIND</span><small>PRODUCER INTELLIGENCE</small></button>
+              <button onClick={() => window.location.assign('/tools/hush-denoise')}><span>HUSH DENOISE</span><small>AUDIO RESTORATION</small></button>
               <button onClick={openSplitIt}><span>SPLIT IT!</span><small>OWNERSHIP DOCUMENTATION</small></button>
             </div>}
           </div>
@@ -235,7 +318,7 @@ function App() {
 
       <section id="reveal" className="reveal chamber ecosystem-intro">
         <div className="section-meta"><span>02</span><span>WHAT YOU CAN DO HERE</span></div>
-        <div className="ecosystem-heading"><p className="kicker">AURALCRAFTVERSE / THE ECOSYSTEM</p><h2>Make. Learn.<br /><em>Release. Connect.</em></h2><p>Explore working music tools, practical production knowledge, West African industry contributors, and releases from the Auralcraftverse network.</p></div>
+        <div className="ecosystem-heading"><p>Explore working with music tools, practical production knowledge, West African industry contributors, and releases from the Auralcraftverse network.</p></div>
         <div className="reveal-domains">{revealDomains.map(domain => <button key={domain.code} className="reveal-domain" onClick={() => revealAndGo(domain.action)}><span>{domain.code}</span><div><strong>{domain.title}</strong><small>{domain.copy}</small></div><ArrowUpRight size={15} /></button>)}</div>
       </section>
 
@@ -273,6 +356,7 @@ function App() {
             const Icon = tool.icon;
             return (
               <article className={'tool-card ' + tool.tone} key={tool.name}>
+                <ToolVisual kind={tool.visual} />
                 <div className="tool-number">0{index + 1}</div>
                 <div className="tool-icon">
                   <Icon size={24} strokeWidth={1.2} />
@@ -289,8 +373,8 @@ function App() {
                   className="tool-action"
                   onClick={() => {
                     if (index === 0) openRoom('production');
-                    if (index === 1) window.location.assign('https://mixmind-ai-uj4ort.v2.appdeploy.ai/');
-                    if (index === 2) window.location.assign('https://hush-denoise-by-auralcraftverse-wc3fxc.v2.appdeploy.ai/');
+                    if (index === 1) window.location.assign('/tools/mixmind');
+                    if (index === 2) window.location.assign('/tools/hush-denoise');
                     if (index === 3) openSplitIt();
                   }}
                 >
@@ -391,7 +475,7 @@ function App() {
 
       {activeRoom === 'human' && <section id="human" className="human chamber recognition-archive">
         <div className="section-meta"><span>06</span><span>WEST AFRICAN MUSIC RECOGNITION ARCHIVE</span></div>
-        <div className="recognition-heading"><div><p className="kicker">THE PEOPLE BEHIND THE INDUSTRY</p><h2>Work worth<br /><em>remembering.</em></h2></div><p>An editorial archive recognising the executives, producers, talent developers and rising professionals shaping West African music. Profiles link to their source material and grow through careful research.</p></div>
+        <div className="recognition-heading"><p>An editorial archive recognising the executives, producers, talent developers and rising professionals shaping West African music. Profiles link to their source material and grow through careful research.</p></div>
         <div className="recognition-note"><span>EDITORIAL STANDARD</span><p>Roles and contributions are attributed to cited profiles or announcements. This first edition focuses on documented Nigerian contributors; regional coverage will expand as profiles are verified.</p></div>
         <div className="people-grid">{peopleProfiles.map((person,index) => <article className="person-card" key={person.name}><div className="person-card-top"><span className="person-index">0{index+1}</span><span className={person.tier === 'RISING PROFESSIONAL' ? 'person-tier rising' : 'person-tier'}>{person.tier}</span></div><div className="person-monogram" aria-hidden="true">{person.name.split(' ').map(part=>part[0]).join('').slice(0,2)}</div><p className="kicker">{person.area}</p><h3>{person.name}</h3><strong className="person-role">{person.role}</strong><p>{person.contribution}</p><a href={person.href} target="_blank" rel="noopener noreferrer">SOURCE / {person.source} <ArrowUpRight size={14} /></a></article>)}</div>
         <div className="recognition-footer"><span>ESTABLISHED CONTRIBUTORS / RISING PROFESSIONALS</span><span>PROFILES ARE EDITORIALLY CURATED</span></div>
@@ -426,7 +510,7 @@ function App() {
         <div className="library-search"><label htmlFor="knowledge-search">Search the library</label><input id="knowledge-search" type="search" value={libraryQuery} onChange={event => setLibraryQuery(event.target.value)} placeholder="Try “gain staging” or “FL Studio”" /></div>
         <div className="library-filters" aria-label="Knowledge categories">{['ALL', 'TERMINOLOGY', 'DAW GUIDES', 'WORKFLOWS', 'RIGHTS & BUSINESS'].map(category => <button key={category} className={libraryCategory === category ? 'active' : ''} onClick={() => setLibraryCategory(category)}>{category}</button>)}</div>
         <div className="knowledge-grid">
-          {knowledgeLibrary.filter(entry => (libraryCategory === 'ALL' || entry.category === libraryCategory) && (libraryQuery.trim() === '' || (entry.title + ' ' + entry.category + ' ' + entry.summary + ' ' + entry.detail).toLowerCase().includes(libraryQuery.trim().toLowerCase()))).map(entry => <article className="knowledge-card" key={entry.title}><div className="knowledge-card-meta"><span>{entry.category}</span><small>{entry.level}</small></div><h3>{entry.title}</h3><p>{entry.summary}</p><details><summary>READ THE GUIDE <ArrowUpRight size={14} /></summary><p>{entry.detail}</p></details></article>)}
+          {knowledgeLibrary.filter(entry => (libraryCategory === 'ALL' || entry.category === libraryCategory) && (libraryQuery.trim() === '' || (entry.title + ' ' + entry.category + ' ' + entry.summary + ' ' + entry.detail).toLowerCase().includes(libraryQuery.trim().toLowerCase()))).map(entry => <article className="knowledge-card" key={entry.title}><div className="knowledge-card-meta"><span>{entry.category}</span><small>{entry.level}</small></div><h3>{entry.title}</h3><p>{entry.summary}</p><a className="guide-link" href={'/guides/' + entry.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')}>READ THE GUIDE <ArrowUpRight size={14} /></a></article>)}
           {knowledgeLibrary.filter(entry => (libraryCategory === 'ALL' || entry.category === libraryCategory) && (libraryQuery.trim() === '' || (entry.title + ' ' + entry.category + ' ' + entry.summary + ' ' + entry.detail).toLowerCase().includes(libraryQuery.trim().toLowerCase()))).length === 0 && <p className="library-empty">No guide matches yet. Try a different term or category.</p>}
         </div>
         <div className="library-footer"><span>EDITORIAL STARTER LIBRARY / VERSION 01</span><span>NEW GUIDES WILL BE ADDED OVER TIME</span></div>
@@ -465,7 +549,7 @@ function App() {
         <div className="section-meta"><span>09</span><span>THE AURALCRAFTVERSE ECOSYSTEM</span></div>
         <div className="gateway-heading"><div><p className="kicker">ROOTED HERE / BUILT FOR BEYOND</p><h2>One ecosystem.<br /><em>Useful by design.</em></h2></div><p>Move from an idea to a finished record, learn the language of production, document ownership, and discover the people and music that make the work possible.</p></div>
         <div className="gateway-grid">
-          {tools.map((tool,index) => <article className="gateway-card" key={tool.name}><span>GATEWAY / 0{index+1}</span><p className="kicker">{tool.subtitle}</p><h3>{tool.name}</h3><p>{tool.copy}</p>{index === 0 ? <button onClick={() => openRoom('production')}>LEARN MORE <ArrowUpRight size={14} /></button> : <a href={['','https://mixmind-ai-uj4ort.v2.appdeploy.ai/','https://hush-denoise-by-auralcraftverse-wc3fxc.v2.appdeploy.ai/','https://split-it-by-auralcraftverse-isolated-port-yvds53.v2.appdeploy.ai/'][index]}>LEARN MORE <ArrowUpRight size={14} /></a>}</article>)}
+          {tools.map((tool,index) => <article className="gateway-card" key={tool.name}><span>GATEWAY / 0{index+1}</span><p className="kicker">{tool.subtitle}</p><h3>{tool.name}</h3><p>{tool.copy}</p><ToolVisual kind={tool.visual} />{index === 0 ? <button onClick={() => openRoom('production')}>LEARN MORE <ArrowUpRight size={14} /></button> : <a href={['','/tools/mixmind','/tools/hush-denoise','/tools/split-it'][index]}>LEARN MORE <ArrowUpRight size={14} /></a>}</article>)}
           <article className="gateway-card gateway-resource"><span>GATEWAY / 05</span><p className="kicker">LEARN / KEEP BUILDING</p><h3>Production Knowledge Library</h3><p>Find clear explanations, DAW guides and practical workflows. A growing reference for creatives at every stage.</p><button onClick={() => openRoom('research')}>LEARN MORE <ArrowUpRight size={14} /></button></article>
           <article className="gateway-card gateway-resource"><span>GATEWAY / 06</span><p className="kicker">PEOPLE / PROFESSIONAL LEGACY</p><h3>West African Music Archive</h3><p>Discover documented contributions from professionals and rising talent shaping the region’s music industry.</p><button onClick={() => openRoom('human')}>LEARN MORE <ArrowUpRight size={14} /></button></article>
         </div>

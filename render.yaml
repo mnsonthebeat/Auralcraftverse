@@ -7,3 +7,10 @@ services:
     autoDeployTrigger: commit
     previews:
       generation: automatic
+    routes:
+      - type: rewrite
+        source: /tools/*
+        destination: /index.html
+      - type: rewrite
+        source: /guides/*
+        destination: /index.html
