@@ -59,5 +59,9 @@ The user chose to protect the ecosystem and preserve intended destinations. That
 - Confirm the standalone tool URLs' access model separately; parent-site sign-in alone is insufficient.
 - Review the isolated preview manually and obtain user approval before any production merge.
 
-## Current execution boundary
-A dedicated branch has been created from `main`: `codex/auralcraftverse-wormhole-auth-preview`. This document records the assessment. No authentication provider has been configured, no secrets have been added, no source implementation has been deployed, and production remains untouched.
+## Current execution status
+A dedicated branch and draft PR have been created from `main`: `codex/auralcraftverse-wormhole-auth-preview` / https://github.com/mnsonthebeat/Auralcraftverse/pull/6.
+
+The branch now contains the initial entry experience, display/body/technical font setup, environment-based Supabase client, OAuth buttons for Google and Apple, same-origin return-path validation, and a gate around the existing ecosystem. GitHub Actions build passed on the current branch head.
+
+No Supabase project or OAuth provider has been configured, no credentials have been added, and no production deployment or merge has occurred. The sign-in flow is therefore not end-to-end validated yet. The next gate is to configure isolated preview environment variables and provider callbacks, obtain/verify the Render preview URL, test the visual flow, and resolve the documented cross-origin tool-access decision before production approval.
