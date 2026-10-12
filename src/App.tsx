@@ -219,6 +219,10 @@ function EcosystemApp() {
   const [libraryQuery, setLibraryQuery] = useState('');
   const [libraryCategory, setLibraryCategory] = useState('ALL');
   const toolRoutes: Record<string, { name: string; url: string }> = {
+    '/mixmind': { name: 'MIXMIND', url: 'https://mixmind-ai-uj4ort.v2.appdeploy.ai/' },
+    '/hush-denoise': { name: 'HUSH DENOISE', url: 'https://hush-denoise-by-auralcraftverse-wc3fxc.v2.appdeploy.ai/' },
+    '/split-it': { name: 'SPLIT IT!', url: 'https://split-it-by-auralcraftverse-isolated-port-yvds53.v2.appdeploy.ai/' },
+    // Preserve existing URLs so older bookmarks and links keep working.
     '/tools/mixmind': { name: 'MIXMIND', url: 'https://mixmind-ai-uj4ort.v2.appdeploy.ai/' },
     '/tools/hush-denoise': { name: 'HUSH DENOISE', url: 'https://hush-denoise-by-auralcraftverse-wc3fxc.v2.appdeploy.ai/' },
     '/tools/split-it': { name: 'SPLIT IT!', url: 'https://split-it-by-auralcraftverse-isolated-port-yvds53.v2.appdeploy.ai/' },
@@ -240,7 +244,7 @@ function EcosystemApp() {
   };
 
   const openSplitIt = () => {
-    window.location.assign('/tools/split-it');
+    window.location.assign('/split-it');
   };
 
   const bookingMailto = `mailto:auralcraftverse@gmail.com?subject=${encodeURIComponent(`Production booking request: ${projectName}`)}&body=${encodeURIComponent([
@@ -298,8 +302,8 @@ function EcosystemApp() {
             <button className={'nav-tab ' + (navOpen === 'tools' ? 'active' : '')} onClick={() => setNavOpen(navOpen === 'tools' ? '' : 'tools')} aria-expanded={navOpen === 'tools'}>TOOLS</button>
             {navOpen === 'tools' && <div className="nav-dropdown tools-dropdown">
               <button onClick={() => openRoom('production')}><span>PRODUCTION SUITE</span><small>PACKAGES / BOOKING</small></button>
-              <button onClick={() => window.location.assign('/tools/mixmind')}><span>MIXMIND</span><small>PRODUCER INTELLIGENCE</small></button>
-              <button onClick={() => window.location.assign('/tools/hush-denoise')}><span>HUSH DENOISE</span><small>AUDIO RESTORATION</small></button>
+              <button onClick={() => window.location.assign('/mixmind')}><span>MIXMIND</span><small>PRODUCER INTELLIGENCE</small></button>
+              <button onClick={() => window.location.assign('/hush-denoise')}><span>HUSH DENOISE</span><small>AUDIO RESTORATION</small></button>
               <button onClick={openSplitIt}><span>SPLIT IT!</span><small>OWNERSHIP DOCUMENTATION</small></button>
             </div>}
           </div>
@@ -378,8 +382,8 @@ function EcosystemApp() {
                   className="tool-action"
                   onClick={() => {
                     if (index === 0) openRoom('production');
-                    if (index === 1) window.location.assign('/tools/mixmind');
-                    if (index === 2) window.location.assign('/tools/hush-denoise');
+                    if (index === 1) window.location.assign('/mixmind');
+                    if (index === 2) window.location.assign('/hush-denoise');
                     if (index === 3) openSplitIt();
                   }}
                 >
@@ -554,7 +558,7 @@ function EcosystemApp() {
         <div className="section-meta"><span>09</span><span>THE AURALCRAFTVERSE ECOSYSTEM</span></div>
         <div className="gateway-heading"><div><p className="kicker">ROOTED HERE / BUILT FOR BEYOND</p><h2>One ecosystem.<br /><em>Useful by design.</em></h2></div><p>Move from an idea to a finished record, learn the language of production, document ownership, and discover the people and music that make the work possible.</p></div>
         <div className="gateway-grid">
-          {tools.map((tool,index) => <article className="gateway-card" key={tool.name}><span>GATEWAY / 0{index+1}</span><p className="kicker">{tool.subtitle}</p><h3>{tool.name}</h3><p>{tool.copy}</p><ToolVisual kind={tool.visual} />{index === 0 ? <button onClick={() => openRoom('production')}>LEARN MORE <ArrowUpRight size={14} /></button> : <a href={['','/tools/mixmind','/tools/hush-denoise','/tools/split-it'][index]}>LEARN MORE <ArrowUpRight size={14} /></a>}</article>)}
+          {tools.map((tool,index) => <article className="gateway-card" key={tool.name}><span>GATEWAY / 0{index+1}</span><p className="kicker">{tool.subtitle}</p><h3>{tool.name}</h3><p>{tool.copy}</p><ToolVisual kind={tool.visual} />{index === 0 ? <button onClick={() => openRoom('production')}>LEARN MORE <ArrowUpRight size={14} /></button> : <a href={['','/mixmind','/hush-denoise','/split-it'][index]}>LEARN MORE <ArrowUpRight size={14} /></a>}</article>)}
           <article className="gateway-card gateway-resource"><span>GATEWAY / 05</span><p className="kicker">LEARN / KEEP BUILDING</p><h3>Production Knowledge Library</h3><p>Find clear explanations, DAW guides and practical workflows. A growing reference for creatives at every stage.</p><button onClick={() => openRoom('research')}>LEARN MORE <ArrowUpRight size={14} /></button></article>
           <article className="gateway-card gateway-resource"><span>GATEWAY / 06</span><p className="kicker">PEOPLE / PROFESSIONAL LEGACY</p><h3>West African Music Archive</h3><p>Discover documented contributions from professionals and rising talent shaping the region’s music industry.</p><button onClick={() => openRoom('human')}>LEARN MORE <ArrowUpRight size={14} /></button></article>
         </div>
