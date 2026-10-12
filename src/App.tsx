@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import EntryExperience, { type EntryStage } from './EntryExperience';
+import EntryExperience from './EntryExperience';
 
 const sessionTypes = ['FULL PRODUCTION SESSION', 'RECORDING SESSION', 'MIX / MASTER SESSION', 'BEATMAKING SESSION', 'ARTIST DEVELOPMENT SESSION'];
 const availabilityWindows = ['MORNING', 'AFTERNOON', 'EVENING', 'FLEXIBLE'];
