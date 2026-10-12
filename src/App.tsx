@@ -14,6 +14,27 @@ const archiveRecords = [
 
 const archiveCategories = ['ALL', 'RELEASES', 'CURATION', 'TOOLS', 'ORIGIN', 'FUTURE'];
 
+const knowledgeLibrary = [
+  { category: 'TERMINOLOGY', title: 'Gain staging', level: 'FOUNDATIONS', summary: 'Keep each stage of a signal chain at a useful level before it reaches the next processor.', detail: 'Set input and output levels deliberately from recording through plugins and buses. Leave headroom on the master bus, and use level matching when comparing processed and unprocessed audio so louder does not automatically seem better.' },
+  { category: 'TERMINOLOGY', title: 'Headroom', level: 'FOUNDATIONS', summary: 'The space between your working level and the maximum level a system can represent.', detail: 'Digital audio clips when it exceeds full scale. Leave margin while recording, mixing and exporting; avoid pushing every channel to the ceiling. Final loudness choices come later in mastering and distribution.' },
+  { category: 'TERMINOLOGY', title: 'Phase and polarity', level: 'FOUNDATIONS', summary: 'Understand why combining microphones or layered sounds can weaken low end and change tone.', detail: 'Polarity inversion flips a waveform’s sign; phase describes timing relationships that vary with frequency. Check mono compatibility, listen to combined sources, and adjust timing or microphone placement when the blend loses weight.' },
+  { category: 'DAW GUIDES', title: 'FL Studio: patterns and Playlist', level: 'FL STUDIO', summary: 'Understand how patterns, channels and the Playlist work together to arrange a track.', detail: 'Create instrument or drum parts as patterns, then place pattern clips and audio clips in the Playlist. Keep patterns named, use automation clips for changing parameters over time, and make a versioned copy before major arrangement changes.' },
+  { category: 'DAW GUIDES', title: 'Ableton Live: Session and Arrangement', level: 'ABLETON LIVE', summary: 'Move from loop-based idea building to a linear arrangement without losing the original material.', detail: 'Use Session View to audition clips and combinations; record or capture the chosen performance into Arrangement View for a song timeline. Keep an untouched scene or set copy before committing to a long arrangement.' },
+  { category: 'DAW GUIDES', title: 'Logic Pro: Flex Time basics', level: 'LOGIC PRO', summary: 'Correct timing in audio while keeping edits audible and musical.', detail: 'Choose a Flex mode suited to the source, identify the transient or phrase that needs adjustment, and move the smallest useful region. Compare against the original and listen for artifacts around sustained notes and room tone.' },
+  { category: 'DAW GUIDES', title: 'Pro Tools: buses and routing', level: 'PRO TOOLS', summary: 'Route related tracks through an auxiliary bus for shared processing and level control.', detail: 'Create an auxiliary input, assign its input to an unused bus, and route the source tracks’ outputs to that bus. Label the path clearly and check that the auxiliary output reaches the intended mix bus.' },
+  { category: 'WORKFLOWS', title: 'A clean vocal recording checklist', level: 'RECORDING', summary: 'Reduce preventable noise and clipping before reaching for restoration plugins.', detail: 'Check the room, microphone placement, headphone bleed, cable noise and input peaks. Record a short test, listen between phrases, and capture a little room tone. Save a clean original before editing or processing.' },
+  { category: 'WORKFLOWS', title: 'Compression: what to listen for', level: 'MIXING', summary: 'Use compression to control movement and envelope, not just to make a track louder.', detail: 'Set the threshold so the intended phrases trigger gain reduction, then shape attack and release to fit the source. Match output loudness for A/B listening. If the sound pumps, dulls, or loses its groove, revisit the settings.' },
+  { category: 'RIGHTS & BUSINESS', title: 'Split sheets and contributor credits', level: 'RELEASE PREP', summary: 'Record agreed ownership shares and contributor information while everyone is available to confirm them.', detail: 'List every contributor and their role, agree the relevant composition shares, verify names and contact details, and have contributors review the record. A split sheet documents the agreement; it does not replace legal advice or a signed publishing agreement.' },
+];
+
+const peopleProfiles = [
+  { name: 'Don Jazzy', role: 'Producer · Founder and CEO, Mavin Records', tier: 'ESTABLISHED', area: 'Nigeria · Executive leadership / production', contribution: 'Founded Mavin Records in 2012 after building a career as a producer. Mavin’s official profile documents his work as a producer, songwriter and entrepreneur and the label’s artist development history.', source: 'Mavin Records profile', href: 'https://www.mavinrecords.com/don-jazzy-profile/' },
+  { name: 'Tega Oghenejobo', role: 'President and Chief Operating Officer, Mavin Global', tier: 'ESTABLISHED', area: 'Nigeria · Label operations / talent development', contribution: 'A founding member of Mavin Records in 2012, later appointed President and COO. The label credits his leadership with its growth and strategic direction.', source: 'Mavin Records announcement', href: 'https://www.mavinrecords.com/2024/10/29/tega-oghenejobo-appointed-president-chief-operating-officer-of-mavin-global-in-expanded-role/' },
+  { name: 'Sarz', role: 'Producer · Founder, The Sarz Academy and 1789 MusicTech', tier: 'ESTABLISHED', area: 'Nigeria · Production / education', contribution: 'A Nigerian producer whose work spans artist collaborations and producer development. His artist profile describes The Sarz Academy as a talent incubator for emerging producers.', source: '1789 MusicTech artist profile', href: 'https://1789musictech.com/artists/sarz/' },
+  { name: 'Chika Emmanuela', role: 'Merchandise Associate · Partnerships, Mavin', tier: 'RISING PROFESSIONAL', area: 'Nigeria · Partnerships / merchandising', contribution: 'Mavin’s published career story traces her progression from executive assistant to work in partnerships and merchandising, including Culture Hayvn.', source: 'Mavin Records growth story', href: 'https://www.mavinrecords.com/2025/04/01/chikas-growth-story-from-ea-to-the-coo-to-merch-associate-of-partnerships/' },
+];
+
+
 const researchSignals = [
   { number: '01', title: 'LISTEN', copy: 'Pay attention before reacting. Context changes what the signal means.' },
   { number: '02', title: 'QUESTION', copy: 'Challenge defaults, inherited formulas and convenient answers.' },
@@ -46,10 +67,10 @@ const AuralcraftMark = () => (
 );
 
 const revealDomains = [
-  { code: '01', title: 'SOUND', copy: 'Music, production and listening treated as craft rather than commodity.', action: 'works' },
-  { code: '02', title: 'TECHNOLOGY', copy: 'Purpose-built tools that extend creative judgment without replacing it.', action: 'tools' },
-  { code: '03', title: 'CULTURE', copy: 'Curation, research and observation kept close to the work.', action: 'research' },
-  { code: '04', title: 'CRAFT', copy: 'Human decisions, developed patiently and carried through to completion.', action: 'human' },
+  { code: '01', title: 'USE A TOOL', copy: 'Purpose-built systems for production, restoration and music ownership records.', action: 'tools' },
+  { code: '02', title: 'LEARN THE CRAFT', copy: 'Searchable explanations and practical production workflows for every level.', action: 'research' },
+  { code: '03', title: 'HEAR THE MUSIC', copy: 'Listen to releases connected to the Auralcraftverse ecosystem.', action: 'mind' },
+  { code: '04', title: 'JOIN THE WORK', copy: 'Find opportunities and ways to contribute as the ecosystem grows.', action: 'assembly' },
 ];
 
 const works = [
@@ -65,13 +86,11 @@ const works = [
 ];
 
 const deeperFloors = [
-  { id: 'packages', label: '05A / PRODUCTION PACKAGES', eyebrow: 'THE OFFERING' },
-  { id: 'production', label: '05 / PRODUCTION SUITE', eyebrow: 'HUMAN CRAFT' },
-  { id: 'human', label: '06 / HUMAN CRAFT', eyebrow: 'THE METHOD' },
-  { id: 'archive', label: '07 / THE ARCHIVE', eyebrow: 'THE RECORD' },
-  { id: 'research', label: '07A / CULTURAL RESEARCH', eyebrow: 'THE CULTURAL LAYER' },
-  { id: 'assembly', label: '07B / THE ASSEMBLY', eyebrow: 'THE PEOPLE' },
-  { id: 'mind', label: '08 / THE MIND', eyebrow: 'THE CONSCIOUSNESS' },
+  { id: 'packages', label: 'PRODUCTION PACKAGES', eyebrow: 'BOOK A SESSION' },
+  { id: 'research', label: 'MUSIC PRODUCTION KNOWLEDGE LIBRARY', eyebrow: 'LEARN' },
+  { id: 'human', label: 'WEST AFRICAN MUSIC RECOGNITION ARCHIVE', eyebrow: 'PEOPLE' },
+  { id: 'assembly', label: 'CAREERS / CONTRIBUTE', eyebrow: 'JOIN AURALCRAFTVERSE' },
+  { id: 'archive', label: 'THE ARCHIVE', eyebrow: 'THE RECORD' },
 ];
 
 const packages = [
@@ -88,7 +107,7 @@ const tools = [
   {
     name: 'PRODUCTION SUITE',
     subtitle: 'Human production.',
-    copy: 'Production packages, recording, beatmaking, mixing, mastering, artist development and bookings.',
+    copy: 'Recording, beatmaking, mixing, mastering and artist development shaped around each project. One human-led route from first idea to finished record, with clear packages and booking access.',
     icon: AudioLines,
     tone: 'warm',
     action: 'EXPLORE PRODUCTION',
@@ -96,7 +115,7 @@ const tools = [
   {
     name: 'MIXMIND',
     subtitle: 'Producer Intelligence.',
-    copy: 'Musical and sonic evidence transformed into production decisions — harmony, arrangement, EQ, dynamics, space, FX and mastering.',
+    copy: 'Turn listening into structured production decisions across harmony, arrangement, EQ, dynamics, space and effects. MixMind helps producers decide what to try next and connects analysis to Auralcraftverse production practice.',
     icon: Orbit,
     tone: 'cool',
     action: 'ENTER MIXMIND',
@@ -104,7 +123,7 @@ const tools = [
   {
     name: 'HUSH DENOISE',
     subtitle: 'Professional audio restoration.',
-    copy: 'Noise reduction, restoration and repair for vocals, speech, interviews, field recordings and more.',
+    copy: 'Restore noisy recordings and clean speech or vocals with processing designed to run on your device. Hush helps recover usable audio while keeping the working file local, as part of the Auralcraftverse production toolkit.',
     icon: Sparkles,
     tone: 'quiet',
     action: 'OPEN HUSH DENOISE',
@@ -112,7 +131,7 @@ const tools = [
   {
     name: 'SPLIT IT!',
     subtitle: 'Music ownership documentation.',
-    copy: 'Create, save and reopen music split sheets, document contributor ownership and export professional PDF or structured CSV records.',
+    copy: 'Create and reopen split sheets, document contributor ownership, and export PDF or CSV records. Split It! replaces scattered credit notes with a clear release-prep document that connects to the Auralcraftverse music archive.',
     icon: FileSpreadsheet,
     tone: 'warm',
     action: 'OPEN SPLIT IT!',
@@ -130,6 +149,8 @@ function App() {
   const [bookingStage, setBookingStage] = useState<'select' | 'request' | 'availability' | 'confirmation'>('select');
   const [archiveFilter, setArchiveFilter] = useState('ALL');
   const [openArchiveRecord, setOpenArchiveRecord] = useState('');
+  const [libraryQuery, setLibraryQuery] = useState('');
+  const [libraryCategory, setLibraryCategory] = useState('ALL');
   const go = (id: string) => {
     setActiveRoom('');
     setNavOpen('');
@@ -180,138 +201,46 @@ function App() {
           <AuralcraftMark />
           AURALCRAFTVERSE
         </button>
-        <nav className="universe-nav" aria-label="Auralcraftverse architecture">
-          <button className="nav-tab" onClick={() => go('top')}>VERSE</button>
-          <button className="nav-tab" onClick={() => openRoom('works')}>WORKS</button>
+        <nav className="universe-nav" aria-label="Auralcraftverse sections">
+          <button className="nav-tab" onClick={() => go('top')}>HOME</button>
+          <button className="nav-tab" onClick={() => openRoom('mind')}>MUSIC</button>
           <div className="nav-item" onMouseEnter={() => setNavOpen('tools')} onMouseLeave={() => setNavOpen('')}>
             <button className={'nav-tab ' + (navOpen === 'tools' ? 'active' : '')} onClick={() => setNavOpen(navOpen === 'tools' ? '' : 'tools')} aria-expanded={navOpen === 'tools'}>TOOLS</button>
             {navOpen === 'tools' && <div className="nav-dropdown tools-dropdown">
-              <button onClick={() => openRoom('production')}><span>PRODUCTION SUITE</span><small>HUMAN CRAFT</small></button>
-              <button onClick={() => openRoom('mixmind')}><span>MIXMIND</span><small>PRODUCER INTELLIGENCE</small></button>
-              <button onClick={() => openRoom('hush')}><span>HUSH DENOISE</span><small>LOCAL AUDIO RESTORATION</small></button>
-              <button onClick={openSplitIt}><span>SPLIT IT!</span><small>MUSIC OWNERSHIP DOCUMENTATION</small></button>
+              <button onClick={() => openRoom('production')}><span>PRODUCTION SUITE</span><small>PACKAGES / BOOKING</small></button>
+              <button onClick={() => window.location.assign('https://mixmind-ai-uj4ort.v2.appdeploy.ai/')}><span>MIXMIND</span><small>PRODUCER INTELLIGENCE</small></button>
+              <button onClick={() => window.location.assign('https://hush-denoise-by-auralcraftverse-wc3fxc.v2.appdeploy.ai/')}><span>HUSH DENOISE</span><small>AUDIO RESTORATION</small></button>
+              <button onClick={openSplitIt}><span>SPLIT IT!</span><small>OWNERSHIP DOCUMENTATION</small></button>
             </div>}
           </div>
-          <button className="nav-tab" onClick={() => go('origin')}>ORIGIN</button>
+          <button className="nav-tab" onClick={() => openRoom('research')}>LEARN</button>
+          <button className="nav-tab" onClick={() => openRoom('human')}>PEOPLE</button>
           <div className="nav-item" onMouseEnter={() => setNavOpen('deeper')} onMouseLeave={() => setNavOpen('')}>
             <button className={'nav-tab nav-tab-more ' + (navOpen === 'deeper' ? 'active' : '')} onClick={() => setNavOpen(navOpen === 'deeper' ? '' : 'deeper')} aria-expanded={navOpen === 'deeper'}>MORE <span>+</span></button>
             {navOpen === 'deeper' && <div className="nav-dropdown deeper-dropdown">
               {deeperFloors.map(floor => <button key={floor.id + floor.label} onClick={() => openRoom(floor.id)}><span>{floor.label}</span><small>{floor.eyebrow}</small></button>)}
-              <button onClick={() => openRoom('booking')}><span>03 / BOOKING</span><small>PRODUCTION REQUEST</small></button>
+              <button onClick={() => go('origin')}><span>ORIGIN / ECOSYSTEM</span><small>START HERE</small></button>
             </div>}
           </div>
         </nav>
       </header>
 
       <section id="top" className="hero chamber">
-        <div className="hero-orbit orbit-one" aria-hidden="true" />
-        <div className="hero-orbit orbit-two" aria-hidden="true" />
-        <div className="hero-core" aria-hidden="true">
-          <div className="core-ring" />
-          <div className="core-point" />
-        </div>
-        <div className="hero-grid" aria-hidden="true" />
-        <div className="hero-copy">
-            <p className="kicker">A CREATIVE UNIVERSE</p>
-          <h1>
-            AURALCRAFT<span>VERSE</span>
-          </h1>
-          <p className="hero-line">
-            Sound. Technology. Culture.
-            <br />
-            Crafted beyond the moment.
-          </p>
-        </div>
-        <button className="enter-link" onClick={() => go('reveal')}>
-          <span>ENTER THE VERSE</span>
-          <ArrowDown size={16} />
-        </button>
-        <div className="hero-index">01 / 09</div>
+        <div className="hero-orbit orbit-one" aria-hidden="true" /><div className="hero-orbit orbit-two" aria-hidden="true" />
+        <div className="hero-core" aria-hidden="true"><div className="core-ring" /><div className="core-point" /></div><div className="hero-grid" aria-hidden="true" />
+        <div className="hero-copy"><p className="kicker">INDEPENDENT CREATIVE INFRASTRUCTURE</p><h1>WELCOME TO<br /><span>AURALCRAFTVERSE</span></h1><p className="hero-line">Tools to make. Knowledge to grow.<br />Music and people to discover.</p></div>
+        <button className="enter-link" onClick={() => go('reveal')}><span>EXPLORE THE ECOSYSTEM</span><ArrowDown size={16} /></button>
+        <div className="hero-index">01 / 06</div>
       </section>
 
-      <section id="reveal" className="reveal chamber">
-        <div className="section-meta">
-          <span>02</span>
-          <span>THE REVEAL</span>
-        </div>
-        <div className="monolith" aria-hidden="true">
-          <div className="monolith-frame" />
-          <div className="monolith-frame frame-inner" />
-          <div className="monolith-line line-a" />
-          <div className="monolith-line line-b" />
-          <div className="monolith-orbit" />
-          <div className="monolith-orbit orbit-secondary" />
-          <div className="monolith-node" />
-          <span className="monolith-label label-top">ACV / 02</span>
-          <span className="monolith-label label-bottom">A SYSTEM FOR MAKING</span>
-        </div>
-        <div className="reveal-copy">
-          <p className="kicker">THE VERSE / A DECLARATION</p>
-          <h2>
-            Not a genre.
-            <br />
-            <em>A world.</em>
-          </h2>
-          <p className="reveal-lead">
-            Auralcraftverse is an independent creative universe built where sound,
-            technology, culture and human craft meet. It is a place to make things,
-            test ideas, preserve what matters and develop work beyond the moment.
-          </p>
-          <div className="reveal-statement">
-            <span>THE PRINCIPLE</span>
-            <strong>Build the work.<br />Build the world around it.</strong>
-          </div>
-          <div className="reveal-domains">
-            {revealDomains.map(domain => (
-              <button key={domain.code} className="reveal-domain" onClick={() => revealAndGo(domain.action)}>
-                <span>{domain.code}</span>
-                <div><strong>{domain.title}</strong><small>{domain.copy}</small></div>
-                <ArrowUpRight size={15} />
-              </button>
-            ))}
-          </div>
-          <div className="reveal-footnote">THE FIRST DOOR OPENS HERE. THE ARCHITECTURE REVEALS ITSELF AS YOU EXPLORE.</div>
-        </div>
+      <section id="reveal" className="reveal chamber ecosystem-intro">
+        <div className="section-meta"><span>02</span><span>WHAT YOU CAN DO HERE</span></div>
+        <div className="ecosystem-heading"><p className="kicker">AURALCRAFTVERSE / THE ECOSYSTEM</p><h2>Make. Learn.<br /><em>Release. Connect.</em></h2><p>Explore working music tools, practical production knowledge, West African industry contributors, and releases from the Auralcraftverse network.</p></div>
+        <div className="reveal-domains">{revealDomains.map(domain => <button key={domain.code} className="reveal-domain" onClick={() => revealAndGo(domain.action)}><span>{domain.code}</span><div><strong>{domain.title}</strong><small>{domain.copy}</small></div><ArrowUpRight size={15} /></button>)}</div>
       </section>
 
       {activeRoom && <div className="room-layer">
-      {activeRoom === 'works' && <section id="works" className="works chamber">
-        <div className="section-meta">
-          <span>03</span>
-          <span>WORKS</span>
-        </div>
-          <div className="works-layout">
-          <div className="works-intro">
-            <p className="kicker">SONIC EVIDENCE / SELECTED RECORDS</p>
-            <h2>What we<br /><em>leave behind.</em></h2>
-            <p className="body-copy">A record is more than an output. It is evidence of decisions made, ideas developed and moments given form.</p>
-            <div className="works-index">
-              <div><span>RECORDS</span><strong>{String(works.length).padStart(2, '0')}</strong></div>
-              <div><span>STATUS</span><strong>LISTENING</strong></div>
-            </div>
-            <div className="works-principle">
-              <span>THE RECORD</span>
-              <p>Selected works from across the universe. Press play. Follow the evidence.</p>
-            </div>
-          </div>
-          <div className="works-records">
-            <div className="works-records-head"><span>ACV / WORKS / 03</span><span>SELECTED OUTPUT</span></div>
-            <div className="works-players" aria-label="Selected works Spotify players">
-              {works.map(([artist, title, trackId], index) => (
-                <article className="work-player" key={trackId}>
-                  <div className="work-player-meta">
-                    <span>{String(index + 1).padStart(2, '0')}</span>
-                    <div><strong>{title}</strong><small>{artist}</small></div>
-                    <i aria-hidden="true">AURAL RECORD</i>
-                  </div>
-                  <iframe title={artist + ' — ' + title} src={'https://open.spotify.com/embed/track/' + trackId + '?utm_source=generator'} loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" />
-                </article>
-              ))}
-            </div>
-            <div className="works-records-foot"><span>LISTEN / TRACE / CONTEXT</span><span>THE ARCHIVE CONTINUES</span></div>
-          </div>
-        </div>
-      </section>}
+      
 
       {activeRoom === 'tools' && <section id="tools" className="tools chamber">
         <div className="section-meta">
@@ -360,8 +289,8 @@ function App() {
                   className="tool-action"
                   onClick={() => {
                     if (index === 0) openRoom('production');
-                    if (index === 1) openRoom('mixmind');
-                    if (index === 2) openRoom('hush');
+                    if (index === 1) window.location.assign('https://mixmind-ai-uj4ort.v2.appdeploy.ai/');
+                    if (index === 2) window.location.assign('https://hush-denoise-by-auralcraftverse-wc3fxc.v2.appdeploy.ai/');
                     if (index === 3) openSplitIt();
                   }}
                 >
@@ -460,35 +389,12 @@ function App() {
         </div>
       </section>}
 
-      {activeRoom === 'human' && <section id="human" className="human chamber">
-        <div className="section-meta">
-          <span>06</span>
-          <span>HUMAN CRAFT</span>
-        </div>
-        <div className="human-statement">
-          <div className="signal" aria-hidden="true">
-            <div />
-          </div>
-          <p className="kicker">FLOOR 04 / THE METHOD</p>
-          <blockquote>
-            Technology changes.
-            <br />
-            <em>Craft remains.</em>
-          </blockquote>
-        </div>
-        <div className="human-details">
-          <p>
-            Machines can measure. Tools can assist. But the record still begins
-            with a human decision — what to say, what to keep, what to remove,
-            what to make matter.
-          </p>
-          <div className="method-grid">
-            <article><span>01</span><strong>LISTEN</strong><p>Understand the idea before touching the sound.</p></article>
-            <article><span>02</span><strong>SHAPE</strong><p>Make deliberate choices about arrangement, tone and space.</p></article>
-            <article><span>03</span><strong>REFINE</strong><p>Remove what weakens the record and strengthen what gives it identity.</p></article>
-            <article><span>04</span><strong>RELEASE</strong><p>Finish with intention. The work leaves the room when it is ready.</p></article>
-          </div>
-        </div>
+      {activeRoom === 'human' && <section id="human" className="human chamber recognition-archive">
+        <div className="section-meta"><span>06</span><span>WEST AFRICAN MUSIC RECOGNITION ARCHIVE</span></div>
+        <div className="recognition-heading"><div><p className="kicker">THE PEOPLE BEHIND THE INDUSTRY</p><h2>Work worth<br /><em>remembering.</em></h2></div><p>An editorial archive recognising the executives, producers, talent developers and rising professionals shaping West African music. Profiles link to their source material and grow through careful research.</p></div>
+        <div className="recognition-note"><span>EDITORIAL STANDARD</span><p>Roles and contributions are attributed to cited profiles or announcements. This first edition focuses on documented Nigerian contributors; regional coverage will expand as profiles are verified.</p></div>
+        <div className="people-grid">{peopleProfiles.map((person,index) => <article className="person-card" key={person.name}><div className="person-card-top"><span className="person-index">0{index+1}</span><span className={person.tier === 'RISING PROFESSIONAL' ? 'person-tier rising' : 'person-tier'}>{person.tier}</span></div><div className="person-monogram" aria-hidden="true">{person.name.split(' ').map(part=>part[0]).join('').slice(0,2)}</div><p className="kicker">{person.area}</p><h3>{person.name}</h3><strong className="person-role">{person.role}</strong><p>{person.contribution}</p><a href={person.href} target="_blank" rel="noopener noreferrer">SOURCE / {person.source} <ArrowUpRight size={14} /></a></article>)}</div>
+        <div className="recognition-footer"><span>ESTABLISHED CONTRIBUTORS / RISING PROFESSIONALS</span><span>PROFILES ARE EDITORIALLY CURATED</span></div>
       </section>}
 
       {activeRoom === 'archive' && <section id="archive" className="archive chamber">
@@ -514,196 +420,55 @@ function App() {
         <div className="archive-footer-line"><span>{archiveRecords.filter(record => archiveFilter === 'ALL' || record.category === archiveFilter).length} RECORDS INDEXED</span><span>THE ARCHIVE REMAINS OPEN</span><span>∞</span></div>
       </section>}
 
-      {activeRoom === 'research' && <section id="research" className="research chamber">
-        <div className="section-meta"><span>07A</span><span>RESEARCH / THE CULTURAL LAYER</span></div>
-        <div className="research-heading">
-          <div>
-            <p className="kicker">FLOOR 07A / CULTURAL RESEARCH</p>
-            <h2>Stay curious.<br /><em>Go deeper.</em></h2>
-          </div>
-          <p>Not everything needs to become a product. Some things need to be observed, questioned, tested and understood before they become part of the work.</p>
+      {activeRoom === 'research' && <section id="research" className="research chamber knowledge-library">
+        <div className="section-meta"><span>07A</span><span>MUSIC PRODUCTION KNOWLEDGE LIBRARY</span></div>
+        <div className="library-heading"><div><p className="kicker">SEARCH / LEARN / APPLY</p><h2>Find the term.<br /><em>Learn the move.</em></h2></div><p>A growing, searchable guide to production language, DAWs, workflows, troubleshooting and music business fundamentals.</p></div>
+        <div className="library-search"><label htmlFor="knowledge-search">Search the library</label><input id="knowledge-search" type="search" value={libraryQuery} onChange={event => setLibraryQuery(event.target.value)} placeholder="Try “gain staging” or “FL Studio”" /></div>
+        <div className="library-filters" aria-label="Knowledge categories">{['ALL', 'TERMINOLOGY', 'DAW GUIDES', 'WORKFLOWS', 'RIGHTS & BUSINESS'].map(category => <button key={category} className={libraryCategory === category ? 'active' : ''} onClick={() => setLibraryCategory(category)}>{category}</button>)}</div>
+        <div className="knowledge-grid">
+          {knowledgeLibrary.filter(entry => (libraryCategory === 'ALL' || entry.category === libraryCategory) && (libraryQuery.trim() === '' || (entry.title + ' ' + entry.category + ' ' + entry.summary + ' ' + entry.detail).toLowerCase().includes(libraryQuery.trim().toLowerCase()))).map(entry => <article className="knowledge-card" key={entry.title}><div className="knowledge-card-meta"><span>{entry.category}</span><small>{entry.level}</small></div><h3>{entry.title}</h3><p>{entry.summary}</p><details><summary>READ THE GUIDE <ArrowUpRight size={14} /></summary><p>{entry.detail}</p></details></article>)}
+          {knowledgeLibrary.filter(entry => (libraryCategory === 'ALL' || entry.category === libraryCategory) && (libraryQuery.trim() === '' || (entry.title + ' ' + entry.category + ' ' + entry.summary + ' ' + entry.detail).toLowerCase().includes(libraryQuery.trim().toLowerCase()))).length === 0 && <p className="library-empty">No guide matches yet. Try a different term or category.</p>}
         </div>
-        <div className="research-field">
-          <div className="research-orbit" aria-hidden="true"><span></span><i></i><b></b></div>
-          <div className="research-copy">
-            <span className="research-index">ACV / FIELD NOTES / 07A</span>
-            <h3>THE CULTURAL LAYER</h3>
-            <p>Auralcraftverse treats research as part of creative practice: listening to culture, studying sound, observing technology, testing ideas and preserving the discoveries that sharpen the craft.</p>
-          </div>
-        </div>
-        <div className="research-signals">{researchSignals.map(signal => <article key={signal.number}><span>{signal.number}</span><strong>{signal.title}</strong><p>{signal.copy}</p></article>)}</div>
-        <div className="research-footer"><span>OBSERVE / QUESTION / EXPERIMENT / DOCUMENT</span><span>THE FIELD REMAINS OPEN</span></div>
+        <div className="library-footer"><span>EDITORIAL STARTER LIBRARY / VERSION 01</span><span>NEW GUIDES WILL BE ADDED OVER TIME</span></div>
       </section>}
 
-      {activeRoom === 'assembly' && <section id="assembly" className="assembly chamber">
-        <div className="assembly-background" aria-hidden="true">
-          <div className="assembly-vignette" />
-          <div className="assembly-stars" />
-          <div className="assembly-orbit orbit-a" />
-          <div className="assembly-orbit orbit-b" />
-          <div className="assembly-orbit orbit-c" />
-          <div className="craft-trajectory" />
-          <div className="the-craft" aria-label="The Craft">
-            <span className="craft-glow" />
-            <span className="craft-body" />
-            <span className="craft-wing wing-left" />
-            <span className="craft-wing wing-right" />
-            <span className="craft-engine engine-one" />
-            <span className="craft-engine engine-two" />
-          </div>
+      {activeRoom === 'assembly' && <section id="assembly" className="assembly chamber careers">
+        <div className="section-meta"><span>07B</span><span>CAREERS / CONTRIBUTE</span></div>
+        <div className="careers-heading"><div><p className="kicker">BUILD WITH AURALCRAFTVERSE</p><h2>Make room<br /><em>for your craft.</em></h2></div><p>We welcome thoughtful people who can help independent creative infrastructure grow—through full-time work, freelance projects, internships and collaboration.</p></div>
+        <div className="careers-status"><span className="status-dot" /><div><strong>NO PUBLIC VACANCIES LISTED RIGHT NOW</strong><p>We’re open to expressions of interest for future work. Sending a portfolio does not create an active application or guarantee a role.</p></div></div>
+        <div className="opportunity-grid">
+          <article><span>01 / EMPLOYMENT</span><h3>Open positions</h3><p>When a role is available, its responsibilities, requirements, engagement type and closing date will be listed here.</p></article>
+          <article><span>02 / FREELANCE</span><h3>Specialist work</h3><p>Production, engineering, design, software, editorial and operational support for defined projects.</p></article>
+          <article><span>03 / EARLY CAREER</span><h3>Internships and entry-level</h3><p>Structured opportunities to learn through practical work with clear supervision and expectations.</p></article>
+          <article><span>04 / COLLABORATION</span><h3>Project partnerships</h3><p>Pitch a relevant collaboration or express interest in contributing skills to the ecosystem.</p></article>
         </div>
-
-        <div className="section-meta">
-          <span>07B</span>
-          <span>THE ASSEMBLY</span>
-        </div>
-
-        <div className="assembly-header">
-          <div>
-            <p className="kicker">FLOOR 07B / THE ASSEMBLY</p>
-            <h2>NO UNIVERSE<br /><em>EXISTS ALONE.</em></h2>
-            <p>The Assembly is the people who enter, create, collaborate, discover and help shape Auralcraftverse.</p>
-          </div>
-          <div className="assembly-seal">
-            <span>ACV</span>
-            <strong>07B</strong>
-            <small>THE ASSEMBLY</small>
-          </div>
-        </div>
-
-        <div className="assembly-field">
-          <article className="assembly-node node-invited">
-            <div className="assembly-node-icon"><Users size={20} strokeWidth={1.1} /></div>
-            <div><span>01</span><h3>THE INVITED</h3><p>Artists. Producers. Writers. Creators.</p><em>Those who arrive with an idea.</em></div>
-          </article>
-          <article className="assembly-node node-craft">
-            <div className="assembly-node-icon"><Wrench size={20} strokeWidth={1.1} /></div>
-            <div><span>02</span><h3>THE CRAFT</h3><p>Engineers. Musicians. Designers. Technologists.</p><em>Those who shape what the idea becomes.</em></div>
-          </article>
-          <article className="assembly-node node-curators">
-            <div className="assembly-node-icon"><Layers3 size={20} strokeWidth={1.1} /></div>
-            <div><span>03</span><h3>THE CURATORS</h3><p>Researchers. Selectors. Cultural observers.</p><em>Those who give context to the work.</em></div>
-          </article>
-          <article className="assembly-node node-listeners">
-            <div className="assembly-node-icon"><Eye size={20} strokeWidth={1.1} /></div>
-            <div><span>04</span><h3>THE LISTENERS</h3><p>The people who encounter the work.</p><em>Those who complete the circuit by listening.</em></div>
-          </article>
-          <div className="craft-label">THE CRAFT</div>
-        </div>
-
-        <div className="assembly-open-door">
-          <p className="kicker">THE OPEN DOOR</p>
-          <h3>THERE IS NO FINAL ROSTER.</h3>
-          <p>Auralcraftverse is built by those who contribute to it. Some arrive to create. Some arrive to collaborate. Some arrive to observe. Some arrive simply to listen.</p>
-          <button className="text-link" onClick={() => go('top')}>RETURN TO THE VERSE <ArrowUpRight size={15} /></button>
-        </div>
-
-        <div className="assembly-footer">
-          <span>CREATE / COLLABORATE / CONTRIBUTE / DISCOVER / LISTEN</span>
-          <span>THE FIELD REMAINS OPEN</span>
-        </div>
+        <div className="careers-apply"><div><span>HOW TO INTRODUCE YOURSELF</span><p>Share your area of work, location, availability, a short note about how you could contribute, and a CV or portfolio link. Do not attach confidential or unreleased material.</p></div><a className="primary-button" href="mailto:auralcraftverse@gmail.com?subject=Auralcraftverse%20careers%20interest&body=Area%20of%20work%3A%0ALocation%3A%0AAvailability%3A%0APortfolio%20or%20CV%20link%3A%0AShort%20introduction%3A">EXPRESS INTEREST <ArrowUpRight size={15} /></a></div>
       </section>}
 
-      {activeRoom === 'mind' && <section id="mind" className="mind chamber">
-        <div className="section-meta"><span>08</span><span>THE MIND</span></div>
-        <div className="mind-header">
-          <div>
-            <p className="kicker">FLOOR 08 / THE CONSCIOUSNESS</p>
-            <h2>Every universe<br /><em>begins as an idea.</em></h2>
-            <p>The mind behind Auralcraftverse is not presented as a monument. It is the aperture through which the architecture becomes legible: a producer, artist, songwriter and creative architect imagining what sound, technology, culture and human craft can become when they are built as one universe.</p>
-          </div>
-          <div className="mind-seal" aria-hidden="true"><div className="mind-seal-orbit" /><div className="mind-seal-core" /><span>ACV / 08</span></div>
-        </div>
-        <div className="mind-field">
-          <div className="mind-portrait-field" aria-hidden="true">
-            <div className="mind-orbit mind-orbit-a" /><div className="mind-orbit mind-orbit-b" /><div className="mind-orbit mind-orbit-c" />
-            <div className="mind-node node-gold" /><div className="mind-node node-cyan" /><div className="mind-node node-white" /><div className="mind-axis" />
-            <span className="mind-coordinate">THE ARCHITECT / 01</span>
-          </div>
-          <div className="mind-thoughts">
-            <article><span>01 / SOUND</span><h3>What does sound become when treated as architecture?</h3><p>Records are not simply assembled. They are shaped, given tension, space, identity and a reason to exist.</p></article>
-            <article><span>02 / CRAFT</span><h3>What survives when shortcuts are removed?</h3><p>Originality begins with attention: listening deeply, making deliberate choices and protecting the character of the work.</p></article>
-            <article><span>03 / TECHNOLOGY</span><h3>What should technology do for the artist?</h3><p>Technology belongs in service of the work — extending perception, reducing friction and opening new ways to create.</p></article>
-            <article><span>04 / TIME</span><h3>What are we building that should still matter decades from now?</h3><p>Auralcraftverse is designed as an evolving body of work: something that can outlive the moment that produced it.</p></article>
-          </div>
-        </div>
-        <div className="mind-reveal">
-          <span className="mind-reveal-index">THE ARCHITECT</span>
-          <div><h3>MAYOWA BHADMUS</h3><p>Producer · Artist · Songwriter · Creative Architect</p></div>
-          <p className="mind-reveal-copy">The universe is larger than its creator. But every universe carries the imprint of the mind that imagined it.</p>
-        </div>
-        <div className="mind-footer"><span>SOUND / CRAFT / CULTURE / TECHNOLOGY / TIME</span><span>THE MIND REMAINS IN MOTION</span></div>
+      {activeRoom === 'mind' && <section id="mind" className="mind chamber music-broadcast">
+        <div className="section-meta"><span>08</span><span>MUSIC BROADCAST / RELEASE CATALOGUE</span></div>
+        <div className="broadcast-heading"><div><p className="kicker">AURALCRAFTVERSE / SELECTED RELEASES</p><h2>Music made<br /><em>to be heard.</em></h2></div><p>A curated catalogue of artists and projects connected to Auralcraftverse. Listen through official Spotify embeds, then follow the release to its music platform.</p></div>
+        <div className="broadcast-source-note"><span>CURATED CATALOGUE</span><p>Spotify player embeds and outbound links use official Spotify content. Other platform catalogues can be connected after developer credentials and catalog records are available. Release dates will appear when verified.</p></div>
+        <div className="broadcast-grid">{works.map(([artist,title,trackId],index) => <article className="broadcast-card" key={trackId}><div className="broadcast-card-meta"><span>ACV RELEASE / {String(index+1).padStart(2,'0')}</span><span>ARTIST / {artist}</span></div><h3>{title}</h3><p className="broadcast-artist">{artist}</p><iframe title={artist + ' — ' + title} src={'https://open.spotify.com/embed/track/' + trackId + '?utm_source=generator'} loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" /><div className="broadcast-links"><a href={'https://open.spotify.com/track/' + trackId} target="_blank" rel="noopener noreferrer">SPOTIFY <ArrowUpRight size={13} /></a><a href={'https://music.apple.com/us/search?term=' + encodeURIComponent(artist + ' ' + title)} target="_blank" rel="noopener noreferrer">APPLE MUSIC SEARCH <ArrowUpRight size={13} /></a></div></article>)}</div>
+        <div className="broadcast-footer"><span>PLAY / DISCOVER / FOLLOW OFFICIAL RELEASES</span><span>CATALOGUE RECORDS REMAIN EDITORIAL</span></div>
       </section>}
 
-      {activeRoom === 'mixmind' && <section className="tool-room chamber mixmind-room">
-        <div className="section-meta"><span>TOOL / 01</span><span>MIXMIND / AURALCRAFTVERSE</span></div>
-        <div className="tool-room-head"><div><p className="kicker">PRODUCER INTELLIGENCE</p><h2>Listen.<br /><em>Decide.</em></h2><p>MixMind remains its own tool — its own UX, its own working environment — but it now lives as a chamber inside the Auralcraftverse.</p></div><button className="text-link" onClick={() => go('top')}>RETURN TO THE VERSE <ArrowUpRight size={15} /></button></div>
-        <div className="tool-frame"><iframe title="MixMind by Auralcraftverse" src="https://mixmind-ai-uj4ort.v2.appdeploy.ai/" loading="lazy" allow="microphone" /></div>
-        <div className="tool-room-foot"><span>ACV / TOOL CHAMBER / MIXMIND</span><span>THE UX IS DISTINCT. THE UNIVERSE IS SHARED.</span></div>
-      </section>}
+      
 
-      {activeRoom === 'hush' && <section className="tool-room chamber hush-room">
-        <div className="section-meta"><span>TOOL / 02</span><span>HUSH DENOISE / AURALCRAFTVERSE</span></div>
-        <div className="tool-room-head"><div><p className="kicker">PROFESSIONAL AUDIO RESTORATION</p><h2>Make the noise<br /><em>disappear.</em></h2><p>Restore and clean audio in Hush Denoise. Processing runs locally on your device, while the Auralcraftverse environment stays around the tool.</p></div><button className="text-link" onClick={() => go('top')}>RETURN TO THE VERSE <ArrowUpRight size={15} /></button></div>
-        <div className="tool-frame"><iframe title="Hush Denoise by Auralcraftverse" src="https://hush-denoise-by-auralcraftverse-wc3fxc.v2.appdeploy.ai/" loading="lazy" /></div>
-        <div className="tool-room-foot"><span>ACV / TOOL CHAMBER / HUSH</span><span>THE UX WILL BE DISTINCT. THE UNIVERSE WILL BE SHARED.</span></div>
-      </section>}
+      
 
       
 
       </div>}
 
-      <section id="origin" className="origin chamber">
-        <div className="section-meta">
-          <span>09</span>
-          <span>THE ORIGIN</span>
+      <section id="origin" className="origin chamber ecosystem-gateway">
+        <div className="section-meta"><span>09</span><span>THE AURALCRAFTVERSE ECOSYSTEM</span></div>
+        <div className="gateway-heading"><div><p className="kicker">ROOTED HERE / BUILT FOR BEYOND</p><h2>One ecosystem.<br /><em>Useful by design.</em></h2></div><p>Move from an idea to a finished record, learn the language of production, document ownership, and discover the people and music that make the work possible.</p></div>
+        <div className="gateway-grid">
+          {tools.map((tool,index) => <article className="gateway-card" key={tool.name}><span>GATEWAY / 0{index+1}</span><p className="kicker">{tool.subtitle}</p><h3>{tool.name}</h3><p>{tool.copy}</p>{index === 0 ? <button onClick={() => openRoom('production')}>LEARN MORE <ArrowUpRight size={14} /></button> : <a href={['','https://mixmind-ai-uj4ort.v2.appdeploy.ai/','https://hush-denoise-by-auralcraftverse-wc3fxc.v2.appdeploy.ai/','https://split-it-by-auralcraftverse-isolated-port-yvds53.v2.appdeploy.ai/'][index]}>LEARN MORE <ArrowUpRight size={14} /></a>}</article>)}
+          <article className="gateway-card gateway-resource"><span>GATEWAY / 05</span><p className="kicker">LEARN / KEEP BUILDING</p><h3>Production Knowledge Library</h3><p>Find clear explanations, DAW guides and practical workflows. A growing reference for creatives at every stage.</p><button onClick={() => openRoom('research')}>LEARN MORE <ArrowUpRight size={14} /></button></article>
+          <article className="gateway-card gateway-resource"><span>GATEWAY / 06</span><p className="kicker">PEOPLE / PROFESSIONAL LEGACY</p><h3>West African Music Archive</h3><p>Discover documented contributions from professionals and rising talent shaping the region’s music industry.</p><button onClick={() => openRoom('human')}>LEARN MORE <ArrowUpRight size={14} /></button></article>
         </div>
-        <div className="origin-grid">
-          <div className="origin-intro">
-            <p className="kicker">EVERY UNIVERSE HAS AN ORIGIN</p>
-            <h2>Rooted here.<br /><em>Built for beyond.</em></h2>
-            <p className="origin-lead">Auralcraftverse did not appear fully formed. It is the present shape of a creative practice that began with sound and kept asking what could exist beyond it.</p>
-          </div>
-          <div className="origin-archive" aria-label="Auralcraftverse origin layers">
-            <div className="origin-root-system" aria-hidden="true">
-              <span className="root-axis" />
-              <span className="root-branch root-branch-a" />
-              <span className="root-branch root-branch-b" />
-              <span className="root-branch root-branch-c" />
-              <span className="root-branch root-branch-d" />
-              <span className="root-node root-node-a" />
-              <span className="root-node root-node-b" />
-              <span className="root-node root-node-c" />
-              <span className="root-node root-node-d" />
-              <span className="origin-orbit origin-orbit-a" />
-              <span className="origin-orbit origin-orbit-b" />
-              <span className="origin-orbit origin-orbit-c" />
-              <span className="origin-signal" />
-            </div>
-            <div className="origin-records">
-              <article>
-                <span>01 / THE ROOT</span>
-                <strong>2011</strong>
-                <p>The beginning of the creative practice from which the present architecture grew.</p>
-              </article>
-              <article>
-                <span>02 / THE TRANSFORMATION</span>
-                <strong>FROM SOUND TO SYSTEM</strong>
-                <p>Music expanded into production, artistry, curation, research and purpose-built technology.</p>
-              </article>
-              <article>
-                <span>03 / THE VERSE</span>
-                <strong>NOW / OPEN-ENDED</strong>
-                <p>Auralcraftverse is the current form — designed to keep evolving rather than arrive at a final shape.</p>
-              </article>
-            </div>
-          </div>
-        </div>
-        <div className="origin-declaration">
-          <span>THE CARRYING FORWARD</span>
-          <p>WE DIDN'T BUILD A WORLD TO ESCAPE FROM THE ONE WE CAME FROM.<br /><em>WE BUILT ONE TO CARRY IT FORWARD.</em></p>
-        </div>
-        <div className="origin-footer-line"><span>ROOT / TRANSFORM / BUILD / CONTINUE</span><span>ACV / 09</span></div>
       </section>
 
       <footer className="footer">
@@ -716,19 +481,19 @@ function App() {
               <AuralcraftMark />
               AURALCRAFTVERSE
             </div>
-            <p>Creative institution for sound, technology and culture.</p>
+            <p>Independent creative infrastructure for music, learning, ownership and opportunity.</p>
           </div>
           <div className="footer-links">
             <button onClick={() => go('top')}>VERSE</button>
-            <button onClick={() => go('reveal')}>REVEAL</button>
-            <button onClick={() => openRoom('works')}>WORKS</button>
+            <button onClick={() => openRoom('research')}>LEARN</button>
+            <button onClick={() => openRoom('mind')}>MUSIC</button>
             <button onClick={() => openRoom('tools')}>TOOLS</button>
             <button onClick={() => go('origin')}>ORIGIN</button>
           </div>
         </div>
         <div className="footer-bottom">
           <span>AURALCRAFTVERSE / 2026</span>
-          <span>BUILT TO OUTLIVE THE MOMENT.</span>
+          <span>TOOLS / KNOWLEDGE / MUSIC / PEOPLE / OPPORTUNITY</span>
         </div>
       </footer>
     </main>
