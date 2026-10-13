@@ -2586,3 +2586,10 @@ body { letter-spacing:0; }
 .tool-route-fallback .primary-button { display: inline-flex; align-items: center; gap: 8px; margin-top: 12px; text-decoration: none; }
 .guide-back { display: inline-flex; align-items: center; gap: 8px; cursor: pointer; }
 @media (max-width: 640px) { .hero-intro { font-size: 13px; line-height: 1.75; } .room-exit-button { margin-left: 12px; } .tool-route-frame { height: 58vh; min-height: 360px; } .tool-route-fallback { margin: 20px 14px 42px; padding: 20px; } }
+
+
+/* Persistent return-to-home control on the ecosystem engine page. */
+.engine-home-link { position:fixed; z-index:900; top:18px; right:clamp(16px,3vw,36px); display:inline-flex; align-items:center; min-height:38px; padding:0 14px; border:1px solid rgba(201,168,106,.55); background:rgba(5,7,9,.86); color:#e8d3a8; text-decoration:none; font:600 8px/1.4 var(--font-tech); letter-spacing:.12em; backdrop-filter:blur(12px); transition:background .2s ease,border-color .2s ease; }
+.engine-home-link:hover { background:rgba(201,168,106,.14); border-color:rgba(230,202,150,.9); }
+.entry-stage-jumping .entry-wormhole { mix-blend-mode:screen; }
+@media (max-width:640px) { .engine-home-link { top:10px; right:10px; min-height:34px; padding:0 10px; font-size:7px; } }
