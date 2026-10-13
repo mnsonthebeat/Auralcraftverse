@@ -23,3 +23,7 @@ services:
       - type: rewrite
         source: /guides/*
         destination: /index.html
+      # Catch-all SPA fallback so direct tool and guide URLs resolve to the Vite app.
+      - type: rewrite
+        source: /*
+        destination: /index.html
