@@ -180,7 +180,6 @@ const deeperFloors = [
   { id: 'packages', label: 'PRODUCTION PACKAGES', eyebrow: 'BOOK A SESSION' },
   { id: 'research', label: 'MUSIC PRODUCTION KNOWLEDGE LIBRARY', eyebrow: 'LEARN' },
   { id: 'human', label: 'WEST AFRICAN MUSIC RECOGNITION ARCHIVE', eyebrow: 'PEOPLE' },
-  { id: 'assembly', label: 'CAREERS / CONTRIBUTE', eyebrow: 'JOIN AURALCRAFTVERSE' },
   { id: 'archive', label: 'THE ARCHIVE', eyebrow: 'THE RECORD' },
 ];
 
@@ -346,7 +345,8 @@ function EcosystemApp() {
             </div>}
           </div>
           <button className="nav-tab" onClick={() => openRoom('research')}>LEARN</button>
-          <button className="nav-tab" onClick={() => openRoom('human')}>HALL OF FAME</button>
+          <button className="nav-tab" onClick={() => openRoom('human')}>EDITORIAL</button>
+          <button className="nav-tab" onClick={() => openRoom('assembly')}>CAREERS</button>
           <div className="nav-item" onMouseEnter={() => setNavOpen('deeper')} onMouseLeave={() => setNavOpen('')}>
             <button className={'nav-tab nav-tab-more ' + (navOpen === 'deeper' ? 'active' : '')} onClick={() => setNavOpen(navOpen === 'deeper' ? '' : 'deeper')} aria-expanded={navOpen === 'deeper'}>MORE <span>+</span></button>
             {navOpen === 'deeper' && <div className="nav-dropdown deeper-dropdown">
@@ -521,7 +521,7 @@ function EcosystemApp() {
       </section>}
 
       {activeRoom === 'human' && <section id="human" className="human chamber recognition-archive">
-        <div className="section-meta"><span>HALL OF FAME</span><span>WEST AFRICAN MUSIC RECOGNITION ARCHIVE</span></div>
+        <div className="section-meta"><span>EDITORIAL</span><span>WEST AFRICAN MUSIC RECOGNITION ARCHIVE</span></div>
         <div className="recognition-heading"><p>An editorial archive recognizing the executives, managers, lawyers and creative leaders shaping the reach and future of African music.</p></div>
         <div className="recognition-note"><span>EDITORIAL STANDARD</span><p>Roles and contributions are attributed to cited profiles or announcements. This first edition focuses on documented Nigerian contributors; regional coverage will expand as profiles are verified.</p></div>
         <div className="people-grid">{peopleProfiles.map((person,index) => <article className="person-card" key={person.name}><div className="person-card-top"><span className="person-index">0{index+1}</span><span className={person.tier === 'RISING PROFESSIONAL' ? 'person-tier rising' : 'person-tier'}>{person.tier}</span></div><img className="person-portrait" src={person.portrait} alt={person.name + " portrait"} loading="lazy" /><p className="kicker">{person.area}</p><h3>{person.name}</h3><strong className="person-role">{person.role}</strong><p>{person.contribution}</p><a href={person.href} target="_blank" rel="noopener noreferrer">SOURCE / {person.source} <ArrowUpRight size={14} /></a></article>)}</div>
@@ -613,17 +613,10 @@ function EcosystemApp() {
             </div>
             <p>Independent creative infrastructure for music, learning, ownership and opportunity.</p>
           </div>
-          <div className="footer-links">
-            <button onClick={() => go('top')}>VERSE</button>
-            <button onClick={() => openRoom('research')}>LEARN</button>
-            <button onClick={() => openRoom('mind')}>OUR CRAFT</button>
-            <button onClick={() => openRoom('tools')}>TOOLS</button>
-            <button onClick={() => go('origin')}>ORIGIN</button>
-          </div>
         </div>
         <div className="footer-bottom">
           <span>AURALCRAFTVERSE / 2026</span>
-          <span>TOOLS / KNOWLEDGE / OUR CRAFT / HALL OF FAME / OPPORTUNITY</span>
+          <span>TOOLS / KNOWLEDGE / OUR CRAFT / EDITORIAL / CAREERS</span>
         </div>
       </footer>
     </main>
