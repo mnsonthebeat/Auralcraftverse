@@ -104,7 +104,7 @@ export default function EntryExperience({
           <div className="jump-sequence" role="status">
             <div className="jump-transit" aria-hidden="true">
               <div className="jump-wormhole"><span /><span /><span /><span /><span /><i /><i /></div>
-              <div className="jump-spacecraft"><span className="craft-nose" /><span className="craft-fuselage" /><span className="craft-wing craft-wing-left" /><span className="craft-wing craft-wing-right" /><span className="craft-engine" /></div>
+              <div className="jump-spacecraft"><span className="craft-shadow" /><span className="craft-fuselage" /><span className="craft-nose" /><span className="craft-cockpit" /><span className="craft-wing craft-wing-left" /><span className="craft-wing craft-wing-right" /><span className="craft-stabilizer" /><span className="craft-panel" /><span className="craft-engine" /><span className="craft-engine-core" /></div>
             </div>
             <p className="entry-kicker">JUMP SEQUENCE ACTIVE</p>
             <h2>ARRIVING AT DESTINATION</h2>

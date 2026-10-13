@@ -2576,7 +2576,7 @@ body { letter-spacing:0; }
 }
 
 /* Navigation and route resilience */
-.hero-intro { max-width: 760px; margin: 24px 0 0; color: #c1c5c4; font-size: clamp(13px, 1.05vw, 16px); line-height: 1.85; letter-spacing: .005em; }
+.hero-intro { width: min(100%, 760px); max-width: 760px; margin: 24px auto 0; color: #c1c5c4; font-size: clamp(13px, 1.05vw, 16px); line-height: 1.85; letter-spacing: .005em; }
 .room-exit-button { position: sticky; top: 10px; z-index: 30; display: inline-flex; align-items: center; gap: 9px; margin: 12px 0 0 22px; padding: 10px 14px; border: 1px solid var(--acv-line); background: rgba(5,8,10,.92); color: var(--gold); font: inherit; font-size: 9px; letter-spacing: .13em; cursor: pointer; }
 .tool-back-button { display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--acv-line); background: transparent; color: #eeeae2; padding: 10px 12px; font: inherit; font-size: 8px; letter-spacing: .12em; cursor: pointer; }
 .tool-route-frame { height: min(68vh, 760px); min-height: 420px; }
@@ -2589,7 +2589,7 @@ body { letter-spacing:0; }
 
 
 /* Spacecraft and wormhole transit sequence. */
-.jump-transit { position:relative; width:min(100%,520px); height:clamp(190px,32vw,280px); margin:0 auto 28px; overflow:hidden; perspective:700px; }
+.jump-transit { position:relative; width:min(100%,520px); height:clamp(190px,32vw,280px); margin:0 auto 28px; overflow:hidden; perspective:900px; }
 .jump-wormhole { position:absolute; inset:8% 12%; border-radius:50%; transform:rotate(-10deg) scaleY(.7); border:1px solid rgba(166,204,255,.5); box-shadow:0 0 28px rgba(94,151,255,.18),inset 0 0 36px rgba(94,151,255,.16); animation:wormhole-pulse .9s ease-in-out infinite alternate; }
 .jump-wormhole span { position:absolute; inset:calc(var(--ring)*7%); border:1px solid rgba(174,210,255,.55); border-radius:50%; transform:rotate(calc(var(--ring)*17deg)) scaleY(.7); animation:wormhole-spin calc(1.8s - var(--ring)*.18s) linear infinite; }
 .jump-wormhole span:nth-child(1) { --ring:1; }
@@ -2599,19 +2599,89 @@ body { letter-spacing:0; }
 .jump-wormhole span:nth-child(5) { --ring:5; }
 .jump-wormhole i { position:absolute; left:50%; top:50%; width:42%; height:1px; background:linear-gradient(90deg,transparent,#e0efff,transparent); transform-origin:left center; animation:wormhole-streak .55s linear infinite; }
 .jump-wormhole i:nth-last-child(1) { transform:rotate(180deg); animation-delay:-.27s; }
-.jump-spacecraft { position:absolute; z-index:2; left:50%; top:50%; width:118px; height:66px; transform:translate(-50%,-50%) rotate(-12deg); filter:drop-shadow(0 0 14px rgba(132,190,255,.65)); animation:spacecraft-transit 1.15s ease-in-out infinite alternate; }
+.jump-spacecraft { position:absolute; z-index:2; left:66%; top:50%; width:156px; height:82px; transform:translate(-50%,-50%) rotate(-5deg) scale(.78); transform-origin:center; filter:drop-shadow(0 5px 8px rgba(0,0,0,.75)) drop-shadow(0 0 9px rgba(132,190,255,.35)); animation:spacecraft-transit 2.35s cubic-bezier(.4,0,.8,.4) infinite; }
 .jump-spacecraft span { position:absolute; display:block; }
-.craft-fuselage { left:23px; top:25px; width:76px; height:17px; border:1px solid #e0edff; border-radius:60% 45% 45% 60%; background:linear-gradient(90deg,#607eaa,#f3f8ff 65%,#9fbde8); clip-path:polygon(0 20%,72% 0,100% 50%,72% 100%,0 80%,16% 50%); }
-.craft-nose { left:78px; top:28px; width:34px; height:11px; background:#f6fbff; clip-path:polygon(0 0,100% 50%,0 100%); }
-.craft-wing { top:16px; width:45px; height:24px; background:linear-gradient(135deg,#8faed9,#263e65); border:1px solid #b9d5ff; }
-.craft-wing-left { left:21px; transform:skewY(-32deg) rotate(-8deg); clip-path:polygon(0 0,100% 50%,65% 100%,0 80%); }
-.craft-wing-right { left:30px; top:29px; transform:skewY(32deg) rotate(8deg); clip-path:polygon(0 20%,70% 0,100% 50%,0 100%); }
-.craft-engine { left:4px; top:30px; width:25px; height:7px; background:linear-gradient(90deg,transparent,#71c8ff,#fff); filter:blur(2px); animation:engine-thrust .25s ease-in-out infinite alternate; }
+.craft-shadow { left:14px; top:34px; width:126px; height:32px; background:rgba(2,7,15,.8); filter:blur(5px); clip-path:polygon(0 50%,20% 10%,75% 0,100% 50%,75% 100%,20% 90%); }
+.craft-fuselage { left:18px; top:29px; width:116px; height:26px; border:1px solid #dce8f6; border-radius:48% 30% 28% 48%; background:linear-gradient(180deg,#e6edf4 0%,#8796a9 24%,#344354 53%,#9eacbd 78%,#e8eff8 100%); clip-path:polygon(0 35%,15% 20%,65% 8%,87% 25%,100% 50%,87% 75%,65% 92%,15% 80%); }
+.craft-nose { left:105px; top:32px; width:45px; height:20px; background:linear-gradient(180deg,#f5f8fc,#8293a8 48%,#dfe8f2); clip-path:polygon(0 0,65% 25%,100% 50%,65% 75%,0 100%,16% 50%); }
+.craft-cockpit { left:73px; top:32px; width:28px; height:9px; border:1px solid rgba(205,234,255,.9); border-radius:70% 35% 20% 20%; background:linear-gradient(110deg,#152b43,#8fc9ed 55%,#d9f2ff); clip-path:polygon(0 100%,20% 10%,78% 0,100% 100%); box-shadow:0 0 8px rgba(113,200,255,.25); }
+.craft-wing { top:16px; width:68px; height:31px; border:1px solid #b8cce4; background:linear-gradient(145deg,#a6b6c9 0%,#4a5b70 38%,#17283c 100%); }
+.craft-wing-left { left:20px; transform:skewY(-28deg) rotate(-9deg); clip-path:polygon(0 0,100% 45%,76% 100%,20% 78%); }
+.craft-wing-right { left:27px; top:39px; transform:skewY(26deg) rotate(7deg); clip-path:polygon(12% 0,100% 25%,72% 100%,0 72%); }
+.craft-stabilizer { left:7px; top:27px; width:30px; height:28px; background:linear-gradient(90deg,#26384d,#8194a9); border:1px solid #b8cce4; clip-path:polygon(0 0,100% 34%,100% 66%,0 100%,26% 50%); }
+.craft-panel { left:39px; top:46px; width:51px; height:2px; background:linear-gradient(90deg,transparent,#d8e5f3 35%,#6c839c 75%,transparent); opacity:.9; }
+.craft-engine { left:0; top:36px; width:31px; height:10px; background:linear-gradient(90deg,transparent,#4fbcff 55%,#eaf8ff); filter:blur(2px); transform-origin:right center; animation:engine-thrust .22s ease-in-out infinite alternate; }
+.craft-engine-core { left:3px; top:38px; width:19px; height:5px; background:linear-gradient(90deg,transparent,#fff); filter:blur(.5px); }
 .entry-stage-jumping .entry-stars { animation-duration:1.4s; }
 .entry-stage-jumping .entry-orbit { animation-duration:1.6s; }
 @keyframes wormhole-spin { to { rotate:360deg; } }
 @keyframes wormhole-pulse { to { scale:1.04; opacity:.72; filter:brightness(1.35); } }
 @keyframes wormhole-streak { from { translate:0 0; opacity:0; scale:.3 1; } 45% { opacity:1; } to { translate:170px 0; opacity:0; scale:1.4 1; } }
-@keyframes spacecraft-transit { from { translate:-16px 0; scale:.88; } to { translate:16px 0; scale:1.08; } }
-@keyframes engine-thrust { to { opacity:.45; width:34px; } }
+@keyframes spacecraft-transit { 0% { left:67%; transform:translate(-50%,-50%) rotate(-5deg) scale(.72); opacity:0; } 12% { opacity:1; } 72% { left:51%; transform:translate(-50%,-50%) rotate(-5deg) scale(.4); opacity:1; } 100% { left:50%; transform:translate(-50%,-50%) rotate(-5deg) scale(.025); opacity:0; } }
+@keyframes engine-thrust { to { opacity:.45; width:38px; } }
+@media (max-width: 1000px) {
+  .topbar { padding: 16px 22px; }
+  .mobile-menu-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    flex: 0 0 44px;
+    color: var(--gold);
+    border: 1px solid rgba(201, 168, 106, .28);
+    background: rgba(5, 8, 10, .72);
+    cursor: pointer;
+    transition: background .2s ease, border-color .2s ease;
+  }
+  .mobile-menu-toggle:hover,
+  .mobile-menu-toggle:focus-visible { background: rgba(201, 168, 106, .1); border-color: var(--gold); }
+  .universe-nav {
+    display: none;
+    position: absolute;
+    top: calc(100% + 1px);
+    left: 0;
+    right: 0;
+    max-width: none;
+    max-height: calc(100dvh - 82px);
+    overflow-x: visible;
+    overflow-y: auto;
+    padding: 12px 18px 22px;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    gap: 3px;
+    background: rgba(5, 8, 10, .98);
+    border-bottom: 1px solid rgba(201, 168, 106, .22);
+    box-shadow: 0 24px 48px rgba(0, 0, 0, .38);
+    backdrop-filter: blur(18px);
+  }
+  .universe-nav.mobile-nav-visible { display: flex; }
+  .universe-nav .nav-tab {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    min-height: 48px;
+    padding: 0 12px;
+    text-align: left;
+    font-size: 10px;
+    letter-spacing: .16em;
+    border-bottom: 1px solid rgba(238, 234, 226, .07);
+  }
+  .universe-nav .nav-item { width: 100%; }
+  .universe-nav .nav-dropdown {
+    position: static;
+    width: 100%;
+    margin: 0 0 8px;
+    box-shadow: none;
+    border-color: rgba(238, 234, 226, .07);
+    background: rgba(255, 255, 255, .025);
+    backdrop-filter: none;
+  }
+  .universe-nav .nav-dropdown button { min-height: 48px; padding: 12px; }
+}
+@media (min-width: 1001px) {
+  .mobile-menu-toggle { display: none; }
+}
 @media (max-width:640px) { .jump-transit { height:190px; } .jump-spacecraft { scale:.8; } }
