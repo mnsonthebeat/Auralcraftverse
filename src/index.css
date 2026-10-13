@@ -2588,8 +2588,30 @@ body { letter-spacing:0; }
 @media (max-width: 640px) { .hero-intro { font-size: 13px; line-height: 1.75; } .room-exit-button { margin-left: 12px; } .tool-route-frame { height: 58vh; min-height: 360px; } .tool-route-fallback { margin: 20px 14px 42px; padding: 20px; } }
 
 
-/* Persistent return-to-home control on the ecosystem engine page. */
-.engine-home-link { position:fixed; z-index:900; top:18px; right:clamp(16px,3vw,36px); display:inline-flex; align-items:center; min-height:38px; padding:0 14px; border:1px solid rgba(201,168,106,.55); background:rgba(5,7,9,.86); color:#e8d3a8; text-decoration:none; font:600 8px/1.4 var(--font-tech); letter-spacing:.12em; backdrop-filter:blur(12px); transition:background .2s ease,border-color .2s ease; }
-.engine-home-link:hover { background:rgba(201,168,106,.14); border-color:rgba(230,202,150,.9); }
-.entry-stage-jumping .entry-wormhole { mix-blend-mode:screen; }
-@media (max-width:640px) { .engine-home-link { top:10px; right:10px; min-height:34px; padding:0 10px; font-size:7px; } }
+/* Spacecraft and wormhole transit sequence. */
+.jump-transit { position:relative; width:min(100%,520px); height:clamp(190px,32vw,280px); margin:0 auto 28px; overflow:hidden; perspective:700px; }
+.jump-wormhole { position:absolute; inset:8% 12%; border-radius:50%; transform:rotate(-10deg) scaleY(.7); border:1px solid rgba(166,204,255,.5); box-shadow:0 0 28px rgba(94,151,255,.18),inset 0 0 36px rgba(94,151,255,.16); animation:wormhole-pulse .9s ease-in-out infinite alternate; }
+.jump-wormhole span { position:absolute; inset:calc(var(--ring)*7%); border:1px solid rgba(174,210,255,.55); border-radius:50%; transform:rotate(calc(var(--ring)*17deg)) scaleY(.7); animation:wormhole-spin calc(1.8s - var(--ring)*.18s) linear infinite; }
+.jump-wormhole span:nth-child(1) { --ring:1; }
+.jump-wormhole span:nth-child(2) { --ring:2; }
+.jump-wormhole span:nth-child(3) { --ring:3; }
+.jump-wormhole span:nth-child(4) { --ring:4; }
+.jump-wormhole span:nth-child(5) { --ring:5; }
+.jump-wormhole i { position:absolute; left:50%; top:50%; width:42%; height:1px; background:linear-gradient(90deg,transparent,#e0efff,transparent); transform-origin:left center; animation:wormhole-streak .55s linear infinite; }
+.jump-wormhole i:nth-last-child(1) { transform:rotate(180deg); animation-delay:-.27s; }
+.jump-spacecraft { position:absolute; z-index:2; left:50%; top:50%; width:118px; height:66px; transform:translate(-50%,-50%) rotate(-12deg); filter:drop-shadow(0 0 14px rgba(132,190,255,.65)); animation:spacecraft-transit 1.15s ease-in-out infinite alternate; }
+.jump-spacecraft span { position:absolute; display:block; }
+.craft-fuselage { left:23px; top:25px; width:76px; height:17px; border:1px solid #e0edff; border-radius:60% 45% 45% 60%; background:linear-gradient(90deg,#607eaa,#f3f8ff 65%,#9fbde8); clip-path:polygon(0 20%,72% 0,100% 50%,72% 100%,0 80%,16% 50%); }
+.craft-nose { left:78px; top:28px; width:34px; height:11px; background:#f6fbff; clip-path:polygon(0 0,100% 50%,0 100%); }
+.craft-wing { top:16px; width:45px; height:24px; background:linear-gradient(135deg,#8faed9,#263e65); border:1px solid #b9d5ff; }
+.craft-wing-left { left:21px; transform:skewY(-32deg) rotate(-8deg); clip-path:polygon(0 0,100% 50%,65% 100%,0 80%); }
+.craft-wing-right { left:30px; top:29px; transform:skewY(32deg) rotate(8deg); clip-path:polygon(0 20%,70% 0,100% 50%,0 100%); }
+.craft-engine { left:4px; top:30px; width:25px; height:7px; background:linear-gradient(90deg,transparent,#71c8ff,#fff); filter:blur(2px); animation:engine-thrust .25s ease-in-out infinite alternate; }
+.entry-stage-jumping .entry-stars { animation-duration:1.4s; }
+.entry-stage-jumping .entry-orbit { animation-duration:1.6s; }
+@keyframes wormhole-spin { to { rotate:360deg; } }
+@keyframes wormhole-pulse { to { scale:1.04; opacity:.72; filter:brightness(1.35); } }
+@keyframes wormhole-streak { from { translate:0 0; opacity:0; scale:.3 1; } 45% { opacity:1; } to { translate:170px 0; opacity:0; scale:1.4 1; } }
+@keyframes spacecraft-transit { from { translate:-16px 0; scale:.88; } to { translate:16px 0; scale:1.08; } }
+@keyframes engine-thrust { to { opacity:.45; width:34px; } }
+@media (max-width:640px) { .jump-transit { height:190px; } .jump-spacecraft { scale:.8; } }

@@ -102,7 +102,10 @@ export default function EntryExperience({
 
         {stage === 'jumping' && (
           <div className="jump-sequence" role="status">
-            <div className="jump-core"><span /><span /><span /></div>
+            <div className="jump-transit" aria-hidden="true">
+              <div className="jump-wormhole"><span /><span /><span /><span /><span /><i /><i /></div>
+              <div className="jump-spacecraft"><span className="craft-nose" /><span className="craft-fuselage" /><span className="craft-wing craft-wing-left" /><span className="craft-wing craft-wing-right" /><span className="craft-engine" /></div>
+            </div>
             <p className="entry-kicker">JUMP SEQUENCE ACTIVE</p>
             <h2>ARRIVING AT DESTINATION</h2>
             <p>WORMHOLE TRANSIT COMPLETE · AURALCRAFTVERSE INBOUND</p>

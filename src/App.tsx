@@ -261,7 +261,8 @@ function EcosystemApp() {
   };
   const routePath = window.location.pathname.replace(/\/+$/, '') || '/';
   const toolRoute = toolRoutes[routePath];
-  const guideSlug = routePath.startsWith('/guides/') ? routePath.slice('/guides/'.length) : '';
+  const queryGuideSlug = new URLSearchParams(window.location.search).get('guide') || '';
+  const guideSlug = queryGuideSlug || (routePath.startsWith('/guides/') ? routePath.slice('/guides/'.length) : '');
   const guideEntry = knowledgeLibrary.find(entry => entry.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') === guideSlug);
   const go = (id: string) => {
     setActiveRoom('');
@@ -309,7 +310,6 @@ function EcosystemApp() {
 
   return (
     <main className="verse">
-      <a className="engine-home-link" href="/?entered=1" aria-label="Back to Auralcraftverse home">← BACK TO AURALCRAFTVERSE</a>
       <div className="noise" aria-hidden="true" />
       <div className="universe-environment" aria-hidden="true">
         <div className="universe-image" />
@@ -557,7 +557,7 @@ function EcosystemApp() {
         <div className="library-search"><label htmlFor="knowledge-search">Search the library</label><input id="knowledge-search" type="search" value={libraryQuery} onChange={event => setLibraryQuery(event.target.value)} placeholder="Try “gain staging” or “FL Studio”" /></div>
         <div className="library-filters" aria-label="Knowledge categories">{['ALL', 'THEORY', 'TERMINOLOGY', 'DAW GUIDES', 'INSTALLATION', 'TROUBLESHOOTING', 'PLUGINS & TOOLS', 'RECORDING', 'MIXING', 'MASTERING', 'WORKFLOWS', 'RIGHTS & BUSINESS'].map(category => <button key={category} className={libraryCategory === category ? 'active' : ''} onClick={() => setLibraryCategory(category)}>{category}</button>)}</div>
         <div className="knowledge-grid">
-          {knowledgeLibrary.filter(entry => (libraryCategory === 'ALL' || entry.category === libraryCategory) && (libraryQuery.trim() === '' || (entry.title + ' ' + entry.category + ' ' + entry.summary + ' ' + entry.detail).toLowerCase().includes(libraryQuery.trim().toLowerCase()))).map(entry => <article className="knowledge-card" key={entry.title}><div className="knowledge-card-meta"><span>{entry.category}</span><small>{entry.level}</small></div><h3>{entry.title}</h3><p>{entry.summary}</p><a className="guide-link" href={'/guides/' + entry.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')}>READ THE GUIDE <ArrowUpRight size={14} /></a></article>)}
+          {knowledgeLibrary.filter(entry => (libraryCategory === 'ALL' || entry.category === libraryCategory) && (libraryQuery.trim() === '' || (entry.title + ' ' + entry.category + ' ' + entry.summary + ' ' + entry.detail).toLowerCase().includes(libraryQuery.trim().toLowerCase()))).map(entry => <article className="knowledge-card" key={entry.title}><div className="knowledge-card-meta"><span>{entry.category}</span><small>{entry.level}</small></div><h3>{entry.title}</h3><p>{entry.summary}</p><a className="guide-link" href={'/?entered=1&guide=' + entry.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')}>READ THE GUIDE <ArrowUpRight size={14} /></a></article>)}
           {knowledgeLibrary.filter(entry => (libraryCategory === 'ALL' || entry.category === libraryCategory) && (libraryQuery.trim() === '' || (entry.title + ' ' + entry.category + ' ' + entry.summary + ' ' + entry.detail).toLowerCase().includes(libraryQuery.trim().toLowerCase()))).length === 0 && <p className="library-empty">No guide matches yet. Try a different term or category.</p>}
         </div>
         <div className="library-footer"><span>AURALCRAFTVERSE KNOWLEDGE BASE / VERSION 02</span><span>PRACTICAL GUIDES · THEORY · SETUP · TROUBLESHOOTING</span></div>
@@ -579,7 +579,6 @@ function EcosystemApp() {
       {activeRoom === 'mind' && <section id="mind" className="mind chamber music-broadcast">
         <div className="section-meta"><span>OUR CRAFT</span><span>MUSIC BROADCAST / RELEASE CATALOGUE</span></div>
         <div className="broadcast-heading"><div><p className="kicker">AURALCRAFTVERSE / SELECTED RELEASES</p><h2>Music made<br /><em>to be heard.</em></h2></div><p>A curated catalogue of artists and projects connected to Auralcraftverse. Listen through official Spotify embeds, then follow the release to its music platform.</p></div>
-        <div className="broadcast-source-note"><span>CURATED CATALOGUE</span><p>Spotify player embeds and outbound links use official Spotify content. Other platform catalogues can be connected after developer credentials and catalog records are available. Release dates will appear when verified.</p></div>
         <div className="broadcast-grid">{works.map(([artist,title,trackId],index) => <article className="broadcast-card" key={trackId}><div className="broadcast-card-meta"><span>ACV RELEASE / {String(index+1).padStart(2,'0')}</span><span>ARTIST / {artist}</span></div><h3>{title}</h3><p className="broadcast-artist">{artist}</p><iframe title={artist + ' — ' + title} src={'https://open.spotify.com/embed/track/' + trackId + '?utm_source=generator'} loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" /><div className="broadcast-links"><a href={'https://open.spotify.com/track/' + trackId} target="_blank" rel="noopener noreferrer">SPOTIFY <ArrowUpRight size={13} /></a><a href={'https://music.apple.com/us/search?term=' + encodeURIComponent(artist + ' ' + title)} target="_blank" rel="noopener noreferrer">APPLE MUSIC SEARCH <ArrowUpRight size={13} /></a></div></article>)}</div>
         <div className="broadcast-footer"><span>PLAY / DISCOVER / FOLLOW OFFICIAL RELEASES</span><span>CATALOGUE RECORDS REMAIN EDITORIAL</span></div>
       </section>}
