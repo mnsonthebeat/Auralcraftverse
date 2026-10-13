@@ -151,6 +151,8 @@ import {
   Layers3,
   Eye,
   FileSpreadsheet,
+  Menu,
+  X,
 } from 'lucide-react';
 
 const AuralcraftMark = () => (
@@ -238,6 +240,7 @@ function ToolVisual({ kind }: { kind: string }) {
 
 function EcosystemApp() {
   const [navOpen, setNavOpen] = useState('');
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeRoom, setActiveRoom] = useState('');
   const [selectedPackage, setSelectedPackage] = useState('');
   const [sessionType, setSessionType] = useState('');
@@ -266,16 +269,19 @@ function EcosystemApp() {
   const go = (id: string) => {
     setActiveRoom('');
     setNavOpen('');
+    setMobileMenuOpen(false);
     window.setTimeout(() => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' }), 0);
   };
 
   const openRoom = (id: string) => {
     setActiveRoom(id);
     setNavOpen('');
+    setMobileMenuOpen(false);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const openSplitIt = () => {
+    setMobileMenuOpen(false);
     window.location.assign('/split-it');
   };
 
@@ -327,12 +333,22 @@ function EcosystemApp() {
           <span className="craft-engine engine-two" />
         </div>
       </div>
-      <header className="topbar">
-        <button className="wordmark" onClick={() => go('top')} aria-label="Return to Auralcraftverse">
+      <header className={'topbar ' + (mobileMenuOpen ? 'mobile-menu-open' : '')}>
+        <button className="wordmark" onClick={() => { setMobileMenuOpen(false); go('top'); }} aria-label="Return to Auralcraftverse">
           <AuralcraftMark />
           AURALCRAFTVERSE
         </button>
-        <nav className="universe-nav" aria-label="Auralcraftverse sections">
+        <button
+          className="mobile-menu-toggle"
+          type="button"
+          aria-label={mobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+          aria-controls="auralcraftverse-navigation"
+          aria-expanded={mobileMenuOpen}
+          onClick={() => { setMobileMenuOpen(!mobileMenuOpen); setNavOpen(''); }}
+        >
+          {mobileMenuOpen ? <X size={21} strokeWidth={1.5} /> : <Menu size={22} strokeWidth={1.5} />}
+        </button>
+        <nav id="auralcraftverse-navigation" className={'universe-nav ' + (mobileMenuOpen ? 'mobile-nav-visible' : '')} aria-label="Auralcraftverse sections">
           <button className="nav-tab" onClick={() => go('top')}>HOME</button>
           <button className="nav-tab" onClick={() => openRoom('mind')}>OUR CRAFT</button>
           <div className="nav-item" onMouseEnter={() => setNavOpen('tools')} onMouseLeave={() => setNavOpen('')}>

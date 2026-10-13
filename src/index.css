@@ -2619,4 +2619,69 @@ body { letter-spacing:0; }
 @keyframes wormhole-streak { from { translate:0 0; opacity:0; scale:.3 1; } 45% { opacity:1; } to { translate:170px 0; opacity:0; scale:1.4 1; } }
 @keyframes spacecraft-transit { 0% { left:67%; transform:translate(-50%,-50%) rotate(-5deg) scale(.72); opacity:0; } 12% { opacity:1; } 72% { left:51%; transform:translate(-50%,-50%) rotate(-5deg) scale(.4); opacity:1; } 100% { left:50%; transform:translate(-50%,-50%) rotate(-5deg) scale(.025); opacity:0; } }
 @keyframes engine-thrust { to { opacity:.45; width:38px; } }
+@media (max-width: 1000px) {
+  .topbar { padding: 16px 22px; }
+  .mobile-menu-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    flex: 0 0 44px;
+    color: var(--gold);
+    border: 1px solid rgba(201, 168, 106, .28);
+    background: rgba(5, 8, 10, .72);
+    cursor: pointer;
+    transition: background .2s ease, border-color .2s ease;
+  }
+  .mobile-menu-toggle:hover,
+  .mobile-menu-toggle:focus-visible { background: rgba(201, 168, 106, .1); border-color: var(--gold); }
+  .universe-nav {
+    display: none;
+    position: absolute;
+    top: calc(100% + 1px);
+    left: 0;
+    right: 0;
+    max-width: none;
+    max-height: calc(100dvh - 82px);
+    overflow-x: visible;
+    overflow-y: auto;
+    padding: 12px 18px 22px;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    gap: 3px;
+    background: rgba(5, 8, 10, .98);
+    border-bottom: 1px solid rgba(201, 168, 106, .22);
+    box-shadow: 0 24px 48px rgba(0, 0, 0, .38);
+    backdrop-filter: blur(18px);
+  }
+  .universe-nav.mobile-nav-visible { display: flex; }
+  .universe-nav .nav-tab {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    min-height: 48px;
+    padding: 0 12px;
+    text-align: left;
+    font-size: 10px;
+    letter-spacing: .16em;
+    border-bottom: 1px solid rgba(238, 234, 226, .07);
+  }
+  .universe-nav .nav-item { width: 100%; }
+  .universe-nav .nav-dropdown {
+    position: static;
+    width: 100%;
+    margin: 0 0 8px;
+    box-shadow: none;
+    border-color: rgba(238, 234, 226, .07);
+    background: rgba(255, 255, 255, .025);
+    backdrop-filter: none;
+  }
+  .universe-nav .nav-dropdown button { min-height: 48px; padding: 12px; }
+}
+@media (min-width: 1001px) {
+  .mobile-menu-toggle { display: none; }
+}
 @media (max-width:640px) { .jump-transit { height:190px; } .jump-spacecraft { scale:.8; } }
