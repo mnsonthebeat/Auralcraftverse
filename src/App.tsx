@@ -257,7 +257,7 @@ function EcosystemApp() {
 
   if (toolRoute) return (
     <main className="verse tool-route-page">
-      <header className="tool-route-header"><button className="tool-back-button" onClick={() => window.location.assign('/')}>← BACK TO AURALCRAFTVERSE</button><span>TOOLS / {toolRoute.name}</span></header>
+      <header className="tool-route-header"><button className="tool-back-button" onClick={() => window.location.assign('/?entered=1')}>← BACK TO AURALCRAFTVERSE</button><span>TOOLS / {toolRoute.name}</span></header>
       <section className="tool-route-fallback tool-launch-panel">
         <p className="kicker">AURALCRAFTVERSE / TOOL GATEWAY</p>
         <h1>{toolRoute.name}</h1>
@@ -270,8 +270,8 @@ function EcosystemApp() {
 
   if (guideSlug) return (
     <main className="verse guide-route-page">
-      <header className="tool-route-header"><button className="tool-back-button" onClick={() => window.location.assign('/')}>← BACK TO AURALCRAFTVERSE</button><span>KNOWLEDGE LIBRARY / GUIDE</span><a className="tool-standalone" href="/">EXIT GUIDE <ArrowUpRight size={14} /></a></header>
-      {guideEntry ? <article className="guide-page chamber"><p className="kicker">{guideEntry.category} / {guideEntry.level}</p><h1>{guideEntry.title}</h1><p className="guide-intro">{guideEntry.summary}</p><p className="guide-detail">{guideEntry.detail}</p><div className="guide-sections">{(guideSections[guideSlug] || []).map((section,index) => <section key={section.heading}><span>0{index+1} / {guideEntry.category}</span><h2>{section.heading}</h2><p>{section.body}</p></section>)}</div><a className="guide-back" href="/">← BACK TO AURALCRAFTVERSE</a></article> : <section className="guide-page chamber"><p className="kicker">KNOWLEDGE LIBRARY</p><h1>Guide not found</h1><p className="guide-intro">This topic may have moved. Return to the ecosystem and choose a guide from the library.</p><a className="guide-back" href="/">← RETURN TO AURALCRAFTVERSE</a></section>}
+      <header className="tool-route-header"><button className="tool-back-button" onClick={() => window.location.assign('/?entered=1')}>← BACK TO AURALCRAFTVERSE</button><span>KNOWLEDGE LIBRARY / GUIDE</span><a className="tool-standalone" href="/?entered=1">EXIT GUIDE <ArrowUpRight size={14} /></a></header>
+      {guideEntry ? <article className="guide-page chamber"><p className="kicker">{guideEntry.category} / {guideEntry.level}</p><h1>{guideEntry.title}</h1><p className="guide-intro">{guideEntry.summary}</p><p className="guide-detail">{guideEntry.detail}</p><div className="guide-sections">{(guideSections[guideSlug] || []).map((section,index) => <section key={section.heading}><span>0{index+1} / {guideEntry.category}</span><h2>{section.heading}</h2><p>{section.body}</p></section>)}</div><a className="guide-back" href="/?entered=1">← BACK TO AURALCRAFTVERSE</a></article> : <section className="guide-page chamber"><p className="kicker">KNOWLEDGE LIBRARY</p><h1>Guide not found</h1><p className="guide-intro">This topic may have moved. Return to the ecosystem and choose a guide from the library.</p><a className="guide-back" href="/?entered=1">← RETURN TO AURALCRAFTVERSE</a></section>}
     </main>
   );
 
@@ -600,7 +600,7 @@ function EcosystemApp() {
 
 
 function App() {
-  const [entered, setEntered] = useState(false);
+  const [entered, setEntered] = useState(() => new URLSearchParams(window.location.search).get('entered') === '1');
   const pathname = window.location.pathname || '/';
 
   // Authentication is intentionally paused. Keep direct tool and guide routes
