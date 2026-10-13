@@ -19,7 +19,7 @@ This is a source-tree orientation guide based on the repository's current struct
 | `package.json` | Dependency ranges and npm scripts. Changes affect local development, CI, and hosting builds. |
 | `vite.config.ts` | Vite configuration, React plugin, relative asset base, output directory, and source-map behavior. Preserve the `APPDEPLOY_VITE_OUT_DIR` and `APPDEPLOY_VITE_SOURCEMAP` conventions unless a deliberate migration is approved. |
 | `tsconfig.json` | TypeScript compiler configuration. It is strict, but the current package scripts do not expose a dedicated type-check command. |
-| `.github/workflows/build.yml` | GitHub Actions production build workflow. It runs on pushes and pull requests targeting `main`, installs dependencies, builds, and uploads `dist/` as a 14-day artifact. |
+| `.github/workflows/build.yml` | GitHub Actions production build workflow. It runs on pushes and pull requests targeting `main`, installs dependencies, builds, and uploads `dist/` as a 14-day artifact. The build job is explicitly named to match the repository's required status-check context. |
 | `render.yaml` | Static-site hosting configuration. It builds to `dist`, publishes that directory, enables automatic deployment on commit, and defines SPA rewrite routes for tools and guides. |
 | `tests/tests.json` | Existing test-related JSON asset. Confirm its intended consumer before assuming it is an executable automated test suite. |
 
@@ -30,10 +30,8 @@ This is a source-tree orientation guide based on the repository's current struct
 - The build workflow uses `npm install --no-audit --no-fund`, and `render.yaml` uses `npm install && npm run build`.
 - The Vite build currently disables source maps by default. Hidden source maps are enabled only when `APPDEPLOY_VITE_SOURCEMAP=hidden`.
 - The application has tool and guide SPA rewrites. Route or hosting changes must be checked together because either layer can affect direct navigation.
-
-
 - The recursive source-tree inventory contained no committed environment files, private-key-like files, or lockfile at the time of review. This is a limited filename check, not a full secret scan.
-- A root `.gitignore` has been added on this preservation branch to exclude dependencies, build output, local environment files, caches, logs, and common editor/OS artifacts. This does not remove or rewrite any existing tracked files.
+- A root `.gitignore` has been added on the preservation branch to exclude dependencies, build output, local environment files, caches, logs, and common editor/OS artifacts. This does not remove or rewrite any existing tracked files.
 
 These observations are a point-in-time inventory, not proof of production runtime behavior or repository branch protection.
 
@@ -45,16 +43,10 @@ These observations are a point-in-time inventory, not proof of production runtim
 
 Before changing a high-impact path, document the intent, expected user-visible effect, affected routes, validation performed, and rollback path. Avoid unrelated refactoring in the same change.
 
-
 ## Repository protection status checked on 2026-10-13
 
-The GitHub API currently reports:
+The GitHub API now confirms an active repository ruleset named **Auralcraftverse Main Branch Protection** targeting `refs/heads/main`. Its configured rules require pull requests, require the status-check context `Build Auralcraftverse`, block force pushes (non-fast-forward updates), and prevent deletion. The ruleset has no bypass actors configured. GitHub also reports `main` as protected.
 
-- The `main` branch is listed as `protected: false`.
-- The repository rulesets endpoint returned an empty list.
-- Therefore, no active branch protection rule or ruleset was visible through the accessible repository API at the time of this check.
-- The preservation branch and pull request checks do not themselves protect `main`.
+The existing Actions job was reporting its check context as `build`, which did not match the required context and blocked a merge attempt. This preservation branch now explicitly names the job `Build Auralcraftverse`; the updated workflow must pass CI and expose the matching check before merging. Do not bypass the ruleset to work around this mismatch.
 
-**Recommended owner action:** In GitHub, open **Settings → Rules → Rulesets** (or **Settings → Branches** for classic protection) and configure protection for `main`: require a pull request, require the build check, block force pushes and deletion, and limit bypass permissions. Confirm the actual saved settings in GitHub afterward. Do not enable a rule that requires an unverified check name; first confirm the exact check reported by Actions.
-
-This is a repository-settings follow-up, not an application-code change. The connected integration has not been used to modify these settings.
+This records the repository settings observed through GitHub's API and the outstanding CI validation for the check-name correction. A passing CI run is not proof of production runtime behavior or visual verification.
