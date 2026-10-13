@@ -31,6 +31,10 @@ This is a source-tree orientation guide based on the repository's current struct
 - The Vite build currently disables source maps by default. Hidden source maps are enabled only when `APPDEPLOY_VITE_SOURCEMAP=hidden`.
 - The application has tool and guide SPA rewrites. Route or hosting changes must be checked together because either layer can affect direct navigation.
 
+
+- The recursive source-tree inventory contained no committed environment files, private-key-like files, or lockfile at the time of review. This is a limited filename check, not a full secret scan.
+- A root `.gitignore` has been added on this preservation branch to exclude dependencies, build output, local environment files, caches, logs, and common editor/OS artifacts. This does not remove or rewrite any existing tracked files.
+
 These observations are a point-in-time inventory, not proof of production runtime behavior or repository branch protection.
 
 ## Change-risk guide
