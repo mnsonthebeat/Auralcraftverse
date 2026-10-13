@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import EntryExperience from './EntryExperience';
 
 const sessionTypes = ['FULL PRODUCTION SESSION', 'RECORDING SESSION', 'MIX / MASTER SESSION', 'BEATMAKING SESSION', 'ARTIST DEVELOPMENT SESSION'];
 const availabilityWindows = ['MORNING', 'AFTERNOON', 'EVENING', 'FLEXIBLE'];
@@ -25,6 +26,7 @@ const knowledgeLibrary = [
   { category: 'WORKFLOWS', title: 'A clean vocal recording checklist', level: 'RECORDING', summary: 'Reduce preventable noise and clipping before reaching for restoration plugins.', detail: 'Check the room, microphone placement, headphone bleed, cable noise and input peaks. Record a short test, listen between phrases, and capture a little room tone. Save a clean original before editing or processing.' },
   { category: 'WORKFLOWS', title: 'Compression: what to listen for', level: 'MIXING', summary: 'Use compression to control movement and envelope, not just to make a track louder.', detail: 'Set the threshold so the intended phrases trigger gain reduction, then shape attack and release to fit the source. Match output loudness for A/B listening. If the sound pumps, dulls, or loses its groove, revisit the settings.' },
   { category: 'RIGHTS & BUSINESS', title: 'Split sheets and contributor credits', level: 'RELEASE PREP', summary: 'Record agreed ownership shares and contributor information while everyone is available to confirm them.', detail: 'List every contributor and their role, agree the relevant composition shares, verify names and contact details, and have contributors review the record. A split sheet documents the agreement; it does not replace legal advice or a signed publishing agreement.' },
+  { category: 'MIXING', title: 'Parametric EQ', level: 'MIXING FOUNDATIONS', summary: 'Shape tone by adjusting frequency, gain and bandwidth with focused, musical equalization.', detail: 'A parametric equalizer lets you choose a band’s centre frequency, boost or cut amount, and Q (bandwidth). Use broad, small moves for tone and narrower cuts to investigate resonances. Make changes while listening in context, level-match bypass comparisons, and avoid cutting or boosting simply because a graph suggests it.' },
 ];
 
 const guideSections: Record<string, { heading: string; body: string }[]> = {
@@ -78,6 +80,11 @@ const guideSections: Record<string, { heading: string; body: string }[]> = {
     { heading: 'Confirm the agreed shares', body: 'Write down the agreed ownership shares and make sure the total and allocation are understood by everyone involved. Ask each contributor to review the document and resolve disagreements before release preparation moves forward.' },
     { heading: 'Store a reliable record', body: 'Keep a dated copy with the project and export a version contributors can review. A split sheet records an agreement; it does not replace a signed publishing or other legal agreement where one is needed.' },
   ],
+  'parametric-eq': [
+    { heading: 'Choose the band and frequency', body: 'Start with the part of the sound you want to change. Sweep a band gently to locate the area, then settle on a frequency that improves the source in the full mix rather than only in solo.' },
+    { heading: 'Set gain and bandwidth', body: 'Use gain to decide how much to boost or cut. Q controls bandwidth: a lower Q affects a broader range, while a higher Q affects a narrower range. Begin with modest moves and avoid stacking extreme corrections.' },
+    { heading: 'Compare honestly', body: 'Match processed and bypassed loudness, listen at a sensible level, and check the track in context. EQ should solve a clear masking or tonal problem; if the change does not help the music, undo it.' },
+  ],
 };
 
 const peopleProfiles = [
@@ -123,12 +130,7 @@ const AuralcraftMark = () => (
   </svg>
 );
 
-const revealDomains = [
-  { code: '01', title: 'USE A TOOL', copy: 'Purpose-built systems for production, restoration and music ownership records.', action: 'tools' },
-  { code: '02', title: 'LEARN THE CRAFT', copy: 'Searchable explanations and practical production workflows for every level.', action: 'research' },
-  { code: '03', title: 'HEAR THE MUSIC', copy: 'Listen to releases connected to the Auralcraftverse ecosystem.', action: 'mind' },
-  { code: '04', title: 'JOIN THE WORK', copy: 'Find opportunities and ways to contribute as the ecosystem grows.', action: 'assembly' },
-];
+
 
 const works = [
   ['Lil Eazi', 'Locked In Kpa', '2zqdV4BiJS1qC9YZheU5UO'],
@@ -203,7 +205,7 @@ function ToolVisual({ kind }: { kind: string }) {
   return <div className={'tool-visual visual-' + kind} aria-hidden="true"><span /><span /><span /></div>;
 }
 
-function App() {
+function EcosystemApp() {
   const [navOpen, setNavOpen] = useState('');
   const [activeRoom, setActiveRoom] = useState('');
   const [selectedPackage, setSelectedPackage] = useState('');
@@ -217,9 +219,13 @@ function App() {
   const [libraryQuery, setLibraryQuery] = useState('');
   const [libraryCategory, setLibraryCategory] = useState('ALL');
   const toolRoutes: Record<string, { name: string; url: string }> = {
+    '/mixmind': { name: 'MIXMIND', url: 'https://mixmind-ai-uj4ort.v2.appdeploy.ai/' },
+    '/hush-denoise': { name: 'HUSH DENOISE', url: 'https://hush-denoise-by-auralcraftverse-wc3fxc.v2.appdeploy.ai/' },
+    '/split-it': { name: 'SPLIT IT!', url: 'https://split-it-by-auralcraftverse-r19rbm.v2.appdeploy.ai/' },
+    // Preserve existing URLs so older bookmarks and links keep working.
     '/tools/mixmind': { name: 'MIXMIND', url: 'https://mixmind-ai-uj4ort.v2.appdeploy.ai/' },
     '/tools/hush-denoise': { name: 'HUSH DENOISE', url: 'https://hush-denoise-by-auralcraftverse-wc3fxc.v2.appdeploy.ai/' },
-    '/tools/split-it': { name: 'SPLIT IT!', url: 'https://split-it-by-auralcraftverse-isolated-port-yvds53.v2.appdeploy.ai/' },
+    '/tools/split-it': { name: 'SPLIT IT!', url: 'https://split-it-by-auralcraftverse-r19rbm.v2.appdeploy.ai/' },
   };
   const routePath = window.location.pathname.replace(/\/+$/, '') || '/';
   const toolRoute = toolRoutes[routePath];
@@ -238,10 +244,9 @@ function App() {
   };
 
   const openSplitIt = () => {
-    window.location.assign('/tools/split-it');
+    window.location.assign('/split-it');
   };
 
-  const revealAndGo = (id: string) => openRoom(id);
   const bookingMailto = `mailto:auralcraftverse@gmail.com?subject=${encodeURIComponent(`Production booking request: ${projectName}`)}&body=${encodeURIComponent([
     `Name: ${clientName}`,
     `Project / record: ${projectName}`,
@@ -252,15 +257,21 @@ function App() {
 
   if (toolRoute) return (
     <main className="verse tool-route-page">
-      <header className="tool-route-header"><a href="/" className="wordmark"><AuralcraftMark /> AURALCRAFTVERSE</a><span>TOOLS / {toolRoute.name}</span><a className="tool-standalone" href={toolRoute.url} target="_blank" rel="noopener noreferrer">OPEN STANDALONE <ArrowUpRight size={14} /></a></header>
-      <iframe className="tool-route-frame" title={toolRoute.name + ' by Auralcraftverse'} src={toolRoute.url} allow="clipboard-read; clipboard-write; microphone; camera" />
+      <header className="tool-route-header"><button className="tool-back-button" onClick={() => window.location.assign('/')}>← BACK TO AURALCRAFTVERSE</button><span>TOOLS / {toolRoute.name}</span></header>
+      <section className="tool-route-fallback tool-launch-panel">
+        <p className="kicker">AURALCRAFTVERSE / TOOL GATEWAY</p>
+        <h1>{toolRoute.name}</h1>
+        <p>This tool runs in its own workspace. Launch it directly for the full working experience; your Auralcraftverse gateway remains available whenever you want to return.</p>
+        <a className="primary-button" href={toolRoute.url}>LAUNCH {toolRoute.name} <ArrowUpRight size={14} /></a>
+        <p className="tool-launch-note">OPENING THE TOOL WILL TAKE YOU TO ITS WORKSPACE.</p>
+      </section>
     </main>
   );
 
   if (guideSlug) return (
     <main className="verse guide-route-page">
-      <header className="tool-route-header"><a href="/" className="wordmark"><AuralcraftMark /> AURALCRAFTVERSE</a><span>KNOWLEDGE LIBRARY / GUIDE</span><a className="tool-standalone" href="/">RETURN TO ECOSYSTEM <ArrowUpRight size={14} /></a></header>
-      {guideEntry ? <article className="guide-page chamber"><p className="kicker">{guideEntry.category} / {guideEntry.level}</p><h1>{guideEntry.title}</h1><p className="guide-intro">{guideEntry.summary}</p><p className="guide-detail">{guideEntry.detail}</p><div className="guide-sections">{(guideSections[guideSlug] || []).map((section,index) => <section key={section.heading}><span>0{index+1} / {guideEntry.category}</span><h2>{section.heading}</h2><p>{section.body}</p></section>)}</div><a className="guide-back" href="/">BACK TO AURALCRAFTVERSE <ArrowUpRight size={14} /></a></article> : <section className="guide-page chamber"><p className="kicker">KNOWLEDGE LIBRARY</p><h1>Guide not found</h1><p className="guide-intro">This topic may have moved. Return to the ecosystem and choose a guide from the library.</p><a className="guide-back" href="/">RETURN TO AURALCRAFTVERSE <ArrowUpRight size={14} /></a></section>}
+      <header className="tool-route-header"><button className="tool-back-button" onClick={() => window.location.assign('/')}>← BACK TO AURALCRAFTVERSE</button><span>KNOWLEDGE LIBRARY / GUIDE</span><a className="tool-standalone" href="/">EXIT GUIDE <ArrowUpRight size={14} /></a></header>
+      {guideEntry ? <article className="guide-page chamber"><p className="kicker">{guideEntry.category} / {guideEntry.level}</p><h1>{guideEntry.title}</h1><p className="guide-intro">{guideEntry.summary}</p><p className="guide-detail">{guideEntry.detail}</p><div className="guide-sections">{(guideSections[guideSlug] || []).map((section,index) => <section key={section.heading}><span>0{index+1} / {guideEntry.category}</span><h2>{section.heading}</h2><p>{section.body}</p></section>)}</div><a className="guide-back" href="/">← BACK TO AURALCRAFTVERSE</a></article> : <section className="guide-page chamber"><p className="kicker">KNOWLEDGE LIBRARY</p><h1>Guide not found</h1><p className="guide-intro">This topic may have moved. Return to the ecosystem and choose a guide from the library.</p><a className="guide-back" href="/">← RETURN TO AURALCRAFTVERSE</a></section>}
     </main>
   );
 
@@ -291,18 +302,18 @@ function App() {
         </button>
         <nav className="universe-nav" aria-label="Auralcraftverse sections">
           <button className="nav-tab" onClick={() => go('top')}>HOME</button>
-          <button className="nav-tab" onClick={() => openRoom('mind')}>MUSIC</button>
+          <button className="nav-tab" onClick={() => openRoom('mind')}>OUR CRAFT</button>
           <div className="nav-item" onMouseEnter={() => setNavOpen('tools')} onMouseLeave={() => setNavOpen('')}>
             <button className={'nav-tab ' + (navOpen === 'tools' ? 'active' : '')} onClick={() => setNavOpen(navOpen === 'tools' ? '' : 'tools')} aria-expanded={navOpen === 'tools'}>TOOLS</button>
             {navOpen === 'tools' && <div className="nav-dropdown tools-dropdown">
               <button onClick={() => openRoom('production')}><span>PRODUCTION SUITE</span><small>PACKAGES / BOOKING</small></button>
-              <button onClick={() => window.location.assign('/tools/mixmind')}><span>MIXMIND</span><small>PRODUCER INTELLIGENCE</small></button>
-              <button onClick={() => window.location.assign('/tools/hush-denoise')}><span>HUSH DENOISE</span><small>AUDIO RESTORATION</small></button>
+              <button onClick={() => window.location.assign('/mixmind')}><span>MIXMIND</span><small>PRODUCER INTELLIGENCE</small></button>
+              <button onClick={() => window.location.assign('/hush-denoise')}><span>HUSH DENOISE</span><small>AUDIO RESTORATION</small></button>
               <button onClick={openSplitIt}><span>SPLIT IT!</span><small>OWNERSHIP DOCUMENTATION</small></button>
             </div>}
           </div>
           <button className="nav-tab" onClick={() => openRoom('research')}>LEARN</button>
-          <button className="nav-tab" onClick={() => openRoom('human')}>PEOPLE</button>
+          <button className="nav-tab" onClick={() => openRoom('human')}>HALL OF FAME</button>
           <div className="nav-item" onMouseEnter={() => setNavOpen('deeper')} onMouseLeave={() => setNavOpen('')}>
             <button className={'nav-tab nav-tab-more ' + (navOpen === 'deeper' ? 'active' : '')} onClick={() => setNavOpen(navOpen === 'deeper' ? '' : 'deeper')} aria-expanded={navOpen === 'deeper'}>MORE <span>+</span></button>
             {navOpen === 'deeper' && <div className="nav-dropdown deeper-dropdown">
@@ -316,18 +327,16 @@ function App() {
       <section id="top" className="hero chamber">
         <div className="hero-orbit orbit-one" aria-hidden="true" /><div className="hero-orbit orbit-two" aria-hidden="true" />
         <div className="hero-core" aria-hidden="true"><div className="core-ring" /><div className="core-point" /></div><div className="hero-grid" aria-hidden="true" />
-        <div className="hero-copy"><p className="kicker">INDEPENDENT CREATIVE INFRASTRUCTURE</p><h1>WELCOME TO<br /><span>AURALCRAFTVERSE</span></h1><p className="hero-line">Tools to make. Knowledge to grow.<br />Music and people to discover.</p></div>
-        <button className="enter-link" onClick={() => go('reveal')}><span>EXPLORE THE ECOSYSTEM</span><ArrowDown size={16} /></button>
-        <div className="hero-index">01 / 06</div>
+        <div className="hero-copy">
+          <p className="kicker">INDEPENDENT CREATIVE INFRASTRUCTURE</p>
+          <h1>WELCOME TO<br /><span>AURALCRAFTVERSE</span></h1>
+          <p className="hero-line">Tools to make. Knowledge to grow.<br />Music and people to discover.</p>
+          <p className="hero-intro">Auralcraftverse is an independent creative ecosystem built around the work behind the music. Explore purpose-built tools for production and restoration, learn through practical guides, document the people and rights behind each release, and discover music shaped by a wider creative community. One connected space for making, understanding and preserving the craft.</p>
+        </div>
+        <button className="enter-link" onClick={() => openRoom('tools')}><span>EXPLORE THE ECOSYSTEM</span><ArrowDown size={16} /></button>
       </section>
 
-      <section id="reveal" className="reveal chamber ecosystem-intro">
-        <div className="section-meta"><span>02</span><span>WHAT YOU CAN DO HERE</span></div>
-        <div className="ecosystem-heading"><p>Explore working with music tools, practical production knowledge, West African industry contributors, and releases from the Auralcraftverse network.</p></div>
-        <div className="reveal-domains">{revealDomains.map(domain => <button key={domain.code} className="reveal-domain" onClick={() => revealAndGo(domain.action)}><span>{domain.code}</span><div><strong>{domain.title}</strong><small>{domain.copy}</small></div><ArrowUpRight size={15} /></button>)}</div>
-      </section>
-
-      {activeRoom && <div className="room-layer">
+      {activeRoom && <div className="room-layer"><button className="room-exit-button" onClick={() => { setActiveRoom(''); setNavOpen(''); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>← BACK TO WELCOME</button>
       
 
       {activeRoom === 'tools' && <section id="tools" className="tools chamber">
@@ -378,8 +387,8 @@ function App() {
                   className="tool-action"
                   onClick={() => {
                     if (index === 0) openRoom('production');
-                    if (index === 1) window.location.assign('/tools/mixmind');
-                    if (index === 2) window.location.assign('/tools/hush-denoise');
+                    if (index === 1) window.location.assign('/mixmind');
+                    if (index === 2) window.location.assign('/hush-denoise');
                     if (index === 3) openSplitIt();
                   }}
                 >
@@ -479,7 +488,7 @@ function App() {
       </section>}
 
       {activeRoom === 'human' && <section id="human" className="human chamber recognition-archive">
-        <div className="section-meta"><span>06</span><span>WEST AFRICAN MUSIC RECOGNITION ARCHIVE</span></div>
+        <div className="section-meta"><span>HALL OF FAME</span><span>WEST AFRICAN MUSIC RECOGNITION ARCHIVE</span></div>
         <div className="recognition-heading"><p>An editorial archive recognizing the executives, managers, lawyers and creative leaders shaping the reach and future of African music.</p></div>
         <div className="recognition-note"><span>EDITORIAL STANDARD</span><p>Roles and contributions are attributed to cited profiles or announcements. This first edition focuses on documented Nigerian contributors; regional coverage will expand as profiles are verified.</p></div>
         <div className="people-grid">{peopleProfiles.map((person,index) => <article className="person-card" key={person.name}><div className="person-card-top"><span className="person-index">0{index+1}</span><span className={person.tier === 'RISING PROFESSIONAL' ? 'person-tier rising' : 'person-tier'}>{person.tier}</span></div><img className="person-portrait" src={person.portrait} alt={person.name + " portrait"} loading="lazy" /><p className="kicker">{person.area}</p><h3>{person.name}</h3><strong className="person-role">{person.role}</strong><p>{person.contribution}</p><a href={person.href} target="_blank" rel="noopener noreferrer">SOURCE / {person.source} <ArrowUpRight size={14} /></a></article>)}</div>
@@ -535,7 +544,7 @@ function App() {
       </section>}
 
       {activeRoom === 'mind' && <section id="mind" className="mind chamber music-broadcast">
-        <div className="section-meta"><span>08</span><span>MUSIC BROADCAST / RELEASE CATALOGUE</span></div>
+        <div className="section-meta"><span>OUR CRAFT</span><span>MUSIC BROADCAST / RELEASE CATALOGUE</span></div>
         <div className="broadcast-heading"><div><p className="kicker">AURALCRAFTVERSE / SELECTED RELEASES</p><h2>Music made<br /><em>to be heard.</em></h2></div><p>A curated catalogue of artists and projects connected to Auralcraftverse. Listen through official Spotify embeds, then follow the release to its music platform.</p></div>
         <div className="broadcast-source-note"><span>CURATED CATALOGUE</span><p>Spotify player embeds and outbound links use official Spotify content. Other platform catalogues can be connected after developer credentials and catalog records are available. Release dates will appear when verified.</p></div>
         <div className="broadcast-grid">{works.map(([artist,title,trackId],index) => <article className="broadcast-card" key={trackId}><div className="broadcast-card-meta"><span>ACV RELEASE / {String(index+1).padStart(2,'0')}</span><span>ARTIST / {artist}</span></div><h3>{title}</h3><p className="broadcast-artist">{artist}</p><iframe title={artist + ' — ' + title} src={'https://open.spotify.com/embed/track/' + trackId + '?utm_source=generator'} loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" /><div className="broadcast-links"><a href={'https://open.spotify.com/track/' + trackId} target="_blank" rel="noopener noreferrer">SPOTIFY <ArrowUpRight size={13} /></a><a href={'https://music.apple.com/us/search?term=' + encodeURIComponent(artist + ' ' + title)} target="_blank" rel="noopener noreferrer">APPLE MUSIC SEARCH <ArrowUpRight size={13} /></a></div></article>)}</div>
@@ -554,7 +563,7 @@ function App() {
         <div className="section-meta"><span>09</span><span>THE AURALCRAFTVERSE ECOSYSTEM</span></div>
         <div className="gateway-heading"><div><p className="kicker">ROOTED HERE / BUILT FOR BEYOND</p><h2>One ecosystem.<br /><em>Useful by design.</em></h2></div><p>Move from an idea to a finished record, learn the language of production, document ownership, and discover the people and music that make the work possible.</p></div>
         <div className="gateway-grid">
-          {tools.map((tool,index) => <article className="gateway-card" key={tool.name}><span>GATEWAY / 0{index+1}</span><p className="kicker">{tool.subtitle}</p><h3>{tool.name}</h3><p>{tool.copy}</p><ToolVisual kind={tool.visual} />{index === 0 ? <button onClick={() => openRoom('production')}>LEARN MORE <ArrowUpRight size={14} /></button> : <a href={['','/tools/mixmind','/tools/hush-denoise','/tools/split-it'][index]}>LEARN MORE <ArrowUpRight size={14} /></a>}</article>)}
+          {tools.map((tool,index) => <article className="gateway-card" key={tool.name}><span>GATEWAY / 0{index+1}</span><p className="kicker">{tool.subtitle}</p><h3>{tool.name}</h3><p>{tool.copy}</p><ToolVisual kind={tool.visual} />{index === 0 ? <button onClick={() => openRoom('production')}>LEARN MORE <ArrowUpRight size={14} /></button> : <a href={['','/mixmind','/hush-denoise','/split-it'][index]}>LEARN MORE <ArrowUpRight size={14} /></a>}</article>)}
           <article className="gateway-card gateway-resource"><span>GATEWAY / 05</span><p className="kicker">LEARN / KEEP BUILDING</p><h3>Production Knowledge Library</h3><p>Find clear explanations, DAW guides and practical workflows. A growing reference for creatives at every stage.</p><button onClick={() => openRoom('research')}>LEARN MORE <ArrowUpRight size={14} /></button></article>
           <article className="gateway-card gateway-resource"><span>GATEWAY / 06</span><p className="kicker">PEOPLE / PROFESSIONAL LEGACY</p><h3>West African Music Archive</h3><p>Discover documented contributions from professionals and rising talent shaping the region’s music industry.</p><button onClick={() => openRoom('human')}>LEARN MORE <ArrowUpRight size={14} /></button></article>
         </div>
@@ -575,17 +584,39 @@ function App() {
           <div className="footer-links">
             <button onClick={() => go('top')}>VERSE</button>
             <button onClick={() => openRoom('research')}>LEARN</button>
-            <button onClick={() => openRoom('mind')}>MUSIC</button>
+            <button onClick={() => openRoom('mind')}>OUR CRAFT</button>
             <button onClick={() => openRoom('tools')}>TOOLS</button>
             <button onClick={() => go('origin')}>ORIGIN</button>
           </div>
         </div>
         <div className="footer-bottom">
           <span>AURALCRAFTVERSE / 2026</span>
-          <span>TOOLS / KNOWLEDGE / MUSIC / PEOPLE / OPPORTUNITY</span>
+          <span>TOOLS / KNOWLEDGE / OUR CRAFT / HALL OF FAME / OPPORTUNITY</span>
         </div>
       </footer>
     </main>
+  );
+}
+
+
+function App() {
+  const [entered, setEntered] = useState(false);
+  const pathname = window.location.pathname || '/';
+
+  // Authentication is intentionally paused. Keep direct tool and guide routes
+  // accessible while preserving the cinematic entry sequence on the home page.
+  if (pathname !== '/' || entered) {
+    return <EcosystemApp />;
+  }
+
+  return (
+    <EntryExperience
+      authReady={true}
+      hasSession={false}
+      initialStage="arrival"
+      returnTo="/"
+      onEnter={() => setEntered(true)}
+    />
   );
 }
 
