@@ -257,9 +257,14 @@ function EcosystemApp() {
 
   if (toolRoute) return (
     <main className="verse tool-route-page">
-      <header className="tool-route-header"><button className="tool-back-button" onClick={() => window.location.assign('/')}>← BACK TO AURALCRAFTVERSE</button><span>TOOLS / {toolRoute.name}</span><a className="tool-standalone" href={toolRoute.url} target="_blank" rel="noopener noreferrer">OPEN TOOL IN NEW TAB <ArrowUpRight size={14} /></a></header>
-      <iframe className="tool-route-frame" title={toolRoute.name + ' by Auralcraftverse'} src={toolRoute.url} allow="clipboard-read; clipboard-write; microphone; camera" />
-      <section className="tool-route-fallback"><p className="kicker">HAVING TROUBLE LOADING THE EMBED?</p><h1>{toolRoute.name}</h1><p>This tool runs in its own workspace. If the embedded view is blocked by the tool host, open the workspace directly in a new tab. You can return here at any time.</p><a className="primary-button" href={toolRoute.url} target="_blank" rel="noopener noreferrer">OPEN {toolRoute.name} <ArrowUpRight size={14} /></a></section>
+      <header className="tool-route-header"><button className="tool-back-button" onClick={() => window.location.assign('/')}>← BACK TO AURALCRAFTVERSE</button><span>TOOLS / {toolRoute.name}</span></header>
+      <section className="tool-route-fallback tool-launch-panel">
+        <p className="kicker">AURALCRAFTVERSE / TOOL GATEWAY</p>
+        <h1>{toolRoute.name}</h1>
+        <p>This tool runs in its own workspace. Launch it directly for the full working experience; your Auralcraftverse gateway remains available whenever you want to return.</p>
+        <a className="primary-button" href={toolRoute.url}>LAUNCH {toolRoute.name} <ArrowUpRight size={14} /></a>
+        <p className="tool-launch-note">OPENING THE TOOL WILL TAKE YOU TO ITS WORKSPACE.</p>
+      </section>
     </main>
   );
 
