@@ -40,3 +40,17 @@ These observations are a point-in-time inventory, not proof of production runtim
 - **Focused UI area:** `src/EntryExperience.tsx`.
 
 Before changing a high-impact path, document the intent, expected user-visible effect, affected routes, validation performed, and rollback path. Avoid unrelated refactoring in the same change.
+
+
+## Repository protection status checked on 2026-10-13
+
+The GitHub API currently reports:
+
+- The `main` branch is listed as `protected: false`.
+- The repository rulesets endpoint returned an empty list.
+- Therefore, no active branch protection rule or ruleset was visible through the accessible repository API at the time of this check.
+- The preservation branch and pull request checks do not themselves protect `main`.
+
+**Recommended owner action:** In GitHub, open **Settings → Rules → Rulesets** (or **Settings → Branches** for classic protection) and configure protection for `main`: require a pull request, require the build check, block force pushes and deletion, and limit bypass permissions. Confirm the actual saved settings in GitHub afterward. Do not enable a rule that requires an unverified check name; first confirm the exact check reported by Actions.
+
+This is a repository-settings follow-up, not an application-code change. The connected integration has not been used to modify these settings.
