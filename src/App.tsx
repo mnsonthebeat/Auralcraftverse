@@ -358,8 +358,7 @@ function EcosystemApp() {
       </header>
 
       <section id="top" className="hero chamber">
-        <div className="hero-orbit orbit-one" aria-hidden="true" /><div className="hero-orbit orbit-two" aria-hidden="true" />
-        <div className="hero-core" aria-hidden="true"><div className="core-ring" /><div className="core-point" /></div><div className="hero-grid" aria-hidden="true" />
+        <div className="hero-grid" aria-hidden="true" />
         <div className="hero-copy">
           <p className="kicker">INDEPENDENT CREATIVE INFRASTRUCTURE</p>
           <h1>WELCOME TO<br /><span>AURALCRAFTVERSE</span></h1>
