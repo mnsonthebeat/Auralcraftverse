@@ -73,6 +73,7 @@ export default function EntryExperience({
       <div className="entry-orbit entry-orbit-a" aria-hidden="true" />
       <div className="entry-orbit entry-orbit-b" aria-hidden="true" />
       <div className="entry-grid" aria-hidden="true" />
+      <div className="entry-wormhole" aria-hidden="true"><span /><span /><span /><span /><span /></div>
       <div className="entry-topline">
         <span>AURALCRAFTVERSE / ACV-001</span>
         <span>INDEPENDENT CREATIVE ECOSYSTEM</span>
@@ -82,12 +83,12 @@ export default function EntryExperience({
         <div className="entry-emblem" aria-hidden="true">
           <div className="entry-emblem-ring" />
           <div className="entry-emblem-core" />
-          <Orbit size={26} strokeWidth={1} />
+          {stage === 'jumping' ? <Rocket size={31} strokeWidth={1.1} /> : <Orbit size={26} strokeWidth={1} />}
         </div>
 
         {stage === 'arrival' && (
           <div className="entry-copy">
-            <p className="entry-kicker">YOU HAVE REACHED THE THRESHOLD</p>
+            <p className="entry-kicker">LAUNCH SITE / ORIGIN 001</p>
             <h1>ENTER THE<br /><span>AURALCRAFTVERSE</span></h1>
             <p className="entry-subtitle">An Independent Creative Ecosystem</p>
             <button className="jump-control" onClick={beginJump} disabled={!authReady}>
@@ -103,8 +104,8 @@ export default function EntryExperience({
           <div className="jump-sequence" role="status">
             <div className="jump-core"><span /><span /><span /></div>
             <p className="entry-kicker">JUMP SEQUENCE ACTIVE</p>
-            <h2>{hasSession ? 'WELCOME BACK.' : 'CROSSING THE THRESHOLD.'}</h2>
-            <p>STABILISING THE ARRIVAL CORRIDOR</p>
+            <h2>'ARRIVING AT DESTINATION'</h2>
+            <p>WORMHOLE TRANSIT COMPLETE · AURALCRAFTVERSE INBOUND</p>
             <div className="jump-progress"><span /></div>
           </div>
         )}
@@ -146,7 +147,7 @@ export default function EntryExperience({
         {stage === 'entered' && (
           <div className="arrival-flash" role="status">
             <Sparkles size={28} strokeWidth={1} />
-            <p>ARRIVAL CONFIRMED</p>
+            <p>ARRIVING AT DESTINATION</p>
           </div>
         )}
       </section>
