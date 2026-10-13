@@ -51,7 +51,7 @@ Protect the approved Auralcraftverse source, architecture, user journeys, and pr
 
 These settings are repository-owner actions and may not be configurable through the connected integration:
 
-- Protect `main) with a ruleset or branch protection rule.
+- Protect `main` with a ruleset or branch protection rule.
 - Require pull requests before merging.
 - Require the production build check and any established tests to pass.
 - Block force-pushes and branch deletion on `main`.
