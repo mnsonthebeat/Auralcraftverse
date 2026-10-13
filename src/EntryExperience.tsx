@@ -104,7 +104,7 @@ export default function EntryExperience({
           <div className="jump-sequence" role="status">
             <div className="jump-core"><span /><span /><span /></div>
             <p className="entry-kicker">JUMP SEQUENCE ACTIVE</p>
-            <h2>'ARRIVING AT DESTINATION'</h2>
+            <h2>ARRIVING AT DESTINATION</h2>
             <p>WORMHOLE TRANSIT COMPLETE · AURALCRAFTVERSE INBOUND</p>
             <div className="jump-progress"><span /></div>
           </div>
