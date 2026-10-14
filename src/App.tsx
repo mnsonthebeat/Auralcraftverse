@@ -324,14 +324,6 @@ function EcosystemApp() {
         <div className="universe-orbit env-orbit-b" />
         <div className="universe-orbit env-orbit-c" />
         <div className="universe-trajectory" />
-        <div className="universe-craft">
-          <span className="craft-glow" />
-          <span className="craft-body" />
-          <span className="craft-wing wing-left" />
-          <span className="craft-wing wing-right" />
-          <span className="craft-engine engine-one" />
-          <span className="craft-engine engine-two" />
-        </div>
       </div>
       <header className={'topbar ' + (mobileMenuOpen ? 'mobile-menu-open' : '')}>
         <button className="wordmark" onClick={() => { setMobileMenuOpen(false); go('top'); }} aria-label="Return to Auralcraftverse">
