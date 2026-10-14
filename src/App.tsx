@@ -280,6 +280,16 @@ function EcosystemApp() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  // Switch to a deeper room, then scroll once React has rendered its section.
+  const revealAndGo = (id: string) => {
+    setActiveRoom(id);
+    setNavOpen('');
+    setMobileMenuOpen(false);
+    window.setTimeout(() => {
+      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 0);
+  };
+
   const openSplitIt = () => {
     setMobileMenuOpen(false);
     window.location.assign('/split-it');
