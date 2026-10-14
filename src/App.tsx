@@ -401,10 +401,7 @@ function EcosystemApp() {
       
 
       {activeRoom === 'tools' && <section id="tools" className="tools chamber">
-        <div className="section-meta">
-          <span>04</span>
-          <span>TOOLS</span>
-        </div>
+        <div className="section-meta"><span>TOOLS</span></div>
         <div className="tools-heading">
           <div>
             <p className="kicker">THE WORKING LAYER / 04</p>
@@ -470,7 +467,7 @@ function EcosystemApp() {
       </section>}
 
       {activeRoom === 'packages' && <section id="packages" className="packages chamber">
-        <div className="section-meta"><span>05A</span><span>PRODUCTION PACKAGES</span></div>
+        <div className="section-meta"><span>PRODUCTION PACKAGES</span></div>
         <div className="packages-heading"><div><p className="kicker">CHOOSE YOUR PATH</p><h2>Production<br /><em>without templates.</em></h2></div><p>Choose the production path that fits the work. Every engagement is developed around the record itself.</p></div>
         <div className="package-grid">
           {[
@@ -493,10 +490,10 @@ function EcosystemApp() {
       </section>}
 
       {activeRoom === 'booking' && <section id="booking" className="booking chamber">
-        <div className="section-meta"><span>F03 / 04</span><span>BOOKING SYSTEM</span></div>
+        <div className="section-meta"><span>BOOKING SYSTEM</span></div>
         <div className="booking-layout">
           <div>
-            <p className="kicker">FLOOR 03 / CLIENT INTAKE</p>
+            
             <h2>Build the<br /><em>record.</em></h2>
             <p className="body-copy">A guided production request: choose the work, describe the project, indicate the session format and give us a window for availability.</p>
             <div className="booking-rail">
@@ -517,10 +514,7 @@ function EcosystemApp() {
       </section>}
 
       {activeRoom === 'production' && <section id="production" className="production chamber">
-        <div className="section-meta">
-          <span>05</span>
-          <span>PRODUCTION SUITE</span>
-        </div>
+        <div className="section-meta"><span>PRODUCTION SUITE</span></div>
         <div className="production-panel">
           <div className="production-art" aria-hidden="true">
             <AudioLines size={100} strokeWidth={0.55} />
@@ -557,14 +551,14 @@ function EcosystemApp() {
       </section>}
 
       {activeRoom === 'archive' && <section id="archive" className="archive chamber">
-        <div className="section-meta"><span>07</span><span>ARCHIVE / THE RECORD</span></div>
+        <div className="section-meta"><span>ARCHIVE / THE RECORD</span></div>
         <div className="archive-head">
           <div>
-            <p className="kicker">FLOOR 05 / THE ARCHIVE</p>
+            
             <h2>Everything we<br /><em>make</em> becomes history.</h2>
             <p className="archive-intro">A living institutional record of releases, curation, tools, origins and experiments. Nothing here is decoration; each entry marks a piece of the universe being built.</p>
           </div>
-          <div className="archive-seal" aria-hidden="true"><Archive size={42} strokeWidth={0.7} /><span>ACV / 05</span></div>
+          <div className="archive-seal" aria-hidden="true"><Archive size={42} strokeWidth={0.7} /></div>
         </div>
         <div className="archive-controls" aria-label="Archive filters">
           <span>INDEX</span>
@@ -580,7 +574,7 @@ function EcosystemApp() {
       </section>}
 
       {activeRoom === 'research' && <section id="research" className="research chamber knowledge-library">
-        <div className="section-meta"><span>07A</span><span>MUSIC PRODUCTION KNOWLEDGE LIBRARY</span></div>
+        <div className="section-meta"><span>MUSIC PRODUCTION KNOWLEDGE LIBRARY</span></div>
         <div className="library-heading"><div><p className="kicker">SEARCH / LEARN / APPLY</p><h2>Find the term.<br /><em>Learn the move.</em></h2></div><p>A growing, searchable guide to production language, DAWs, workflows, troubleshooting and music business fundamentals.</p></div>
         <div className="library-search"><label htmlFor="knowledge-search">Search the library</label><input id="knowledge-search" type="search" value={libraryQuery} onChange={event => setLibraryQuery(event.target.value)} placeholder="Try “gain staging” or “FL Studio”" /></div>
         <div className="library-filters" aria-label="Knowledge categories">{['ALL', 'THEORY', 'TERMINOLOGY', 'DAW GUIDES', 'INSTALLATION', 'TROUBLESHOOTING', 'PLUGINS & TOOLS', 'RECORDING', 'MIXING', 'MASTERING', 'WORKFLOWS', 'RIGHTS & BUSINESS'].map(category => <button key={category} className={libraryCategory === category ? 'active' : ''} onClick={() => setLibraryCategory(category)}>{category}</button>)}</div>
@@ -592,7 +586,7 @@ function EcosystemApp() {
       </section>}
 
       {activeRoom === 'assembly' && <section id="assembly" className="assembly chamber careers">
-        <div className="section-meta"><span>07B</span><span>CAREERS / CONTRIBUTE</span></div>
+        <div className="section-meta"><span>CAREERS / CONTRIBUTE</span></div>
         <div className="careers-heading"><div><p className="kicker">BUILD WITH AURALCRAFTVERSE</p><h2>Make room<br /><em>for your craft.</em></h2></div><p>We welcome thoughtful people who can help independent creative infrastructure grow—through full-time work, freelance projects, internships and collaboration.</p></div>
         <div className="careers-status"><span className="status-dot" /><div><strong>NO PUBLIC VACANCIES LISTED RIGHT NOW</strong><p>We’re open to expressions of interest for future work. Sending a portfolio does not create an active application or guarantee a role.</p></div></div>
         <div className="opportunity-grid">
@@ -607,7 +601,7 @@ function EcosystemApp() {
       {activeRoom === 'mind' && <section id="mind" className="mind chamber music-broadcast">
         <div className="section-meta"><span>OUR CRAFT</span><span>MUSIC BROADCAST / RELEASE CATALOGUE</span></div>
         <div className="broadcast-heading"><div><p className="kicker">AURALCRAFTVERSE / SELECTED RELEASES</p><h2>Music made<br /><em>to be heard.</em></h2></div><p>A curated catalogue of artists and projects connected to Auralcraftverse. Listen through official Spotify embeds, then follow the release to its music platform.</p></div>
-        <div className="broadcast-grid">{works.map(([artist,title,trackId],index) => <article className="broadcast-card" key={trackId}><div className="broadcast-card-meta"><span>ACV RELEASE / {String(index+1).padStart(2,'0')}</span><span>ARTIST / {artist}</span></div><h3>{title}</h3><p className="broadcast-artist">{artist}</p><iframe title={artist + ' — ' + title} src={'https://open.spotify.com/embed/track/' + trackId + '?utm_source=generator'} loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" /><div className="broadcast-links"><a href={'https://open.spotify.com/track/' + trackId} target="_blank" rel="noopener noreferrer">SPOTIFY <ArrowUpRight size={13} /></a><a href={'https://music.apple.com/us/search?term=' + encodeURIComponent(artist + ' ' + title)} target="_blank" rel="noopener noreferrer">APPLE MUSIC SEARCH <ArrowUpRight size={13} /></a></div></article>)}</div>
+        <div className="broadcast-grid">{works.map(([artist,title,trackId],index) => <article className="broadcast-card" key={trackId}><div className="broadcast-card-meta"><span>ARTIST / {artist}</span></div><h3>{title}</h3><p className="broadcast-artist">{artist}</p><iframe title={artist + ' — ' + title} src={'https://open.spotify.com/embed/track/' + trackId + '?utm_source=generator'} loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" /><div className="broadcast-links"><a href={'https://open.spotify.com/track/' + trackId} target="_blank" rel="noopener noreferrer">SPOTIFY <ArrowUpRight size={13} /></a><a href={'https://music.apple.com/us/search?term=' + encodeURIComponent(artist + ' ' + title)} target="_blank" rel="noopener noreferrer">APPLE MUSIC SEARCH <ArrowUpRight size={13} /></a></div></article>)}</div>
         <div className="broadcast-footer"><span>PLAY / DISCOVER / FOLLOW OFFICIAL RELEASES</span><span>CATALOGUE RECORDS REMAIN EDITORIAL</span></div>
       </section>}
 
@@ -620,12 +614,12 @@ function EcosystemApp() {
       </div>}
 
       <section id="origin" className="origin chamber ecosystem-gateway">
-        <div className="section-meta"><span>09</span><span>THE AURALCRAFTVERSE ECOSYSTEM</span></div>
+        <div className="section-meta"><span>THE AURALCRAFTVERSE ECOSYSTEM</span></div>
         <div className="gateway-heading"><div><p className="kicker">ROOTED HERE / BUILT FOR BEYOND</p><h2>One ecosystem.<br /><em>Useful by design.</em></h2></div><p>Move from an idea to a finished record, learn the language of production, document ownership, and discover the people and music that make the work possible.</p></div>
         <div className="gateway-grid">
-          {tools.map((tool,index) => <article className="gateway-card" key={tool.name}><span>GATEWAY / 0{index+1}</span><p className="kicker">{tool.subtitle}</p><h3>{tool.name}</h3><p>{tool.copy}</p><ToolVisual kind={tool.visual} />{index === 0 ? <button onClick={() => openRoom('production')}>LEARN MORE <ArrowUpRight size={14} /></button> : <a href={['','/mixmind','/hush-denoise','/split-it'][index]}>LEARN MORE <ArrowUpRight size={14} /></a>}</article>)}
-          <article className="gateway-card gateway-resource"><span>GATEWAY / 05</span><p className="kicker">LEARN / KEEP BUILDING</p><h3>Production Knowledge Library</h3><p>Find clear explanations, DAW guides and practical workflows. A growing reference for creatives at every stage.</p><button onClick={() => openRoom('research')}>LEARN MORE <ArrowUpRight size={14} /></button></article>
-          <article className="gateway-card gateway-resource"><span>GATEWAY / 06</span><p className="kicker">PEOPLE / PROFESSIONAL LEGACY</p><h3>West African Music Archive</h3><p>Discover documented contributions from professionals and rising talent shaping the region’s music industry.</p><button onClick={() => openRoom('human')}>LEARN MORE <ArrowUpRight size={14} /></button></article>
+          {tools.map((tool,index) => <article className="gateway-card" key={tool.name}><p className="kicker">{tool.subtitle}</p><h3>{tool.name}</h3><p>{tool.copy}</p><ToolVisual kind={tool.visual} />{index === 0 ? <button onClick={() => openRoom('production')}>LEARN MORE <ArrowUpRight size={14} /></button> : <a href={['','/mixmind','/hush-denoise','/split-it'][index]}>LEARN MORE <ArrowUpRight size={14} /></a>}</article>)}
+          <article className="gateway-card gateway-resource"><p className="kicker">LEARN / KEEP BUILDING</p><h3>Production Knowledge Library</h3><p>Find clear explanations, DAW guides and practical workflows. A growing reference for creatives at every stage.</p><button onClick={() => openRoom('research')}>LEARN MORE <ArrowUpRight size={14} /></button></article>
+          <article className="gateway-card gateway-resource"><p className="kicker">PEOPLE / PROFESSIONAL LEGACY</p><h3>West African Music Archive</h3><p>Discover documented contributions from professionals and rising talent shaping the region’s music industry.</p><button onClick={() => openRoom('human')}>LEARN MORE <ArrowUpRight size={14} /></button></article>
         </div>
       </section>
 
