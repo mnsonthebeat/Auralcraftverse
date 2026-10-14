@@ -305,7 +305,7 @@ function EcosystemApp() {
 
   if (toolRoute) return (
     <main className="verse tool-route-page">
-      <header className="tool-route-header"><button className="tool-back-button" onClick={() => window.location.assign('/?entered=1')}>← BACK TO AURALCRAFTVERSE</button><span>TOOLS / {toolRoute.name}</span></header>
+      <header className="tool-route-header"><button className="tool-back-button" onClick={() => window.location.assign('/?entered=1')}>← BACK TO AURALCRAFTVERSE</button><span>TOOLS / {toolRoute.name}</span><button className="tool-route-close-button" aria-label="Close tool page and return to Auralcraftverse" title="Close page" onClick={() => window.location.assign('/?entered=1')}><X size={19} /></button></header>
       <section className="tool-route-fallback tool-launch-panel">
         <p className="kicker">AURALCRAFTVERSE / TOOL GATEWAY</p>
         <h1>{toolRoute.name}</h1>
@@ -397,7 +397,7 @@ function EcosystemApp() {
         <button className="enter-link" onClick={() => openRoom('tools')}><span>EXPLORE THE ECOSYSTEM</span><ArrowDown size={16} /></button>
       </section>
 
-      {activeRoom && <div className="room-layer"><button className="room-exit-button" onClick={() => { setActiveRoom(''); setNavOpen(''); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>← BACK TO WELCOME</button>
+      {activeRoom && <div className="room-layer"><button className="room-exit-button" onClick={() => { setActiveRoom(''); setNavOpen(''); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>← BACK TO WELCOME</button><button className="room-close-button" aria-label="Close page and return to welcome" title="Close page" onClick={() => { setActiveRoom(''); setNavOpen(''); setMobileMenuOpen(false); window.scrollTo({ top: 0, behavior: 'smooth' }); }}><X size={19} /></button>
       
 
       {activeRoom === 'tools' && <section id="tools" className="tools chamber">
