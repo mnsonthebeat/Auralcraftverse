@@ -181,7 +181,7 @@ const works = [
 const deeperFloors = [
   { id: 'packages', label: 'PRODUCTION PACKAGES', eyebrow: 'BOOK A SESSION' },
   { id: 'research', label: 'MUSIC PRODUCTION KNOWLEDGE LIBRARY', eyebrow: 'LEARN' },
-  { id: 'human', label: 'WEST AFRICAN MUSIC RECOGNITION ARCHIVE', eyebrow: 'PEOPLE' },
+  { id: 'human', label: 'EDITORIAL', eyebrow: 'PEOPLE' },
   { id: 'archive', label: 'THE ARCHIVE', eyebrow: 'THE RECORD' },
 ];
 
@@ -549,7 +549,7 @@ function EcosystemApp() {
       </section>}
 
       {activeRoom === 'human' && <section id="human" className="human chamber recognition-archive">
-        <div className="section-meta"><span>EDITORIAL</span><span>WEST AFRICAN MUSIC RECOGNITION ARCHIVE</span></div>
+        <div className="section-meta"><span>EDITORIAL</span><span>EDITORIAL</span></div>
         <div className="recognition-heading"><p>An editorial archive recognizing the executives, managers, lawyers and creative leaders shaping the reach and future of African music.</p></div>
         <div className="recognition-note"><span>EDITORIAL STANDARD</span><p>Roles and contributions are attributed to cited profiles or announcements. This first edition focuses on documented Nigerian contributors; regional coverage will expand as profiles are verified.</p></div>
         <div className="people-grid">{peopleProfiles.map((person,index) => <article className="person-card" key={person.name}><div className="person-card-top"><span className="person-index">0{index+1}</span><span className={person.tier === 'RISING PROFESSIONAL' ? 'person-tier rising' : 'person-tier'}>{person.tier}</span></div><img className="person-portrait" src={person.portrait} alt={person.name + " portrait"} loading="lazy" /><p className="kicker">{person.area}</p><h3>{person.name}</h3><strong className="person-role">{person.role}</strong><p>{person.contribution}</p><a href={person.href} target="_blank" rel="noopener noreferrer">SOURCE / {person.source} <ArrowUpRight size={14} /></a></article>)}</div>
