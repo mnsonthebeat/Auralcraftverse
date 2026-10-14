@@ -2201,48 +2201,12 @@ em {
   0% { transform: translate(-50%, -50%) rotate(5deg) scale(1); }
   100% { transform: translate(-50%, -50%) rotate(12deg) scale(1.035); }
 }
-@keyframes universeCraftJump {
-  0%, 10% {
-    left: 12%; top: 67%; opacity: 0;
-    transform: translate3d(-34px, 10px, 0) rotate(-9deg) scale(.62);
-  }
-  15% {
-    left: 19%; top: 64%; opacity: 1;
-    transform: translate3d(0,0,0) rotate(-8deg) scale(1);
-  }
-  33% {
-    left: 43%; top: 55%; opacity: .96;
-    transform: translate3d(0,0,0) rotate(-3deg) scale(1.02);
-  }
-  39% {
-    left: 52%; top: 49%; opacity: .08;
-    transform: translate3d(26px,-12px,0) rotate(-1deg) scale(1.45);
-    filter: blur(3px) drop-shadow(0 0 20px rgba(201,168,106,.92));
-  }
-  44%, 58% {
-    left: 62%; top: 41%; opacity: 0;
-    transform: translate3d(42px,-18px,0) rotate(3deg) scale(.45);
-  }
-  65% {
-    left: 68%; top: 38%; opacity: 1;
-    transform: translate3d(0,0,0) rotate(5deg) scale(.9);
-  }
-  84% {
-    left: 84%; top: 31%; opacity: .96;
-    transform: translate3d(0,0,0) rotate(9deg) scale(.78);
-  }
-  91%, 100% {
-    left: 94%; top: 26%; opacity: 0;
-    transform: translate3d(32px,-9px,0) rotate(11deg) scale(.35);
-  }
-}
 @media (max-width: 900px) {
   .universe-orbit { opacity: .6; }
   .env-orbit-a { width: 138vw; height: 64vw; }
   .env-orbit-b { width: 112vw; height: 50vw; }
   .env-orbit-c { width: 166vw; height: 82vw; }
   .universe-trajectory { width: 112vw; height: 52vw; top: 57%; }
-  .universe-craft { width: 70px; height: 23px; }
   .chamber { background-color: rgba(5,6,7,.58) !important; }
 }
 @media (max-width: 560px) {
@@ -2252,16 +2216,12 @@ em {
   .env-orbit-b { width: 150vw; height: 72vw; }
   .env-orbit-c { width: 225vw; height: 112vw; }
   .universe-trajectory { width: 150vw; height: 72vw; top: 54%; }
-  .universe-craft { width: 64px; height: 21px; }
   .chamber { background-color: rgba(5,6,7,.62) !important; }
 }
 @media (prefers-reduced-motion: reduce) {
   .universe-image,
   .universe-stars,
   .universe-orbit,
-  .universe-craft {
-    animation: none !important;
-  }
 }
 
 /* Auralcraftverse ecosystem redesign */
