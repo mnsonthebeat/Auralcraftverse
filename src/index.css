@@ -2221,7 +2221,9 @@ em {
 @media (prefers-reduced-motion: reduce) {
   .universe-image,
   .universe-stars,
-  .universe-orbit,
+  .universe-orbit {
+    animation: none !important;
+  }
 }
 
 /* Auralcraftverse ecosystem redesign */
