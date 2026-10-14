@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { ArrowUpRight, Orbit, Rocket, ShieldCheck, Sparkles } from 'lucide-react';
+import { ArrowUpRight, Rocket, ShieldCheck, Sparkles } from 'lucide-react';
 import { isSupabaseConfigured, supabase } from './lib/supabase';
 
 export type EntryStage = 'arrival' | 'jumping' | 'authentication' | 'entered';
@@ -68,6 +68,14 @@ export default function EntryExperience({
   return (
     <main className={`entry-experience entry-stage-${stage}`} aria-live="polite">
       <div className="entry-stars" aria-hidden="true" />
+      <div className="planetary-system" aria-hidden="true">
+        <div className="planetary-orbit planetary-orbit-1"><span className="planet planet-1" /></div>
+        <div className="planetary-orbit planetary-orbit-2"><span className="planet planet-2" /></div>
+        <div className="planetary-orbit planetary-orbit-3"><span className="planet planet-3" /></div>
+        <div className="planetary-orbit planetary-orbit-4"><span className="planet planet-4" /></div>
+        <div className="planetary-orbit planetary-orbit-5"><span className="planet planet-5" /></div>
+        <div className="planetary-orbit planetary-orbit-6"><span className="planet planet-6" /></div>
+      </div>
       <div className="entry-nebula entry-nebula-a" aria-hidden="true" />
       <div className="entry-nebula entry-nebula-b" aria-hidden="true" />
       <div className="entry-orbit entry-orbit-a" aria-hidden="true" />
@@ -81,9 +89,7 @@ export default function EntryExperience({
 
       <section className="entry-content">
         <div className="entry-emblem" aria-hidden="true">
-          <div className="entry-emblem-ring" />
-          <div className="entry-emblem-core" />
-          {stage === 'jumping' ? <Rocket size={31} strokeWidth={1.1} /> : <Orbit size={26} strokeWidth={1} />}
+          <img className="entry-official-totem" src="/auralcraftverse-totem.png" alt="" />
         </div>
 
         {stage === 'arrival' && (
@@ -104,7 +110,7 @@ export default function EntryExperience({
           <div className="jump-sequence" role="status">
             <div className="jump-transit" aria-hidden="true">
               <div className="jump-wormhole"><span /><span /><span /><span /><span /><i /><i /></div>
-              <div className="jump-spacecraft"><span className="craft-shadow" /><span className="craft-fuselage" /><span className="craft-nose" /><span className="craft-cockpit" /><span className="craft-wing craft-wing-left" /><span className="craft-wing craft-wing-right" /><span className="craft-stabilizer" /><span className="craft-panel" /><span className="craft-engine" /><span className="craft-engine-core" /></div>
+              <div className="jump-orbital-core"><span /><span /><span /></div>
             </div>
             <p className="entry-kicker">JUMP SEQUENCE ACTIVE</p>
             <h2>ARRIVING AT DESTINATION</h2>
