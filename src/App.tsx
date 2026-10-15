@@ -376,7 +376,7 @@ function EcosystemApp() {
         </button>
         <nav id="auralcraftverse-navigation" className={'universe-nav ' + (mobileMenuOpen ? 'mobile-nav-visible' : '')} aria-label="Auralcraftverse sections">
           <button className="nav-tab" onClick={() => go('top')}>HOME</button>
-          <button className="nav-tab" onClick={() => openRoom('mind')}>OUR CRAFT</button>
+          <button className="nav-tab" onClick={() => openRoom('mind')}>WORKS</button>
           <div className="nav-item" onMouseEnter={() => setNavOpen('tools')} onMouseLeave={() => setNavOpen('')}>
             <button className={'nav-tab ' + (navOpen === 'tools' ? 'active' : '')} onClick={() => setNavOpen(navOpen === 'tools' ? '' : 'tools')} aria-expanded={navOpen === 'tools'}>TOOLS</button>
             {navOpen === 'tools' && <div className="nav-dropdown tools-dropdown">
@@ -386,7 +386,7 @@ function EcosystemApp() {
               <button onClick={openSplitIt}><span>SPLIT IT!</span><small>OWNERSHIP DOCUMENTATION</small></button>
             </div>}
           </div>
-          <button className="nav-tab" onClick={() => openRoom('research')}>LEARN</button>
+          <button className="nav-tab" onClick={() => openRoom('research')}>KNOWLEDGE HUB</button>
           <button className="nav-tab" onClick={() => openRoom('human')}>EDITORIAL</button>
           <button className="nav-tab" onClick={() => openRoom('assembly')}>CAREERS</button>
           <div className="nav-item" onMouseEnter={() => setNavOpen('deeper')} onMouseLeave={() => setNavOpen('')}>
@@ -397,17 +397,22 @@ function EcosystemApp() {
             </div>}
           </div>
         </nav>
+        <button className="nav-launch" onClick={() => window.location.assign('/?entry=launch')}>ENTER / LAUNCH <ArrowUpRight size={14} /></button>
       </header>
 
       <section id="top" className="hero chamber">
         <div className="hero-grid" aria-hidden="true" />
         <div className="hero-copy">
-          <p className="kicker">INDEPENDENT CREATIVE INFRASTRUCTURE</p>
+          <p className="kicker">ORIGIN / 001 · INDEPENDENT CREATIVE ECOSYSTEM</p>
           <h1>WELCOME TO<br /><span>AURALCRAFTVERSE</span></h1>
-          <p className="hero-line">Tools to make. Knowledge to grow.<br />Music and people to discover.</p>
-          <p className="hero-intro">Auralcraftverse is an independent creative ecosystem built around the work behind the music. Explore purpose-built tools for production and restoration, learn through practical guides, document the people and rights behind each release, and discover music shaped by a wider creative community. One connected space for making, understanding and preserving the craft.</p>
+          <p className="hero-line">An independent creative ecosystem built for the future of music, technology and creative culture.</p>
+          <p className="hero-intro">Explore creative tools, practical production knowledge, music and the people shaping West African music. Make, learn, preserve and discover—connected within one evolving creative universe.</p>
+          <div className="hero-actions">
+            <button className="primary-button hero-enter-button" onClick={() => window.location.assign('/?entry=launch')}>ENTER AURALCRAFTVERSE <ArrowUpRight size={16} /></button>
+            <button className="secondary-button hero-explore-button" onClick={() => go('origin')}>EXPLORE THE ECOSYSTEM <ArrowDown size={15} /></button>
+          </div>
         </div>
-        <button className="enter-link" onClick={() => openRoom('tools')}><span>EXPLORE THE ECOSYSTEM</span><ArrowDown size={16} /></button>
+        <div className="hero-coordinate" aria-hidden="true"><span>ACV / 001</span><span>CREATIVE SYSTEMS ONLINE</span><span>DESTINATION: OPEN UNIVERSE</span></div>
       </section>
 
       {activeRoom && <div className="room-layer"><button className="room-exit-button" onClick={() => { setActiveRoom(''); setNavOpen(''); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>← BACK TO WELCOME</button><button className="room-close-button" aria-label="Close page and return to welcome" title="Close page" onClick={() => { setActiveRoom(''); setNavOpen(''); setMobileMenuOpen(false); window.scrollTo({ top: 0, behavior: 'smooth' }); }}><X size={19} /></button>
@@ -660,7 +665,7 @@ function EcosystemApp() {
 
 
 function App() {
-  const [entered, setEntered] = useState(() => new URLSearchParams(window.location.search).get('entered') === '1');
+  const [entered, setEntered] = useState(() => new URLSearchParams(window.location.search).get('entry') !== 'launch');
   const pathname = window.location.pathname || '/';
 
   // Authentication is intentionally paused. Keep direct tool and guide routes
@@ -675,7 +680,7 @@ function App() {
       hasSession={false}
       initialStage="arrival"
       returnTo="/"
-      onEnter={() => setEntered(true)}
+      onEnter={() => { window.history.replaceState({}, '', '/?entered=1'); setEntered(true); }}
     />
   );
 }
