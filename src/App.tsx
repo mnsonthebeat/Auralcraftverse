@@ -397,7 +397,7 @@ function EcosystemApp() {
             </div>}
           </div>
         </nav>
-        <button className="nav-launch" onClick={() => openRoom('tools')}>ENTER / LAUNCH <ArrowUpRight size={14} /></button>
+        <button className="nav-launch" onClick={() => window.location.assign('/?entry=launch')}>ENTER / LAUNCH <ArrowUpRight size={14} /></button>
       </header>
 
       <section id="top" className="hero chamber">
@@ -408,7 +408,7 @@ function EcosystemApp() {
           <p className="hero-line">An independent creative ecosystem built for the future of music, technology and creative culture.</p>
           <p className="hero-intro">Explore creative tools, practical production knowledge, music and the people shaping West African music. Make, learn, preserve and discover—connected within one evolving creative universe.</p>
           <div className="hero-actions">
-            <button className="primary-button hero-enter-button" onClick={() => openRoom('tools')}>ENTER AURALCRAFTVERSE <ArrowUpRight size={16} /></button>
+            <button className="primary-button hero-enter-button" onClick={() => window.location.assign('/?entry=launch')}>ENTER AURALCRAFTVERSE <ArrowUpRight size={16} /></button>
             <button className="secondary-button hero-explore-button" onClick={() => go('origin')}>EXPLORE THE ECOSYSTEM <ArrowDown size={15} /></button>
           </div>
         </div>
@@ -665,7 +665,7 @@ function EcosystemApp() {
 
 
 function App() {
-  const [entered, setEntered] = useState(() => new URLSearchParams(window.location.search).get('entered') === '1');
+  const [entered, setEntered] = useState(() => new URLSearchParams(window.location.search).get('entry') !== 'launch');
   const pathname = window.location.pathname || '/';
 
   // Authentication is intentionally paused. Keep direct tool and guide routes
@@ -680,7 +680,7 @@ function App() {
       hasSession={false}
       initialStage="arrival"
       returnTo="/"
-      onEnter={() => setEntered(true)}
+      onEnter={() => { window.history.replaceState({}, '', '/?entered=1'); setEntered(true); }}
     />
   );
 }
