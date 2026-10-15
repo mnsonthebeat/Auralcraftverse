@@ -56,8 +56,8 @@
     </script>
   </head>
   <body>
-    <div id="root"></div>
-    <noscript>
+    <div id="root">
+      <!-- Initial HTML fallback for crawlers; React replaces this content on startup. -->
       <main>
         <h1>Auralcraftverse — An Independent Creative Ecosystem</h1>
         <p>Tools to make. Knowledge to grow. Music and people to discover.</p>
@@ -69,7 +69,7 @@
           </ul>
         </nav>
       </main>
-    </noscript>
+    </div>
     <script type="module" src="./src/main.tsx"></script>
   </body>
 </html>
