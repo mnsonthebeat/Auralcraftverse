@@ -1,0 +1,115 @@
+[
+  {
+    "name": "Import an audio file and play the original recording",
+    "sanity": true,
+    "viewport": "desktop",
+    "covers": [
+      "audio import",
+      "Opus voice recording import",
+      "Apple MPEG-4 / M4A import",
+      "local metadata inspection",
+      "original audio playback",
+      "waveform workspace",
+      "frequency spectrum"
+    ],
+    "description": "Verifies supported audio including Opus and Apple MPEG-4/M4A recordings loads and the transport starts the actual local source audio.",
+    "steps": [
+      "Import a supported audio recording, Opus voice recording, or Apple MPEG-4/M4A recording",
+      "Observe the Sonic Workspace",
+      "Select A Original",
+      "Press Play"
+    ],
+    "expected": "The source metadata and workspace are visible and the transport enters PLAYING state for the imported recording."
+  },
+  {
+    "name": "Run DeepFilterNet on speech and podcast profiles without redundant denoising",
+    "viewport": "desktop",
+    "covers": [
+      "DeepFilterNet 3 WASM inference",
+      "speech profile routing",
+      "podcast profile routing",
+      "avoid stacked spectral denoising",
+      "avoid gate artifacts",
+      "local-only speech enhancement",
+      "processed WAV export"
+    ],
+    "description": "Verifies speech-oriented profiles use DeepFilterNet without a second spectral denoiser or noise gate being stacked afterward.",
+    "steps": [
+      "Import a supported speech or podcast recording",
+      "Select Speech or Podcast under Source Profile",
+      "Select Clean Audio",
+      "Wait for processing to complete",
+      "Switch to B Processed and play the result",
+      "Export the processed WAV"
+    ],
+    "expected": "DeepFilterNet processing completes locally; optional hum, click/pop and de-essing stages remain available, but the extra spectral denoiser and gate are not applied to speech/podcast profiles."
+  },
+  {
+    "name": "Keep music and singing on the conservative restoration path",
+    "viewport": "desktop",
+    "covers": [
+      "music-first source profile",
+      "singing source profile",
+      "conservative spectral denoising",
+      "profile-specific model routing",
+      "stereo-aware quiet-section estimate",
+      "profile-aware Auto Restore settings",
+      "clear whole-file noise-estimate limitation",
+      "A/B listening guidance before export",
+      "noise-only sample range controls",
+      "noise sample RMS level estimation",
+      "selected-region averaged spectral profile capture",
+      "frequency-selective profile denoising in Static mode",
+      "avoid stacking profile denoising with FFmpeg spectral denoising",
+      "minimum sample duration validation"
+    ],
+    "description": "Verifies music and singing profiles avoid the speech-oriented model, use smoothed spectral denoising, and do not gate tails by default.",
+    "steps": [
+      "Import a music mix or singing recording",
+      "Select Music or Singing under Source Profile",
+      "Select Clean Audio",
+      "Wait for processing to complete"
+    ],
+    "expected": "The app uses conservative local DSP for Music and Singing, estimates quiet-section level across channels without mono cancellation, and Auto Restore suggests lower denoising strength and a more conservative noise-floor target for musical sources. Users can select a noise-only region of at least 0.25 seconds; the app captures an averaged spectral profile from that region, measures its RMS level, and uses the captured spectrum for frequency-selective attenuation in Static mode for Music and Singing without stacking the FFmpeg spectral denoiser. The diagnosis advises A/B-checking tails, cymbals and reverb. Gating remains off unless Adaptive mode is explicitly raised above the conservative threshold."
+  },
+  {
+    "name": "Scale reconstruction according to the selected strength",
+    "viewport": "desktop",
+    "covers": [
+      "reconstruction strength control",
+      "proportional repair blend",
+      "short-region repair"
+    ],
+    "description": "Verifies reconstruction strength blends the interpolated repair with the original samples instead of applying the same full-strength replacement at every nonzero setting.",
+    "steps": [
+      "Import a supported recording",
+      "Set Reconstruction to a low nonzero value",
+      "Run Clean Audio",
+      "Repeat on the same source with a higher Reconstruction value"
+    ],
+    "expected": "The selected repair region uses the configured strength as a blend amount; zero strength leaves the source untouched by reconstruction."
+  },
+  {
+    "name": "Use static denoising mode and retain truthful failure states on mobile",
+    "viewport": "mobile",
+    "covers": [
+      "static noise-tracking mode label",
+      "regenerative restoration mode",
+      "hum reduction",
+      "click/pop repair",
+      "de-esser",
+      "processing error handling",
+      "mobile responsive workspace",
+      "no false success state"
+    ],
+    "description": "Verifies the non-tracking denoising mode is labeled Static, repair controls remain available, and local processing failures are reported truthfully.",
+    "steps": [
+      "Import an audio recording",
+      "Select Static under Restoration Method",
+      "Enable a repair control if needed",
+      "Start Clean Audio",
+      "If the local processing engine fails, observe the status area"
+    ],
+    "expected": "Static mode is labeled accurately, repair controls remain available, and a processing failure is reported without claiming a successful export."
+  }
+]
