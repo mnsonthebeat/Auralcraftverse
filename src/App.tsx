@@ -306,12 +306,25 @@ function EcosystemApp() {
   if (toolRoute) return (
     <main className="verse tool-route-page">
       <header className="tool-route-header"><button className="tool-back-button" onClick={() => window.location.assign('/?entered=1')}>← BACK TO AURALCRAFTVERSE</button><span>TOOLS / {toolRoute.name}</span><button className="tool-route-close-button" aria-label="Close tool page and return to Auralcraftverse" title="Close page" onClick={() => window.location.assign('/?entered=1')}><X size={19} /></button></header>
-      <section className="tool-route-fallback tool-launch-panel">
-        <p className="kicker">AURALCRAFTVERSE / TOOL GATEWAY</p>
-        <h1>{toolRoute.name}</h1>
-        <p>This tool runs in its own workspace. Launch it directly for the full working experience; your Auralcraftverse gateway remains available whenever you want to return.</p>
-        <a className="primary-button" href={toolRoute.url}>LAUNCH {toolRoute.name} <ArrowUpRight size={14} /></a>
-        <p className="tool-launch-note">OPENING THE TOOL WILL TAKE YOU TO ITS WORKSPACE.</p>
+      <section className="tool-route-embed-panel">
+        <div className="tool-route-embed-heading">
+          <div>
+            <p className="kicker">AURALCRAFTVERSE / TOOL WORKSPACE</p>
+            <h1>{toolRoute.name}</h1>
+            <p>This workspace is hosted by its product service and presented here inside Auralcraftverse. If your browser blocks embedded sign-in, saving, file access or downloads, open the standalone workspace instead.</p>
+          </div>
+          <a className="primary-button tool-route-standalone" href={toolRoute.url} target="_blank" rel="noopener noreferrer">OPEN IN NEW TAB <ArrowUpRight size={14} /></a>
+        </div>
+        <div className="tool-route-embed-frame">
+          <iframe
+            title={toolRoute.name + ' by Auralcraftverse'}
+            src={toolRoute.url}
+            loading="eager"
+            referrerPolicy="strict-origin-when-cross-origin"
+            allow="microphone; clipboard-read; clipboard-write"
+          />
+        </div>
+        <p className="tool-route-embed-note">AURALCRAFTVERSE GATEWAY / {toolRoute.name} / STANDALONE FALLBACK AVAILABLE</p>
       </section>
     </main>
   );
