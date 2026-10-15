@@ -397,6 +397,7 @@ function EcosystemApp() {
             </div>}
           </div>
         </nav>
+        <button className="nav-launch" onClick={() => openRoom('tools')}>ENTER / LAUNCH <ArrowUpRight size={14} /></button>
       </header>
 
       <section id="top" className="hero chamber">
