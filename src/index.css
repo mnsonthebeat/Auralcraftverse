@@ -2826,3 +2826,89 @@ body { letter-spacing:0; }
 @media (max-width: 640px) {
   .room-close-button { top: 12px; right: 12px; width: 38px; height: 38px; }
 }
+
+
+/* AURALCRAFTVERSE CINEMATIC SPACE REDESIGN — isolated visual layer.
+   Keeps existing React routes, interactions, tools, and auth flows unchanged. */
+:root {
+  --void: #03070d;
+  --panel: rgba(5, 12, 21, .88);
+  --panel-2: rgba(9, 20, 32, .88);
+  --line: rgba(199, 163, 105, .24);
+  --muted: #a2acbb;
+  --white: #f3f1ec;
+  --gold: #d6ad72;
+  --amber: #e8a05b;
+  --cyan: #75c8e5;
+}
+html, body, .verse {
+  background-color: #03070d;
+}
+.verse {
+  background-image:
+    radial-gradient(ellipse at 78% 14%, rgba(34, 91, 130, .15), transparent 38%),
+    radial-gradient(ellipse at 18% 46%, rgba(202, 123, 57, .08), transparent 35%),
+    linear-gradient(180deg, #03070d 0%, #050b13 52%, #02060b 100%);
+}
+.topbar {
+  border-bottom-color: rgba(214, 173, 114, .24);
+  background: linear-gradient(180deg, rgba(3, 7, 13, .92), rgba(3, 7, 13, .62));
+  backdrop-filter: blur(14px);
+}
+.wordmark, .auralcraft-mark { color: #f4eee3; }
+.nav-tab, .nav-item { transition: color .22s ease, border-color .22s ease; }
+.nav-tab:hover, .nav-item:hover, .nav-tab[aria-current="page"] { color: var(--gold); }
+.primary-button, .booking-primary, .package-button, .enter-link {
+  border-color: rgba(214, 173, 114, .72);
+  background: linear-gradient(135deg, rgba(214, 173, 114, .13), rgba(214, 173, 114, .035));
+  box-shadow: 0 0 24px rgba(214, 145, 73, .06);
+}
+.primary-button:hover, .booking-primary:hover, .package-button:hover {
+  border-color: #f2c88e;
+  box-shadow: 0 0 28px rgba(214, 145, 73, .14);
+}
+.hero {
+  background:
+    radial-gradient(ellipse at 70% 30%, rgba(38, 98, 140, .18), transparent 38%),
+    radial-gradient(ellipse at 50% 70%, rgba(210, 122, 47, .10), transparent 42%),
+    transparent;
+}
+.hero-copy { text-shadow: 0 2px 24px rgba(0, 0, 0, .52); }
+.hero-line, .section-meta, .kicker, .tool-number, .person-index { color: var(--gold); }
+.tool-card, .package-card, .person-card, .knowledge-card, .broadcast-card, .archive-record {
+  border-color: rgba(214, 173, 114, .18);
+  background: linear-gradient(145deg, rgba(9, 19, 31, .82), rgba(4, 9, 16, .92));
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.025);
+  transition: border-color .25s ease, transform .25s ease, background .25s ease;
+}
+.tool-card:hover, .package-card:hover, .person-card:hover, .knowledge-card:hover, .broadcast-card:hover {
+  border-color: rgba(214, 173, 114, .48);
+}
+.section-meta, .future-line, .archive-record-category, .archive-record-year { color: #d6ad72; }
+.entry-experience {
+  --entry-ice: #f0e7d9;
+  --entry-blue: #d6ad72;
+  --entry-muted: #a2acbb;
+  background:
+    radial-gradient(ellipse at 76% 22%, rgba(44, 102, 139, .24), transparent 38%),
+    radial-gradient(ellipse at 50% 74%, rgba(226, 124, 43, .16), transparent 34%),
+    #03070d;
+}
+.entry-nebula-a, .entry-nebula-b { filter: saturate(.78); }
+.entry-orbit { border-color: rgba(214, 173, 114, .20); }
+.entry-wormhole { box-shadow: 0 0 80px rgba(225, 131, 53, .13); }
+.room-layer {
+  background-color: #03070d;
+  background-image:
+    radial-gradient(ellipse at 78% 15%, rgba(34, 91, 130, .15), transparent 38%),
+    radial-gradient(ellipse at 18% 46%, rgba(202, 123, 57, .08), transparent 35%);
+}
+.tool-route-header, .tool-standalone, .guide-page {
+  background-color: #03070d;
+}
+@media (max-width: 700px) {
+  .topbar { background: rgba(3, 7, 13, .94); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tool-card, .package-card, .person-card, .knowledge-card, .broadcast-card { transition: none; }
+}
