@@ -678,7 +678,7 @@ function App() {
     <EntryExperience
       authReady={true}
       hasSession={false}
-      initialStage="arrival"
+      initialStage="jumping"
       returnTo="/"
       onEnter={() => { window.history.replaceState({}, '', '/?entered=1'); setEntered(true); }}
     />
