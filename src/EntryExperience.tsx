@@ -90,10 +90,10 @@ export default function EntryExperience({
           <div className="entry-copy">
             <p className="entry-kicker">LAUNCH SITE / ORIGIN 001</p>
             <h1>ENTER THE<br /><span>AURALCRAFTVERSE</span></h1>
-            <p className="entry-subtitle">IGNITION · LAUNCH · ARRIVAL</p>
+            <p className="entry-subtitle">An Independent Creative Ecosystem</p>
             <button className="jump-control" onClick={beginJump} disabled={!authReady}>
               <span className="jump-control-icon"><Rocket size={19} strokeWidth={1.4} /></span>
-              <span className="jump-control-copy"><strong>ENTER AURALCRAFTVERSE</strong><small>{authReady ? 'BEGIN TRANSIT INTO THE ECOSYSTEM' : 'ESTABLISHING SECURE CONNECTION'}</small></span>
+              <span className="jump-control-copy"><strong>INITIATE JUMP</strong><small>{authReady ? 'ENTER THE UNKNOWN' : 'ESTABLISHING SECURE CONNECTION'}</small></span>
               <ArrowUpRight size={17} />
             </button>
             <p className="entry-footnote">THE ECOSYSTEM REMAINS BEYOND THE THRESHOLD</p>
